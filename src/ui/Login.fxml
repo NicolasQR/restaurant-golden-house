@@ -20,7 +20,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="536.0" layoutY="336.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="135.0" style="-fx-background-radius: 15;" text="Registrarse">
+      <Button layoutX="536.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnRegisterUser" prefHeight="39.0" prefWidth="135.0" style="-fx-background-radius: 15;" text="Registrarse">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>

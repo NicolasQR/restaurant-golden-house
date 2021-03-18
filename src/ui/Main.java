@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	private Aja aja;
+	private GoldenHouseGUI goldenHouseGUI;
 	
 	public Main() {
-		aja = new Aja();
+		goldenHouseGUI = new GoldenHouseGUI();
 	}
 	
 	
@@ -25,7 +25,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main-Anchor-pane.fxml"));
-		fxmlLoader.setController(aja);
+		fxmlLoader.setController(goldenHouseGUI);
 		
 		Parent root = fxmlLoader.load();
 		
@@ -36,7 +36,7 @@ public class Main extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		
-		aja.loadLogin();
+		goldenHouseGUI.loadLogin();
 	}
 
 }

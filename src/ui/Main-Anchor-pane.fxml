@@ -10,7 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Separator prefHeight="154.0" prefWidth="950.0" />
+      <Separator prefHeight="39.0" prefWidth="950.0" />
       <ImageView fitHeight="160.0" fitWidth="951.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Downloads/a.jpg" />
