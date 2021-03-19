@@ -106,12 +106,18 @@ public class GoldenHouseGUI {
     }
 	
 	@FXML
-    void logIn(ActionEvent event) {
+    void logIn(ActionEvent event) throws IOException {
 		for(int i = 0; i < restaurant.getUsers().size() ; i++) {
     		
     		if(restaurant.getUsers().get(i).getUserName().equals(loginUser.getText()) &&
     				restaurant.getUsers().get(i).getPassword().equals(String.valueOf(loginPassword.getCharacters()))) {
     			
+    			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+    			fxmlLoader.setController(this);    	
+    			Parent root = fxmlLoader.load();
+    	    	
+    			mainAnchorPane.getChildren().clear();
+    			mainAnchorPane.getChildren().setAll(root);
     			
     	    	System.out.println("Yeaaaah");
     	    	break;

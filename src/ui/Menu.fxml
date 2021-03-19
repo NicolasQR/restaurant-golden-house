@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar layoutX="50.0" prefHeight="26.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;">
+        <menus>
+          <Menu disable="true" mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane prefHeight="445.0" prefWidth="950.0" style="-fx-background-color: #000000;">
+         <children>
+            <ImageView fitHeight="446.0" fitWidth="950.0" layoutX="-6.0" layoutY="3.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../../../../Downloads/B%20COPIA.jpg" />
+               </image>
+               <viewport>
+                  <Rectangle2D width="950.0" />
+               </viewport>
+            </ImageView>
+            <Separator layoutX="11.0" layoutY="-506.0" orientation="VERTICAL" prefHeight="950.0" AnchorPane.leftAnchor="4.0" />
+            <Separator layoutY="419.0" prefHeight="26.0" prefWidth="950.0" AnchorPane.bottomAnchor="4.0" />
+            <Separator layoutX="876.0" layoutY="-506.0" orientation="VERTICAL" prefHeight="950.0" AnchorPane.rightAnchor="4.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
