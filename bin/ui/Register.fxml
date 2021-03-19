@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="310.0" layoutY="41.0" prefHeight="35.0" prefWidth="101.0" text="Nombre:" textFill="#e2dda8">
@@ -36,39 +35,39 @@
             <Font name="Tw Cen MT" size="28.0" />
          </font>
       </Label>
-      <TextField layoutX="420.0" layoutY="46.0">
+      <TextField fx:id="txtUserName" layoutX="420.0" layoutY="46.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField layoutX="420.0" layoutY="106.0" prefHeight="30.0" prefWidth="187.0">
+      <TextField fx:id="txtUserLastName" layoutX="420.0" layoutY="106.0" prefHeight="30.0" prefWidth="187.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField layoutX="424.0" layoutY="166.0" prefHeight="30.0" prefWidth="187.0">
+      <TextField fx:id="txtId" layoutX="424.0" layoutY="166.0" prefHeight="30.0" prefWidth="187.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <TextField layoutX="424.0" layoutY="236.0" prefHeight="30.0" prefWidth="187.0">
+      <TextField fx:id="txtUser" layoutX="424.0" layoutY="236.0" prefHeight="30.0" prefWidth="187.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </TextField>
-      <PasswordField layoutX="424.0" layoutY="303.0" prefHeight="30.0" prefWidth="187.0">
+      <PasswordField fx:id="txtPassword" layoutX="424.0" layoutY="303.0" prefHeight="30.0" prefWidth="187.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </PasswordField>
-      <Button layoutX="516.0" layoutY="389.0" mnemonicParsing="false" style="-fx-background-radius: 15;" text="Crear usuario">
+      <Button layoutX="516.0" layoutY="389.0" mnemonicParsing="false" onAction="#createUser" style="-fx-background-radius: 15;" text="Crear usuario">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Button layoutX="348.0" layoutY="389.0" mnemonicParsing="false" onAction="#btnGoToLoginPane" style="-fx-background-radius: 15;" text="Iniciar sesion">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Separator layoutX="4.0" layoutY="-161.0" orientation="VERTICAL" prefHeight="670.0" prefWidth="18.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" />
