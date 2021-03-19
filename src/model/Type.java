@@ -1,6 +1,6 @@
 package model;
 
-public class Type {
+public class Type implements Comparable<Type>{
 	private String name;
 
 	public Type(String name) {
@@ -13,5 +13,10 @@ public class Type {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public int compareTo(Type o) {
+		return name.compareTo(o.getName());
 	}
 }
