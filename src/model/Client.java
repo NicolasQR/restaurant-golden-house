@@ -16,7 +16,7 @@ public class Client {
 		this.address = address;
 		this.phone = phone;
 	}
-
+		
 	public String getName() {
 		return name;
 	}

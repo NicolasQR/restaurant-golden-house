@@ -13,7 +13,7 @@
       <Separator prefHeight="39.0" prefWidth="950.0" />
       <ImageView fitHeight="160.0" fitWidth="951.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Downloads/a.jpg" />
+            <Image url="@../../images/Logo.jpg" />
          </image>
       </ImageView>
       <Label text="3/17/2021" textFill="WHITE" translateX="25.0">

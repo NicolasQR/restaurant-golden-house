@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class Product {
+public class Product implements Comparable<Product>{
 	private String name;
 	private String size;
 	private long price;
@@ -69,6 +69,11 @@ public class Product {
 	public void setTypeProduct(Type typeProduct) {
 		this.typeProduct = typeProduct;
 	}
-	
+
+	@Override
+	public int compareTo(Product o) {
+		
+		return (int) (price - o.price);
+	}
 	
 }
