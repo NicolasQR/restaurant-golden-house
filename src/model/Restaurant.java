@@ -1,11 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Restaurant   {
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
+	private ArrayList<Type> productTypes;
 	
 	private List<User> users;
 	private List<Employee> employee;
@@ -38,6 +41,52 @@ public class Restaurant   {
 				added = true;
 			}
 		
+		return added;
+	}
+	
+	public boolean addIngredient(String name) {
+		
+		boolean added = false;
+		
+		if(name != null) {
+			
+			Ingredient ingredient = new Ingredient(name);
+			
+			for(int i = 0; i < ingredients.size(); i++) {
+				int mini = 0;
+				if(ingredient.compareTo(ingredients.get(i)) < 0) {
+					mini = i;
+				}
+				Ingredient aux = ingredients.get(i);
+				ingredients.set(i, ingredients.get(mini));
+				ingredients.set(mini, aux);
+			}
+			added = true;
+
+		}
+		
+		return added;
+	}
+	
+	public boolean addProductType(String name) {
+		boolean added = false;
+				
+			if(name != null) {
+			
+			Type productType = new Type(name);
+			
+			for(int i = 0; i < productTypes.size(); i++) {
+				int mini = 0;
+				if(productType.compareTo(productTypes.get(i)) < 0) {
+					mini = i;
+				}
+				Type aux = productTypes.get(i);
+				productTypes.set(i, productTypes.get(mini));
+				productTypes.set(mini, aux);
+			}
+
+		}
+				
 		return added;
 	}
 	

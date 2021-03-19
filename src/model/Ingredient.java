@@ -1,6 +1,6 @@
 package model;
 
-public class Ingredient {
+public class Ingredient implements Comparable<Ingredient>{
 	private String name;
 	
 	public Ingredient(String name) {
@@ -14,6 +14,9 @@ public class Ingredient {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+	@Override
+	public int compareTo(Ingredient o) {	
+		return name.compareTo(o.getName());
+	}
 }
