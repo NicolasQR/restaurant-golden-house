@@ -7,7 +7,7 @@ public class Product implements Comparable<Product>{
 	private String size;
 	private long price;
 	private boolean status;
-	private ArrayList <Ingredient> ingredients;
+	private ArrayList<Ingredient> ingredients;
 	private Type typeProduct;
 	
 	public Product(String name, String size, long price, String typeProduct) {
@@ -15,6 +15,7 @@ public class Product implements Comparable<Product>{
 		this.size = size;
 		this.price = price;
 		this.typeProduct = new Type(typeProduct); 
+		ingredients = new ArrayList<Ingredient>();
 	}
 	
 	public void updateStatus(boolean status) {
