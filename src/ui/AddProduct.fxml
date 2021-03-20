@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="549.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="55.0" layoutY="39.0" text="Nombre del producto" textFill="#e2dda8">
+         <font>
+            <Font name="Tw Cen MT" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="83.0" layoutY="75.0" />
+      <Label layoutX="316.0" layoutY="39.0" text="Tipo de producto" textFill="#e2dda8">
+         <font>
+            <Font name="Tw Cen MT" size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="324.0" layoutY="75.0" />
+      <TextArea disable="true" editable="false" layoutX="47.0" layoutY="26.0" prefHeight="98.0" prefWidth="221.0" />
+      <TextArea disable="true" editable="false" layoutX="298.0" layoutY="26.0" prefHeight="98.0" prefWidth="212.0" />
+      <TextArea disable="true" editable="false" layoutX="47.0" layoutY="154.0" prefHeight="160.0" prefWidth="221.0" />
+      <Label layoutX="92.0" layoutY="165.0" text="Ingredientes" textFill="#e2dda8">
+         <font>
+            <Font name="Tw Cen MT" size="24.0" />
+         </font>
+      </Label>
+      <TableView layoutX="47.0" layoutY="200.0" prefHeight="112.0" prefWidth="221.0">
+        <columns>
+          <TableColumn prefWidth="218.4000244140625" text="C1" />
+        </columns>
+      </TableView>
+      <TextArea disable="true" layoutX="294.0" layoutY="152.0" prefHeight="160.0" prefWidth="221.0" />
+      <Label layoutX="360.0" layoutY="165.0" text="Tamaño" textFill="#e2dda8">
+         <font>
+            <Font name="Tw Cen MT" size="24.0" />
+         </font>
+      </Label>
+      <TableView layoutX="293.0" layoutY="197.0" prefHeight="118.0" prefWidth="221.0">
+        <columns>
+          <TableColumn prefWidth="220.19998168945312" text="C1" />
+        </columns>
+      </TableView>
+      <Label layoutX="128.0" layoutY="363.0" text="Precio" textFill="#e2dda8">
+         <font>
+            <Font name="Tw Cen MT" size="24.0" />
+         </font>
+      </Label>
+      <TextArea disable="true" editable="false" layoutX="47.0" layoutY="348.0" prefHeight="112.0" prefWidth="221.0" />
+      <TextField layoutX="83.0" layoutY="398.0" prefHeight="25.0" prefWidth="149.0" />
+   </children>
+</Pane>

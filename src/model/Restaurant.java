@@ -104,4 +104,8 @@ public class Restaurant   {
 		return employee;
 	}
 	
+	public void brayan() {
+		System.out.println("Que ondaaaasasnasajsbahjsbajbajab");
+	}
+	
 }
