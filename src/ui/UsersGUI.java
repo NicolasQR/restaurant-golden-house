@@ -56,7 +56,7 @@ public class UsersGUI {
     	tableUser.setItems(datos);
     	this.columnNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
     	this.columnLastNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
-    	this.columnIdUser.setCellValueFactory(new PropertyValueFactory<User, long>("ID"));
+    	this.columnIdUser.setCellValueFactory(new PropertyValueFactory<User, String>("ID"));
     	this.columnUser.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
     }
 }

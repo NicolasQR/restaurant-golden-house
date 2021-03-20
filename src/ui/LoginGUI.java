@@ -13,7 +13,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import model.Restaurant;
 
-public class GoldenHouseGUI {
+public class LoginGUI {
 
 	@FXML
     private AnchorPane mainAnchorPane;
@@ -41,10 +41,23 @@ public class GoldenHouseGUI {
     
     private Restaurant restaurant;
     
-    public GoldenHouseGUI() {
+    private MenuGUI menuController;
+    
+    public LoginGUI() {
     	restaurant = new Restaurant();
+    	menuController = new MenuGUI();
     }
 	
+	public MenuGUI getMenuController() {
+		return menuController;
+	}
+
+
+
+	public void setMenuController(MenuGUI menuController) {
+		this.menuController = menuController;
+	}
+    
 	public void loadLogin() throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
 		
@@ -59,7 +72,7 @@ public class GoldenHouseGUI {
     public void btnRegisterUser(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Register.fxml"));
 		
-		fxmlLoader.setController(this);    	
+		fxmlLoader.setController(this);
 		Parent root = fxmlLoader.load();
     	
 		mainAnchorPane.getChildren().clear();
@@ -107,7 +120,7 @@ public class GoldenHouseGUI {
     }
 	
 	@FXML
-    void logIn(ActionEvent event) {
+    void logIn(ActionEvent event) throws IOException {
 		boolean login = false;
 		
 		for(int i = 0; i < restaurant.getUsers().size() ; i++) {
@@ -116,20 +129,27 @@ public class GoldenHouseGUI {
     				restaurant.getUsers().get(i).getPassword().equals(String.valueOf(loginPassword.getCharacters()))) {
     			
     			
-    	    	System.out.println("Yeaaaah");
     	    	login = true;
     	    	break; //comprobar si funciona
     	    	
     		}
 		}
-		if(!login){
+		if(login){
+			
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+			fxmlLoader.setController(menuController);
+			Parent root = fxmlLoader.load();
+			
+			mainAnchorPane.getChildren().clear();
+			mainAnchorPane.getChildren().setAll(root);
+			
+			
+		}else {
 			Alert alert = new Alert(AlertType.ERROR);
    		 	alert.setTitle("Login incorrect");
    		 	alert.setContentText("El usuario o la contraseña es incorrecta.");
    		 	alert.showAndWait();
 		}
-		
-		
 	}
     
 }
