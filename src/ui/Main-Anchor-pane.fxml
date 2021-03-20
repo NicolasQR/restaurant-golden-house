@@ -10,22 +10,28 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Separator prefHeight="39.0" prefWidth="950.0" />
-      <ImageView fitHeight="160.0" fitWidth="951.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/Logo.jpg" />
-         </image>
-      </ImageView>
-      <Label text="3/17/2021" textFill="WHITE" translateX="25.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label prefHeight="27.0" prefWidth="102.0" text="23:49" textFill="WHITE" translateX="25.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="286.0" prefWidth="950.0">
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="950.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@../../images/Logo.jpg" />
+               </image>
+            </ImageView>
+            <Separator prefWidth="950.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
+            <Separator layoutX="930.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="24.0" layoutY="180.0" text="3/17/2021" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="207.0" prefHeight="27.0" prefWidth="102.0" text="23:49" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="mainAnchorPane" prefHeight="470.0" prefWidth="950.0" />
    </children>
 </VBox>

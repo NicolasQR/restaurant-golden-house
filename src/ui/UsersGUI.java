@@ -23,7 +23,7 @@ public class UsersGUI {
     private TableColumn<User, String> columnLastNameUser;
 
     @FXML
-    private TableColumn<User, ?> columnIdUser;
+    private TableColumn<User, String> columnIdUser;
 
     @FXML
     private TableColumn<User, String> columnUser;
@@ -56,7 +56,7 @@ public class UsersGUI {
     	tableUser.setItems(datos);
     	this.columnNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
     	this.columnLastNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
-    	this.columnIdUser.setCellValueFactory(new PropertyValueFactory<User, String>("iD"));
+    	this.columnIdUser.setCellValueFactory(new PropertyValueFactory<User, long>("ID"));
     	this.columnUser.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
     }
 }
