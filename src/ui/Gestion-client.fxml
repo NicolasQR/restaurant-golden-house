@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="30.0" layoutY="35.0" prefHeight="403.0" prefWidth="670.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="33.0">
+        <columns>
+          <TableColumn prefWidth="94.39999008178711" text="Nombres" />
+          <TableColumn prefWidth="108.79998779296875" text="Apellidos" />
+            <TableColumn prefWidth="116.00001525878906" text="Identificación" />
+            <TableColumn prefWidth="120.0" text="Dirección" />
+            <TableColumn prefWidth="100.79998779296875" text="Télefono" />
+            <TableColumn prefWidth="130.4000244140625" text="Observaciones" />
+        </columns>
+      </TableView>
+      <TextArea disable="true" editable="false" layoutX="725.0" layoutY="33.0" prefHeight="403.0" prefWidth="210.0" />
+      <Button layoutX="754.0" layoutY="62.0" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-radius: 15;" text="Nuevo" />
+      <Button layoutX="754.0" layoutY="209.0" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-radius: 15;" text="Eliminar" />
+      <Button layoutX="754.0" layoutY="345.0" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-radius: 15;" text="Actualizar información" />
+   </children>
+</AnchorPane>

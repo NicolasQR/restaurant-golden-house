@@ -66,7 +66,7 @@ public class GoldenHouseGUI {
     }
 	
 	@FXML
-    void btnGoToLoginPane(ActionEvent event) throws IOException {
+    public void btnGoToLoginPane(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
 		
 		fxmlLoader.setController(this);    	
@@ -90,6 +90,12 @@ public class GoldenHouseGUI {
 			
 			restaurant.addUsers(userName, userLastName, 0, user, password);
 			
+			txtUserName.setText("");
+			txtUserLastName.setText("");
+			txtId.setText("");
+			txtUser.setText("");
+			txtPassword.setText("");
+			
 			Alert alert = new Alert(AlertType.INFORMATION);
         	alert.setTitle("User Creted");
         	alert.setHeaderText(null);
@@ -106,11 +112,12 @@ public class GoldenHouseGUI {
     }
 	
 	@FXML
-    void logIn(ActionEvent event) throws IOException {
+    public void logIn(ActionEvent event) throws IOException {
 		for(int i = 0; i < restaurant.getUsers().size() ; i++) {
     		
     		if(restaurant.getUsers().get(i).getUserName().equals(loginUser.getText()) &&
     				restaurant.getUsers().get(i).getPassword().equals(String.valueOf(loginPassword.getCharacters()))) {
+    			
     			
     			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
     			fxmlLoader.setController(this);    	
