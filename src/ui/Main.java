@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	private GoldenHouseGUI goldenHouseGUI;
+	private LoginGUI goldenHouseGUI;
 	
 	public Main() {
-		goldenHouseGUI = new GoldenHouseGUI();
+		goldenHouseGUI = new LoginGUI();
 	}
 	
 	

@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Separator orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
@@ -19,19 +18,23 @@
                <children>
                   <MenuBar layoutX="10.0" layoutY="8.0" prefHeight="31.0" prefWidth="927.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="0.0">
                     <menus>
-                      <Menu mnemonicParsing="false" text="Products">
+                      <Menu mnemonicParsing="false" text="PRODUCTOS">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Close" />
+                              <MenuItem mnemonicParsing="false" onAction="#showProductsList" text="Mostrar productos" />
+                          <MenuItem mnemonicParsing="false" onAction="#showIngredientList" text="Motrar ingredientes" />
+                              <MenuItem mnemonicParsing="false" onAction="#showPorductsType" text="Mostrar tipos de producto" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Empleados">
+                      <Menu mnemonicParsing="false" text="EMPLEADOS">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Delete" />
+                          <MenuItem mnemonicParsing="false" onAction="#showEmployeeList" text="Mostrar trabajadores" />
+                              <MenuItem mnemonicParsing="false" onAction="#showUserList" text="Mostrar usuarios" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Help">
+                      <Menu mnemonicParsing="false" text="HELP">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
+                          <MenuItem mnemonicParsing="false" text="Preguntas frecuentes" />
+                              <MenuItem mnemonicParsing="false" text="About" />
                         </items>
                       </Menu>
                     </menus>
