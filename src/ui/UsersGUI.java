@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,7 +13,7 @@ import model.Restaurant;
 import model.User;
 
 public class UsersGUI {
-
+	
 	
 	@FXML
     private TableView<User> tableUser;
@@ -27,9 +29,10 @@ public class UsersGUI {
 
     @FXML
     private TableColumn<User, String> columnUser;
+	
+	private Restaurant restaurant;
+    MenuGUI stage_controler_stage2;
     
-    
-    private Restaurant restaurant;
     public UsersGUI() {
     	restaurant = new Restaurant();
     }
@@ -44,19 +47,22 @@ public class UsersGUI {
 
     }
     
-    public void cargarTabla() {
+  
+    public void receiveData(MenuGUI menuGUI, List<User> users) {
     	
+    	tableViewUser();
+    	stage_controler_stage2 = menuGUI;
+   
     }
     
-    public  void initializeTableView() {
-    	
+    public void tableViewUser() {
     	ObservableList<User> datos;
     	datos = FXCollections.observableArrayList(restaurant.getUsers());
     	
     	tableUser.setItems(datos);
     	this.columnNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
     	this.columnLastNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
-    	this.columnIdUser.setCellValueFactory(new PropertyValueFactory<User, String>("ID"));
+    	this.columnIdUser.setCellValueFactory(new PropertyValueFactory<User, String>("iD"));
     	this.columnUser.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
     }
 }

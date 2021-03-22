@@ -1,17 +1,28 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant   {
+	
+	public final static String SAVE_PATH_FILE = "data/users.ap2";
+	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
 	private ArrayList<Type> productTypes;
 	
-	private List<User> users;
+	private static List<User> users;
 	private List<Employee> employee;
 	
 	public Restaurant() {
+		
+		
 		products = new ArrayList<>();
 		ingredients = new ArrayList<>();
 		
@@ -88,9 +99,30 @@ public class Restaurant   {
 		return added;
 	}
 	
-	public void addUsers(String name, String lastName, long iD, String userName, String password) {
+	public void addUsers(String name, String lastName, long iD, String userName, String password) throws IOException {
 		users.add(new User(name, lastName, iD, userName, password));
+		saveDataofUsers();
 	}
+	
+	public void saveDataofUsers() throws IOException{
+	    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE));
+	    oos.writeObject(users);
+	    oos.close();
+	 }
+	
+	@SuppressWarnings("unchecked")
+	public boolean loadDataofUsers() throws IOException, ClassNotFoundException{
+	    File f = new File(SAVE_PATH_FILE);
+	    boolean loaded = false;
+	    if(f.exists()){
+	      ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+	      users = (List<User>)ois.readObject();
+	      ois.close();
+	      loaded = true;
+	    }
+	    return loaded;
+	  }
+	
 	
 	public void addEmployee(String name, String lastName, long iD) {
 		employee.add(new Employee(name, lastName, iD));
