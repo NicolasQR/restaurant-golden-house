@@ -8,20 +8,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="29.0" layoutY="33.0" prefHeight="402.0" prefWidth="629.0">
+      <TableView fx:id="tableViewProducts" layoutX="29.0" layoutY="33.0" prefHeight="402.0" prefWidth="629.0">
         <columns>
-          <TableColumn prefWidth="110.39999008178711" text="Nombre" />
-          <TableColumn prefWidth="119.20001220703125" text="Tipo" />
-            <TableColumn prefWidth="146.3999786376953" text="Ingredientes" />
-            <TableColumn prefWidth="139.199951171875" text="Tamaño" />
-            <TableColumn prefWidth="118.4000244140625" text="Precio" />
+          <TableColumn fx:id="tableName" prefWidth="110.39999008178711" text="Nombre" />
+          <TableColumn fx:id="tableType" prefWidth="119.20001220703125" text="Tipo" />
+            <TableColumn fx:id="tableIngredients" prefWidth="146.3999786376953" text="Ingredientes" />
+            <TableColumn fx:id="tableSize" prefWidth="139.199951171875" text="Tamaño" />
+            <TableColumn fx:id="tablePrice" prefWidth="118.4000244140625" text="Precio" />
         </columns>
       </TableView>
       <TextArea disable="true" editable="false" layoutX="686.0" layoutY="33.0" prefHeight="402.0" prefWidth="215.0" />
-      <Button layoutX="731.0" layoutY="350.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" />
-      <Button layoutX="731.0" layoutY="60.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Nuevo" />
-      <Button layoutX="731.0" layoutY="134.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Actualizar" />
-      <Button layoutX="734.0" layoutY="208.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
-      <Button layoutX="734.0" layoutY="283.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Habilitar" />
+      <Button layoutX="731.0" layoutY="350.0" mnemonicParsing="false" onAction="#deleteProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" />
+      <Button layoutX="731.0" layoutY="60.0" mnemonicParsing="false" onAction="#newProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Nuevo" />
+      <Button layoutX="731.0" layoutY="134.0" mnemonicParsing="false" onAction="#updateProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Actualizar" />
+      <Button layoutX="734.0" layoutY="208.0" mnemonicParsing="false" onAction="#deactivateProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
+      <Button layoutX="734.0" layoutY="283.0" mnemonicParsing="false" onAction="#enableProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Habilitar" />
    </children>
 </AnchorPane>

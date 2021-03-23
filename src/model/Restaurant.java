@@ -107,5 +107,38 @@ public class Restaurant   {
 	public void brayan() {
 		System.out.println("Que ondaaaasasnasajsbahjsbajbajab");
 	}
+
+	public ArrayList<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
+	}
+
+	public ArrayList<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public ArrayList<Type> getProductTypes() {
+		return productTypes;
+	}
+
+	public void setProductTypes(ArrayList<Type> productTypes) {
+		this.productTypes = productTypes;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public void setEmployee(List<Employee> employee) {
+		this.employee = employee;
+	}
+	
 	
 }
