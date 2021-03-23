@@ -1,7 +1,6 @@
 package ui;
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +25,7 @@ public class LoginGUI {
 
     @FXML
     private TextField txtId;
-
+    
     @FXML
     private TextField txtUser;
 
@@ -46,6 +45,14 @@ public class LoginGUI {
     public LoginGUI() {
     	restaurant = new Restaurant();
     	menuController = new MenuGUI();
+    	
+    	try {
+			restaurant.loadDataofUsers();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+    	
+    	
     }
 	
 	public MenuGUI getMenuController() {
@@ -70,6 +77,8 @@ public class LoginGUI {
 	
 	@FXML
     public void btnRegisterUser(ActionEvent event) throws IOException {
+		
+		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Register.fxml"));
 		
 		fxmlLoader.setController(this);
@@ -91,7 +100,7 @@ public class LoginGUI {
     }
 	
 	@FXML
-    public void createUser(ActionEvent event) {
+    public void createUser(ActionEvent event) throws IOException {
 		
 		String userName = txtUserName.getText();
 		String userLastName = txtUserLastName.getText();
@@ -103,6 +112,13 @@ public class LoginGUI {
 				!user.equals("") && !password.equals("")) {
 			
 			restaurant.addUsers(userName, userLastName, 0, user, password);
+			
+			
+			txtUserName.setText("");
+			txtUserLastName.setText("");
+			txtId.setText("");
+			txtUser.setText("");
+			txtPassword.setText("");
 			
 			Alert alert = new Alert(AlertType.INFORMATION);
         	alert.setTitle("User Creted");
@@ -128,7 +144,6 @@ public class LoginGUI {
     		if(restaurant.getUsers().get(i).getUserName().equals(loginUser.getText()) &&
     				restaurant.getUsers().get(i).getPassword().equals(String.valueOf(loginPassword.getCharacters()))) {
     			
-    			
     	    	login = true;
     	    	break; //comprobar si funciona
     	    	
@@ -142,6 +157,7 @@ public class LoginGUI {
 			
 			mainAnchorPane.getChildren().clear();
 			mainAnchorPane.getChildren().setAll(root);
+			
 			
 			
 		}else {
