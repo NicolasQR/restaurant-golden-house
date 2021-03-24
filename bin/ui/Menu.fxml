@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -41,7 +44,30 @@
                   </MenuBar>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="587.0" prefWidth="950.0" />
+            <AnchorPane prefHeight="587.0" prefWidth="950.0">
+               <children>
+                  <Label fx:id="amountOfUsers" layoutX="399.0" layoutY="46.0" text="0" textFill="#e2dda8">
+                     <font>
+                        <Font name="Tw Cen MT Bold Italic" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="49.0" text="Cantidad de usuarios existentes:" textFill="#e2dda8">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextArea disable="true" editable="false" layoutX="18.0" layoutY="29.0" prefHeight="75.0" prefWidth="427.0" />
+                  <Label layoutX="487.0" layoutY="49.0" text="Cantidad de productos existentes:" textFill="#e2dda8">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="amountOfProducts" layoutX="874.0" layoutY="46.0" text="Label" textFill="#e2dda8">
+                     <font>
+                        <Font name="Tw Cen MT Bold Italic" size="36.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
          </children>
       </VBox>
    </children>

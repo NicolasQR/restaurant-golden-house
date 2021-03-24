@@ -10,31 +10,31 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="309.0" layoutY="32.0" text="¡BIENVENIDO!" textFill="#e2dda8">
+      <Label layoutX="306.0" layoutY="14.0" text="¡BIENVENIDO!" textFill="#e2dda8">
          <font>
             <Font name="Tw Cen MT Bold" size="58.0" />
          </font>
       </Label>
-      <Button layoutX="356.0" layoutY="336.0" mnemonicParsing="false" onAction="#logIn" style="-fx-background-radius: 15;" text="Iniciar sesión">
+      <Button layoutX="356.0" layoutY="291.0" mnemonicParsing="false" onAction="#logIn" style="-fx-background-radius: 15;" text="Iniciar sesión">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="526.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnRegisterUser" prefHeight="39.0" prefWidth="135.0" style="-fx-background-radius: 15;" text="Registrarse">
+      <Button layoutX="526.0" layoutY="291.0" mnemonicParsing="false" onAction="#btnRegisterUser" prefHeight="39.0" prefWidth="135.0" style="-fx-background-radius: 15;" text="Registrarse">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="loginUser" layoutX="455.0" layoutY="193.0" prefHeight="30.0" prefWidth="194.0">
+      <TextField fx:id="loginUser" layoutX="455.0" layoutY="148.0" prefHeight="30.0" prefWidth="194.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></TextField>
-      <Label layoutX="315.0" layoutY="185.0" text="Usuario:" textFill="#e2dda8">
+      <Label layoutX="315.0" layoutY="140.0" text="Usuario:" textFill="#e2dda8">
          <font>
             <Font name="Tw Cen MT Bold" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="256.0" layoutY="247.0" text="Contraseña:" textFill="#e2dda8">
+      <Label layoutX="256.0" layoutY="202.0" text="Contraseña:" textFill="#e2dda8">
          <font>
             <Font name="Tw Cen MT Bold" size="36.0" />
          </font>
@@ -42,7 +42,7 @@
       <Separator layoutX="2.0" layoutY="-161.0" orientation="VERTICAL" prefHeight="680.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
       <Separator layoutX="927.0" orientation="VERTICAL" prefHeight="670.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
       <Separator layoutX="18.0" layoutY="141.0" prefHeight="0.0" prefWidth="950.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <PasswordField fx:id="loginPassword" layoutX="455.0" layoutY="258.0" prefHeight="30.0" prefWidth="194.0">
+      <PasswordField fx:id="loginPassword" layoutX="455.0" layoutY="213.0" prefHeight="30.0" prefWidth="194.0">
          <font>
             <Font size="14.0" />
          </font>

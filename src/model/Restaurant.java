@@ -35,7 +35,7 @@ public class Restaurant   {
 		boolean added = false;
 		
 			if(name != null && size != null && price > 0 && typeProduct != null) {
-				
+			
 				Product product = new Product(name, size, price, typeProduct);
 				
 				for(int i = 0; i < products.size(); i++) {
@@ -51,6 +51,10 @@ public class Restaurant   {
 			}
 		
 		return added;
+	}
+	
+	public List<Product> getProduct(){
+		return products;
 	}
 	
 	public boolean addIngredient(String name) {
@@ -136,8 +140,5 @@ public class Restaurant   {
 		return employee;
 	}
 	
-	public void brayan() {
-		System.out.println("Que ondaaaasasnasajsbahjsbajbajab");
-	}
-	
+
 }
