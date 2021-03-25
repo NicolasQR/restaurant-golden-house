@@ -10,7 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Product;
-
+ 
 public class ProductManagerGUI {
 	
 	    @FXML
@@ -83,5 +83,9 @@ public class ProductManagerGUI {
 
 		public void setProducts(ArrayList<Product> products) {
 			this.products = products;
+		}
+		
+		public void initialize() {
+			
 		}
 }
