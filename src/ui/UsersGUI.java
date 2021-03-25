@@ -31,7 +31,8 @@ public class UsersGUI {
     private TableColumn<User, String> columnUser;
 	
 	private Restaurant restaurant;
-    MenuGUI stage_controler_stage2;
+    @SuppressWarnings("unused")
+	private MenuGUI stage_controler_stage2;
     
     public UsersGUI() {
     	restaurant = new Restaurant();

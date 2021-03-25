@@ -15,7 +15,9 @@ public class Restaurant   {
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
-	private ArrayList<Type> productTypes;
+	private ArrayList<Type> productsType;
+	private ArrayList<Size> productsSize;
+	
 	
 	private static List<User> users;
 	private List<Employee> employee;
@@ -30,13 +32,13 @@ public class Restaurant   {
 		employee = new ArrayList<Employee>();
 	}
 	
-	public boolean addProduct(String name, String size, long price, String typeProduct) {
+	public boolean addProduct(String name, String size, long price, String typeProduct, String sizeProduct) {
 		
 		boolean added = false;
 		
 			if(name != null && size != null && price > 0 && typeProduct != null) {
 				
-				Product product = new Product(name, size, price, typeProduct);
+				Product product = new Product(name, size, price, typeProduct, sizeProduct);
 				
 				for(int i = 0; i < products.size(); i++) {
 					int mini = 0;
@@ -84,14 +86,36 @@ public class Restaurant   {
 			
 			Type productType = new Type(name);
 			
-			for(int i = 0; i < productTypes.size(); i++) {
+			for(int i = 0; i < productsType.size(); i++) {
 				int mini = 0;
-				if(productType.compareTo(productTypes.get(i)) < 0) {
+				if(productType.compareTo(productsType.get(i)) < 0) {
 					mini = i;
 				}
-				Type aux = productTypes.get(i);
-				productTypes.set(i, productTypes.get(mini));
-				productTypes.set(mini, aux);
+				Type aux = productsType.get(i);
+				productsType.set(i, productsType.get(mini));
+				productsType.set(mini, aux);
+			}
+
+		}
+				
+		return added;
+	}
+	
+	public boolean addProductSize(String name) {
+		boolean added = false;
+				
+			if(name != null) {
+			
+			Size size = new Size(name);
+			
+			for(int i = 0; i < productsSize.size(); i++) {
+				int mini = 0;
+				if(size.compareTo(productsSize.get(i)) < 0) {
+					mini = i;
+				}
+				Size aux = productsSize.get(i);
+				productsSize.set(i, productsSize.get(mini));
+				productsSize.set(mini, aux);
 			}
 
 		}
@@ -157,11 +181,11 @@ public class Restaurant   {
 	}
 
 	public ArrayList<Type> getProductTypes() {
-		return productTypes;
+		return productsType;
 	}
 
 	public void setProductTypes(ArrayList<Type> productTypes) {
-		this.productTypes = productTypes;
+		this.productsType = productTypes;
 	}
 
 	public void setUsers(List<User> users) {

@@ -52,11 +52,13 @@ public class MenuGUI {
 	    	Parent root = open.load();
 	    	
 	    	Scene scene = new Scene(root);
-	    	Stage stage = new Stage();
+	    	Stage stage = new Stage();    	
+	    	controllerProducts.receiveData(restaurant.getProducts());
 	    	
 	    	stage.initModality(Modality.APPLICATION_MODAL);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Gestionar productos");
+	    	stage.setResizable(false);
 	    	stage.showAndWait();
 	    }
 
@@ -77,6 +79,7 @@ public class MenuGUI {
 	    	stage.initModality(Modality.APPLICATION_MODAL);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Gestionar usuarios");
+	    	stage.setResizable(false);
 	    	stage.showAndWait();
 	    	
 	    }

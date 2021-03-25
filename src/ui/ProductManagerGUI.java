@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Product;
-import model.Restaurant;
 
 public class ProductManagerGUI {
 	
@@ -30,52 +31,57 @@ public class ProductManagerGUI {
 	    @FXML
 	    private TableColumn<Product, String> tablePrice;
 
-	    private Restaurant restaurant;
+	    private ArrayList<Product> products;
 	    
 	    public ProductManagerGUI() {
-	    	restaurant = new Restaurant();
+	    	products = new ArrayList<Product>();
 	    }
 	    
-	    public Restaurant getRestaurant() {
-			return restaurant;
-		}
-
-
-		public void setRestaurant(Restaurant restaurant) {
-			this.restaurant = restaurant;
-		}
-
+	    public void receiveData(ArrayList<Product> products) {
+	    	this.products = products;
+	    }
+	    
+	    public void loadTableView() {
+	    	ObservableList<Product> accounts = FXCollections.observableArrayList(products);
+	    	
+		    	tableViewProducts.setItems(accounts);
+		    	tableName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		    	tableType.setCellValueFactory(new PropertyValueFactory<Product, String>("typeProduct"));
+		    	tableIngredients.setCellValueFactory(new PropertyValueFactory<Product, String>("ingredients"));
+		    	tableSize.setCellValueFactory(new PropertyValueFactory<Product, String>("size"));
+		    	tablePrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+	    }
+	    
 		@FXML
-	    void deactivateProduct(ActionEvent event) {
+	    public void deactivateProduct(ActionEvent event) {
 	    	
 	    }
 	    
-	    
-	    
 	    @FXML
-	    void deleteProduct(ActionEvent event) {
+	    public void deleteProduct(ActionEvent event) {
 
 	    }
 
 	    @FXML
-	    void enableProduct(ActionEvent event) {
+	    public void enableProduct(ActionEvent event) {
 
 	    }
-
+	    
 	    @FXML
-	    void newProduct(ActionEvent event) {
-	    	ObservableList<Product> accounts = FXCollections.observableArrayList(restaurant.getProducts());
+	    public void newProduct(ActionEvent event) {
 	    	
-	    	tableViewProducts.setItems(accounts);
-	    	tableName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-	    	tableType.setCellValueFactory(new PropertyValueFactory<Product, String>(""));
-	    	tableIngredients.setCellValueFactory(new PropertyValueFactory<Product, String>(""));
-	    	tableSize.setCellValueFactory(new PropertyValueFactory<Product, String>("size"));
-	    	tablePrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
 	    }
 
 	    @FXML
-	    void updateProduct(ActionEvent event) {
+	    public void updateProduct(ActionEvent event) {
 
 	    }
+
+		public ArrayList<Product> getProducts() {
+			return products;
+		}
+
+		public void setProducts(ArrayList<Product> products) {
+			this.products = products;
+		}
 }
