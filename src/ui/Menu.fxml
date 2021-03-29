@@ -10,27 +10,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Separator orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
-      <Separator orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
-      <Separator prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+      <Separator orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
+      <Separator prefHeight="9.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0">
          <children>
             <AnchorPane prefHeight="143.0" prefWidth="1002.0">
                <children>
-                  <MenuBar layoutX="10.0" layoutY="8.0" prefHeight="31.0" prefWidth="927.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="0.0">
+                  <MenuBar layoutX="10.0" layoutY="8.0" prefHeight="31.0" prefWidth="927.0" style="-fx-background-color: #e2dda8;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="0.0">
                     <menus>
                       <Menu mnemonicParsing="false" text="PRODUCTOS">
                         <items>
                               <MenuItem mnemonicParsing="false" onAction="#showProductsList" text="Mostrar productos" />
                           <MenuItem mnemonicParsing="false" onAction="#showIngredientList" text="Motrar ingredientes" />
                               <MenuItem mnemonicParsing="false" onAction="#showPorductsType" text="Mostrar tipos de producto" />
+                              <MenuItem mnemonicParsing="false" text="Mostrar tamaños" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="EMPLEADOS">
+                      <Menu mnemonicParsing="false" text="TRABAJADORES">
                         <items>
-                          <MenuItem mnemonicParsing="false" onAction="#showEmployeeList" text="Mostrar trabajadores" />
+                          <MenuItem mnemonicParsing="false" onAction="#showEmployeeList" text="Mostrar empleados" />
                               <MenuItem mnemonicParsing="false" onAction="#showUserList" text="Mostrar usuarios" />
                         </items>
                       </Menu>

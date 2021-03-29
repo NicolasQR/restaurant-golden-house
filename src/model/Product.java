@@ -1,8 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product implements Comparable<Product>{
+public class Product implements Comparable<Product>, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private long price;
 	private String typeProduct;

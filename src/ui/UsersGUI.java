@@ -67,28 +67,39 @@ public class UsersGUI {
 
     @FXML
     public void upgradeUserAccount(ActionEvent event) throws IOException {
-    	int index = tableUser.getSelectionModel().getFocusedIndex();
- 
-    	restaurant.getUsers().get(index).setName(txtName.getText());
-    	restaurant.getUsers().get(index).setLastName(txtLastName.getText());
-    	restaurant.getUsers().get(index).setID(Long.parseLong(txtId.getText()));
-    	restaurant.getUsers().get(index).setUserName(txtUserAccount.getText());
     	
-    	restaurant.saveDataofUsers();
     	try {
-			restaurant.loadDataofUsers();
-		} catch (ClassNotFoundException | IOException e) {
+    		int index = tableUser.getSelectionModel().getFocusedIndex();
+    		 
+        	restaurant.getUsers().get(index).setName(txtName.getText());
+        	restaurant.getUsers().get(index).setLastName(txtLastName.getText());
+        	restaurant.getUsers().get(index).setID(Long.parseLong(txtId.getText()));
+        	restaurant.getUsers().get(index).setUserName(txtUserAccount.getText());
+        	
+        	restaurant.saveDataofUsers();
+        	try {
+    			restaurant.loadDataofUsers();
+    		} catch (ClassNotFoundException | IOException e) {
+    			
+    			e.printStackTrace();
+    		}
+        	
+        	tableViewUser();
+        	
+        	Alert alert = new Alert(AlertType.INFORMATION);
+        	alert.setTitle("User Upgrade");
+        	alert.setHeaderText(null);
+        	alert.setContentText("El usuario ha sido modificado correctamente");
+        	alert.showAndWait();
+		} catch (NumberFormatException e) {
 			
-			e.printStackTrace();
+			Alert alert = new Alert(AlertType.INFORMATION);
+        	alert.setTitle("User Upgrade");
+        	alert.setHeaderText(null);
+        	alert.setContentText("Primero debes seleccionar el usuario que quieres actualizar");
+        	alert.showAndWait();
 		}
     	
-    	tableViewUser();
-    	
-    	Alert alert = new Alert(AlertType.INFORMATION);
-    	alert.setTitle("User Upgrade");
-    	alert.setHeaderText(null);
-    	alert.setContentText("El usuario ha sido modificado correctamente");
-    	alert.showAndWait();
     }
     
     

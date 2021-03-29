@@ -14,6 +14,7 @@ public class Employee implements Serializable{
 		this.name = name;
 		this.lastName = lastName;
 		ID = iD;
+		status = true;
 	}
 
 	public String getName() {
@@ -41,6 +42,10 @@ public class Employee implements Serializable{
 	}
 
 	public boolean isStatus() {
+		return status;
+	}
+	
+	public boolean getStatus() {
 		return status;
 	}
 

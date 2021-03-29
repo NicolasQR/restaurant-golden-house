@@ -1,6 +1,12 @@
 package model;
 
-public class Ingredient implements Comparable<Ingredient>{
+import java.io.Serializable;
+
+public class Ingredient implements Comparable<Ingredient>, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final static String txtCode = "IG";
 	private static long numberCode;
 	

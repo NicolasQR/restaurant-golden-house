@@ -47,7 +47,6 @@ public class LoginGUI {
     	menuController = new MenuGUI();
     	
     	try {
-			restaurant.loadDatafEmployee();
 			restaurant.loadDataofUsers();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
@@ -150,7 +149,6 @@ public class LoginGUI {
 			 
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
 			fxmlLoader.setController(menuController);
-			menuController.receiveData(restaurant);
 			Parent root = fxmlLoader.load();
 			
 			mainAnchorPane.getChildren().clear();

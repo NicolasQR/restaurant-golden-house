@@ -32,6 +32,15 @@ public class MenuGUI {
 			controllerProducts = new ProductManagerGUI();
 			restaurant = new Restaurant();
 			controllerEmployee = new EmployeeGUI();
+			
+			try {
+				restaurant.loadDatafEmployee();
+				restaurant.loadDataofProducts();
+				restaurant.loadDataofIngredients();
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+			}
+			restaurant.getEmployee().forEach(System.out::println);
 		}
 		
 	    @FXML
@@ -106,9 +115,5 @@ public class MenuGUI {
 	    public void initialize() {
 	    	showLabelsInformation();
 	    	
-	    }
-	    
-	    public void receiveData(Restaurant a) {
-	    	restaurant = a;
 	    }
 }

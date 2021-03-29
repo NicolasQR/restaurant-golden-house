@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -64,7 +65,7 @@ public class ProductManagerGUI {
 	    	tablePrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
 	    }
 	    
-	    public void initialize() {
+	    public void initialize() throws FileNotFoundException, IOException {
 	    	restaurant.addIngredient("Aguacate");
 			restaurant.addIngredient("Paprica");
 			restaurant.addIngredient("Oro");
@@ -77,8 +78,8 @@ public class ProductManagerGUI {
 			restaurant.addProductSize("mediano");
 			restaurant.addProductSize("pequeño");
 			
-			restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
-					restaurant.getProductsSize().get(1),restaurant.getIngredients());
+			/*restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
+					restaurant.getProductsSize().get(1),restaurant.getIngredients());*/
 	    	loadTableView();
 		}
 	    
