@@ -25,7 +25,7 @@
                         <items>
                               <MenuItem mnemonicParsing="false" onAction="#showProductsList" text="Mostrar productos" />
                           <MenuItem mnemonicParsing="false" onAction="#showIngredientList" text="Motrar ingredientes" />
-                              <MenuItem mnemonicParsing="false" onAction="#showPorductsType" text="Mostrar tipos de producto" />
+                              <MenuItem mnemonicParsing="false" onAction="#showProductsType" text="Mostrar tipos de producto" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="EMPLEADOS">
