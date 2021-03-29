@@ -12,11 +12,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.Product;
 import model.Restaurant;
  
@@ -40,7 +42,6 @@ public class ProductManagerGUI {
 	    @FXML
 	    private TableColumn<Product, String> tablePrice;
 	    
-	    @SuppressWarnings("unused")
 		private Restaurant restaurant;
 	    
 	    private CreateProductGUI controller;
@@ -54,6 +55,10 @@ public class ProductManagerGUI {
 	    	this.restaurant = restaurant;
 	    }
 	    
+	    public Restaurant getRestaurant() {
+	    	return restaurant;
+	    }
+	    
 	    public void loadTableView() {
 	    	ObservableList<Product> accounts = FXCollections.observableArrayList(restaurant.getProducts());
 	    	
@@ -64,9 +69,31 @@ public class ProductManagerGUI {
 	    	tableSize.setCellValueFactory(new PropertyValueFactory<Product, String>("size"));
 	    	tablePrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
 	    }
+
 	    
 	    public void initialize() throws FileNotFoundException, IOException {
-	    	restaurant.addIngredient("Aguacate");
+
+	    /*
+	    public TableCell<Product, String> changedColorRow(TableColumn<Product, String> tableName) {
+	    	tableName.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>(){ 
+	            @Override
+	            public TableCell<Product, String> call(TableColumn<Product, String> param) {
+
+	                return new TableCell<Product, String>(){
+	                    @Override
+	                    protected void updateItem(String item, boolean empty) {
+	                        super.updateItem(item, empty);
+
+	                      if (item != null){
+	                            setStyle("-fx-background-color:#"+item);
+	                     }
+
+	                    }
+	                };
+	            }
+	        });*/
+	        
+	        restaurant.addIngredient("Aguacate");
 			restaurant.addIngredient("Paprica");
 			restaurant.addIngredient("Oro");
 			
@@ -81,7 +108,8 @@ public class ProductManagerGUI {
 			/*restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
 					restaurant.getProductsSize().get(1),restaurant.getIngredients());*/
 	    	loadTableView();
-		}
+	    }
+	    
 	    
 		@FXML
 	    public void deactivateProduct(ActionEvent event) {
@@ -130,7 +158,6 @@ public class ProductManagerGUI {
 
 	    @FXML
 	    public void updateProduct(ActionEvent event) {
-	    	restaurant = controller.getRestaurant();
-	    	loadTableView();
+	    	
 	    }    
 }
