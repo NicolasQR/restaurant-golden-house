@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="142.0" layoutY="66.0" prefHeight="403.0" prefWidth="670.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="33.0">
+      <TableView fx:id="tableEmployee" layoutX="142.0" layoutY="66.0" onMouseClicked="#showTableInformation" prefHeight="403.0" prefWidth="670.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="33.0">
         <columns>
-          <TableColumn prefWidth="180.79995346069336" text="Nombres" />
-          <TableColumn prefWidth="248.80003356933594" text="Apellidos" />
-            <TableColumn prefWidth="242.39996337890625" text="Identificación" />
+          <TableColumn fx:id="nameEmployee" prefWidth="180.79995346069336" text="Nombres" />
+          <TableColumn fx:id="lastNameEmployee" prefWidth="248.80003356933594" text="Apellidos" />
+            <TableColumn fx:id="idEmployee" prefWidth="242.39996337890625" text="Identificación" />
         </columns>
       </TableView>
-      <TextArea disable="true" editable="false" layoutX="718.0" layoutY="33.0" prefHeight="403.0" prefWidth="214.0" />
-      <Button layoutX="771.0" layoutY="67.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Nuevo" />
-      <Button layoutX="771.0" layoutY="138.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Actualizar" />
-      <Button layoutX="771.0" layoutY="370.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eiliminar" />
-      <Button layoutX="771.0" layoutY="209.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
-      <Button layoutX="771.0" layoutY="284.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 15;" text="Habilitar" />
+      <TextArea disable="true" editable="false" layoutX="718.0" layoutY="33.0" prefHeight="536.0" prefWidth="195.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="718.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="33.0" />
+      <Button layoutX="756.0" layoutY="295.0" mnemonicParsing="false" onAction="#addEmployee" prefWidth="120.0" style="-fx-background-radius: 15;" text="Nuevo" />
+      <Button layoutX="756.0" layoutY="353.0" mnemonicParsing="false" onAction="#upgradeEmployee" prefWidth="120.0" style="-fx-background-radius: 15;" text="Actualizar" />
+      <Button layoutX="756.0" layoutY="512.0" mnemonicParsing="false" onAction="#eliminateEmployee" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eiliminar" />
+      <Button layoutX="754.0" layoutY="403.0" mnemonicParsing="false" onAction="#disableEmployee" prefWidth="120.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
+      <Button layoutX="756.0" layoutY="455.0" mnemonicParsing="false" onAction="#enableEmployee" prefWidth="120.0" style="-fx-background-radius: 15;" text="Habilitar" />
+      <Separator layoutX="29.0" layoutY="445.0" prefHeight="11.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutX="29.0" layoutY="20.0" prefHeight="11.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0" />
+      <Separator layoutX="11.0" layoutY="93.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="933.0" layoutY="67.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="778.0" layoutY="50.0" text="Nombre:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="777.0" layoutY="129.0" text="Apellidos" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="761.0" layoutY="211.0" text="Identificación:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNameEmployeeScreen1" layoutX="735.0" layoutY="78.0" prefHeight="26.0" prefWidth="158.0" />
+      <TextField fx:id="txtLastNameEmployeeScreen1" layoutX="735.0" layoutY="157.0" prefHeight="26.0" prefWidth="158.0" />
+      <TextField fx:id="txtIdEmployeeScreen1" layoutX="735.0" layoutY="239.0" prefHeight="26.0" prefWidth="158.0" />
    </children>
 </AnchorPane>

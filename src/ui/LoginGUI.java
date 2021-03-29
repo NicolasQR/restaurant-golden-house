@@ -47,6 +47,7 @@ public class LoginGUI {
     	menuController = new MenuGUI();
     	
     	try {
+			restaurant.loadDatafEmployee();
 			restaurant.loadDataofUsers();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
@@ -56,8 +57,6 @@ public class LoginGUI {
 	public MenuGUI getMenuController() {
 		return menuController;
 	}
-
-
 
 	public void setMenuController(MenuGUI menuController) {
 		this.menuController = menuController;
@@ -102,14 +101,14 @@ public class LoginGUI {
 		
 		String userName = txtUserName.getText();
 		String userLastName = txtUserLastName.getText();
-		String id = txtId.getText();
+		long id = Long.parseLong(txtId.getText());
 		String user = txtUser.getText();
 		String password = txtPassword.getText();
 		
-		if(!userName.equals("") && !userLastName.equals("") && !id.equals("") &&
+		if(!userName.equals("") && !userLastName.equals("") && id != 0 &&
 				!user.equals("") && !password.equals("")) {
 			
-			restaurant.addUsers(userName, userLastName, 0, user, password);
+			restaurant.addUsers(userName, userLastName, id, user, password);
 			
 			
 			txtUserName.setText("");
@@ -151,6 +150,7 @@ public class LoginGUI {
 			 
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
 			fxmlLoader.setController(menuController);
+			menuController.receiveData(restaurant);
 			Parent root = fxmlLoader.load();
 			
 			mainAnchorPane.getChildren().clear();

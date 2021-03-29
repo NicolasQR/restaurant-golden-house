@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,7 +12,8 @@ import java.util.List;
 
 public class Restaurant   {
 	
-	public final static String SAVE_PATH_FILE = "data/users.ap2";
+	public final static String SAVE_PATH_FILE_OF_USERS = "data/users.ap2";
+	public final static String SAVE_PATH_FILE_OF_EMPLOYEES = "data/employees.ap2";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -194,14 +196,14 @@ public class Restaurant   {
 	}
 	
 	public void saveDataofUsers() throws IOException{
-	    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE));
+	    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE_OF_USERS));
 	    oos.writeObject(users);
 	    oos.close();
 	 }
 	
 	@SuppressWarnings("unchecked")
 	public boolean loadDataofUsers() throws IOException, ClassNotFoundException{
-	    File f = new File(SAVE_PATH_FILE);
+	    File f = new File(SAVE_PATH_FILE_OF_USERS);
 	    boolean loaded = false;
 	    if(f.exists()){
 	      ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
@@ -213,8 +215,28 @@ public class Restaurant   {
 	  }
 	
 	
-	public void addEmployee(String name, String lastName, long iD) {
+	public void addEmployee(String name, String lastName, long iD) throws FileNotFoundException, IOException {
 		employee.add(new Employee(name, lastName, iD));
+		saveDataOfEmployees();
+	}
+	
+	public void saveDataOfEmployees() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE_OF_EMPLOYEES));
+	    oos.writeObject(employee);
+	    oos.close();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean loadDatafEmployee() throws FileNotFoundException, IOException, ClassNotFoundException {
+		File f = new File(SAVE_PATH_FILE_OF_EMPLOYEES);
+	    boolean loaded = false;
+	    if(f.exists()){
+	      ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+	      employee = (List<Employee>)ois.readObject();
+	      ois.close();
+	      loaded = true;
+	    }
+	    return loaded;
 	}
 	
 	public List<User> getUsers(){

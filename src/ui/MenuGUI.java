@@ -27,6 +27,7 @@ public class MenuGUI {
     private Restaurant restaurant;
     
 	private UsersGUI controllerUsers;
+	private EmployeeGUI controllerEmployee;
 	private ProductManagerGUI controllerProducts;
 	private IngredientManagerGUI controllerIngredients;
 	
@@ -35,10 +36,26 @@ public class MenuGUI {
 			controllerProducts = new ProductManagerGUI();
 			controllerIngredients = new IngredientManagerGUI();
 			restaurant = new Restaurant();
+			controllerEmployee = new EmployeeGUI();
 		}
 		
 	    @FXML
-	    public void showEmployeeList(ActionEvent event) {
+	    public void showEmployeeList(ActionEvent event) throws IOException {
+	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-employee.fxml"));
+	    	open.setController(controllerEmployee);
+	    	controllerEmployee.receiveData(restaurant);
+	    	Parent root = open.load();
+	    	
+	    	Scene scene = new Scene(root);
+	    	Stage stage = new Stage();
+	    	
+	    	
+	    	
+	    	stage.initModality(Modality.APPLICATION_MODAL);
+	    	stage.setScene(scene);
+	    	stage.setTitle("Gestionar empleados");
+	    	stage.showAndWait();
+	    	
 	    	
 	    }
 
@@ -111,11 +128,6 @@ public class MenuGUI {
 	    	stage.showAndWait();
 	    }
 	    
-	    /*
-	    public void initialize(URL url, ResourceBundle rb) {
-	    	menuGUI = this;
-	    }*/
-	   
 	    public void showLabelsInformation() {
 	    	amountOfUsers.setText(Integer.toString(restaurant.getUsers().size()));
 	    	amountOfProducts.setText(Integer.toString(restaurant.getProduct().size()));
@@ -123,6 +135,10 @@ public class MenuGUI {
 	    
 	    public void initialize() {
 	    	showLabelsInformation();
+	    	
 	    }
 	    
+	    public void receiveData(Restaurant a) {
+	    	restaurant = a;
+	    }
 }
