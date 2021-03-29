@@ -34,7 +34,7 @@ public class LoginGUI {
     
     @FXML
     private TextField loginUser;
-
+    
     @FXML
     private PasswordField loginPassword;
     
@@ -51,8 +51,6 @@ public class LoginGUI {
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
-    	
-    	
     }
 	
 	public MenuGUI getMenuController() {
@@ -89,7 +87,7 @@ public class LoginGUI {
     }
 	
 	@FXML
-    void btnGoToLoginPane(ActionEvent event) throws IOException {
+    public void btnGoToLoginPane(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
 		
 		fxmlLoader.setController(this);    	
@@ -136,7 +134,7 @@ public class LoginGUI {
     }
 	
 	@FXML
-    void logIn(ActionEvent event) throws IOException {
+    public void logIn(ActionEvent event) throws IOException {
 		boolean login = false;
 		
 		for(int i = 0; i < restaurant.getUsers().size() ; i++) {
@@ -150,22 +148,21 @@ public class LoginGUI {
     		}
 		}
 		if(login){
-			
+			 
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
 			fxmlLoader.setController(menuController);
 			Parent root = fxmlLoader.load();
 			
 			mainAnchorPane.getChildren().clear();
 			mainAnchorPane.getChildren().setAll(root);
-			
-			
-			
+	
 		}else {
 			Alert alert = new Alert(AlertType.ERROR);
    		 	alert.setTitle("Login incorrect");
    		 	alert.setContentText("El usuario o la contraseña es incorrecta.");
    		 	alert.showAndWait();
 		}
+	
 	}
     
 }

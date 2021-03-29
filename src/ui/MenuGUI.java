@@ -1,26 +1,29 @@
 package ui;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Restaurant;
 
 public class MenuGUI {
 	
+	@FXML
+    private Label amountOfUsers;
     
+	@FXML
     private MenuGUI menuGUI;
+    
+    @FXML
+    private Label amountOfProducts;
 	
     private Restaurant restaurant;
 	private UsersGUI controllerUsers;
-	@SuppressWarnings("unused")
 	private ProductManagerGUI controllerProducts;
 	
 		public MenuGUI() {
@@ -47,13 +50,12 @@ public class MenuGUI {
 	    @FXML
 	    public void showProductsList(ActionEvent event) throws IOException {
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-product.fxml"));
-	    	
 	    	open.setController(controllerProducts);
+	    	controllerProducts.receiveData(restaurant);
 	    	Parent root = open.load();
 	    	
 	    	Scene scene = new Scene(root);
 	    	Stage stage = new Stage();    	
-	    	controllerProducts.receiveData(restaurant.getProducts());
 	    	
 	    	stage.initModality(Modality.APPLICATION_MODAL);
 	    	stage.setScene(scene);
@@ -72,22 +74,25 @@ public class MenuGUI {
 	    	Scene scene = new Scene(root);
 	    	Stage stage = new Stage();
 	    	
-	    	UsersGUI controller = open.getController();
-	    	controller.receiveData(menuGUI, restaurant.getUsers());
-	    	
-	    	
 	    	stage.initModality(Modality.APPLICATION_MODAL);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Gestionar usuarios");
 	    	stage.setResizable(false);
 	    	stage.showAndWait();
-	    	
 	    }
 	    
-	    
+	    /*
 	    public void initialize(URL url, ResourceBundle rb) {
 	    	menuGUI = this;
+	    }*/
+	   
+	    public void showLabelsInformation() {
+	    	amountOfUsers.setText(Integer.toString(restaurant.getUsers().size()));
+	    	amountOfProducts.setText(Integer.toString(restaurant.getProduct().size()));
 	    }
 	    
+	    public void initialize() {
+	    	showLabelsInformation();
+	    }
 	    
-	}
+}

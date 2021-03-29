@@ -1,7 +1,6 @@
 package ui;
 
-import java.util.List;
-
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +30,8 @@ public class UsersGUI {
     private TableColumn<User, String> columnUser;
 	
 	private Restaurant restaurant;
-    @SuppressWarnings("unused")
+
+	@SuppressWarnings("unused")
 	private MenuGUI stage_controler_stage2;
     
     public UsersGUI() {
@@ -39,8 +39,11 @@ public class UsersGUI {
     }
 
     @FXML
-    public void eliminateUserAccount(ActionEvent event) {
-
+    public void eliminateUserAccount(ActionEvent event) throws IOException {
+    	User p = tableUser.getSelectionModel().getSelectedItem();
+    	restaurant.getUsers().remove(p);
+    	restaurant.saveDataofUsers();
+    	tableViewUser();
     }
 
     @FXML
@@ -48,13 +51,6 @@ public class UsersGUI {
 
     }
     
-  
-    public void receiveData(MenuGUI menuGUI, List<User> users) {
-    	
-    	tableViewUser();
-    	stage_controler_stage2 = menuGUI;
-   
-    }
     
     public void tableViewUser() {
     	ObservableList<User> datos;
@@ -66,4 +62,9 @@ public class UsersGUI {
     	this.columnIdUser.setCellValueFactory(new PropertyValueFactory<User, String>("iD"));
     	this.columnUser.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
     }
+    
+    public void initialize() {
+    	tableViewUser();
+    }
+    
 }

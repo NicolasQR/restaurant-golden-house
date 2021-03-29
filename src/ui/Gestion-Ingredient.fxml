@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="660.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tableViewIngredient" layoutX="53.0" layoutY="29.0" prefHeight="412.0" prefWidth="304.0">
+        <columns>
+          <TableColumn prefWidth="150.0" text="Name" />
+          <TableColumn prefWidth="153.0" text="Codigo" />
+        </columns>
+      </TableView>
+      <TextArea disable="true" editable="false" layoutX="402.0" layoutY="34.0" prefHeight="402.0" prefWidth="215.0" />
+      <Button layoutX="450.0" layoutY="70.0" mnemonicParsing="false" onAction="#newIngredient" prefWidth="120.0" style="-fx-background-radius: 15;" text="Nuevo" />
+      <Button layoutX="450.0" layoutY="127.0" mnemonicParsing="false" onAction="#updateIngredient" prefWidth="120.0" style="-fx-background-radius: 15;" text="Actualizar" />
+      <Button layoutX="450.0" layoutY="190.0" mnemonicParsing="false" onAction="#deleteIngredient" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" />
+      <Button layoutX="450.0" layoutY="341.0" mnemonicParsing="false" onAction="#desactivateIngredient" prefWidth="120.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
+      <Button layoutX="450.0" layoutY="383.0" mnemonicParsing="false" onAction="#enableIngredient" prefWidth="120.0" style="-fx-background-radius: 15;" text="Habilitar" />
+   </children>
+</AnchorPane>

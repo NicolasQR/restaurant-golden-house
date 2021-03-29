@@ -10,18 +10,18 @@
    <children>
       <TableView fx:id="tableViewProducts" layoutX="29.0" layoutY="33.0" prefHeight="402.0" prefWidth="629.0">
         <columns>
-          <TableColumn fx:id="tableName" prefWidth="110.39999008178711" text="Nombre" />
-          <TableColumn fx:id="tableType" prefWidth="119.20001220703125" text="Tipo" />
-            <TableColumn fx:id="tableIngredients" prefWidth="146.3999786376953" text="Ingredientes" />
-            <TableColumn fx:id="tableSize" prefWidth="139.199951171875" text="Tamaño" />
-            <TableColumn fx:id="tablePrice" prefWidth="118.4000244140625" text="Precio" />
+          <TableColumn fx:id="tableName" editable="false" prefWidth="105.0" resizable="false" text="Nombre" />
+          <TableColumn fx:id="tableType" editable="false" prefWidth="99.0" resizable="false" text="Tipo" />
+            <TableColumn fx:id="tableIngredients" editable="false" prefWidth="241.0" resizable="false" text="Ingredientes" />
+            <TableColumn fx:id="tableSize" editable="false" prefWidth="124.0" resizable="false" text="Tamaño" />
+            <TableColumn fx:id="tablePrice" editable="false" prefWidth="59.0" resizable="false" text="Precio" />
         </columns>
       </TableView>
       <TextArea disable="true" editable="false" layoutX="686.0" layoutY="33.0" prefHeight="402.0" prefWidth="215.0" />
-      <Button layoutX="731.0" layoutY="350.0" mnemonicParsing="false" onAction="#deleteProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" />
+      <Button layoutX="731.0" layoutY="197.0" mnemonicParsing="false" onAction="#deleteProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" />
       <Button layoutX="731.0" layoutY="60.0" mnemonicParsing="false" onAction="#newProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Nuevo" />
-      <Button layoutX="731.0" layoutY="134.0" mnemonicParsing="false" onAction="#updateProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Actualizar" />
-      <Button layoutX="734.0" layoutY="208.0" mnemonicParsing="false" onAction="#deactivateProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
-      <Button layoutX="734.0" layoutY="283.0" mnemonicParsing="false" onAction="#enableProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Habilitar" />
+      <Button layoutX="731.0" layoutY="127.0" mnemonicParsing="false" onAction="#updateProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Actualizar" />
+      <Button layoutX="734.0" layoutY="326.0" mnemonicParsing="false" onAction="#deactivateProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
+      <Button layoutX="734.0" layoutY="361.0" mnemonicParsing="false" onAction="#enableProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Habilitar" />
    </children>
 </AnchorPane>

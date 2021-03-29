@@ -4,76 +4,40 @@ import java.util.ArrayList;
 
 public class Product implements Comparable<Product>{
 	private String name;
-	private String size;
 	private long price;
+	private String typeProduct;
 	private String ingredients;
-	private String typeProduct; 
+	private String size;
 	private boolean status;
 	
 	private ArrayList<Ingredient> ingredientsList;
 	private Type typeProductOb;
 	private Size sizeProduct;
 	
-	public Product(String name, String size, long price, String typeProduct, String sizeProduct) {
+	public Product(String name, long price,Type typeProduct, Size sizeProduct, ArrayList<Ingredient> ingredients) {
 		this.name = name;
-		this.size = size;
+		this.sizeProduct = sizeProduct;
 		this.price = price;
-		this.typeProductOb = new Type(typeProduct);
-		this.sizeProduct = new Size(sizeProduct);
-		ingredientsList = new ArrayList<Ingredient>();
+		this.typeProductOb = typeProduct;
+		this.sizeProduct = sizeProduct;
+		ingredientsList = ingredients;
+		componentsToString();
 	}
 	
 	public void updateStatus(boolean status) {
 		this.status = status;
 	}
 	
-	public boolean getStatus() {
-		return status;
-	}
-	
-	public void addIngredient(String name) {
-		Ingredient ingredient = new Ingredient(name);
-		ingredientsList.add(ingredient); 
-	}
-	
-	public ArrayList<Ingredient> getIngredientsList(){
-		return ingredientsList;
-	}
-	
-	public void updateType(String name) {
-		Type typeProduct = new Type(name);
-		this.typeProductOb = typeProduct;
-	}
-	
-	public Type getTypeProductOb() {
-		return typeProductOb;
-	}
-	
-	public void updateSize(String name) {
-		Size sizeProduct = new Size(name);
-		this.sizeProduct = sizeProduct;
-	}
-	
-	public Size getProductsSize() {
-		return sizeProduct;
-	}
-	
-	public void complementsToString() {
+	public void componentsToString() {
+		typeProduct = typeProductOb.getName();
 		
-		if(typeProductOb != null) {
-			typeProduct = typeProductOb.getName().toString();
-		}
-		
-		if(sizeProduct != null) {
-			size = sizeProduct.getName().toString();
-		}
-		
+		ingredients = "";
 		for(int i = 0; i < ingredientsList.size(); i++) {
 			ingredients += ingredientsList.get(i).getName() + ", ";
 		}
+		ingredients = ingredients.substring(0, ingredients.length() - 2);
 		
-		ingredients = ingredients.substring(0, ingredients.length()-2);
-		
+		size = sizeProduct.getName();
 	}
 	
 	public String getName() {
@@ -92,10 +56,42 @@ public class Product implements Comparable<Product>{
 		this.price = price;
 	}
 
-	public void setSize(String size) {
-		this.size = size;
+	public boolean getStatus() {
+		return status;
+	}
+
+	public ArrayList<Ingredient> getIngredientsList() {
+		return ingredientsList;
+	}
+
+	public void setIngredientsList(ArrayList<Ingredient> ingredientsList) {
+		this.ingredientsList = ingredientsList;
+	}
+
+	public Type getTypeProductOb() {
+		return typeProductOb;
+	}
+
+	public void setTypeProductOb(Type typeProductOb) {
+		this.typeProductOb = typeProductOb;
+	}
+
+	public Size getSizeProduct() {
+		return sizeProduct;
+	}
+
+	public void setSizeProduct(Size sizeProduct) {
+		this.sizeProduct = sizeProduct;
 	}
 	
+	public String getTypeProduct() {
+		return typeProduct;
+	}
+
+	public void setTypeProduct(String typeProduct) {
+		this.typeProduct = typeProduct;
+	}
+
 	public String getIngredients() {
 		return ingredients;
 	}
@@ -108,14 +104,10 @@ public class Product implements Comparable<Product>{
 		return size;
 	}
 
-	public void setTypeProduct(String typeProduct) {
-		this.typeProduct = typeProduct;
+	public void setSize(String size) {
+		this.size = size;
 	}
 
-	public String getTypeProduct() {
-		return typeProduct;
-	}
-	
 	@Override
 	public int compareTo(Product o) {
 		

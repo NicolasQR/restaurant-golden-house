@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,6 +31,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <TextArea disable="true" editable="false" layoutX="16.0" layoutY="173.0" prefHeight="64.0" prefWidth="95.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="mainAnchorPane" prefHeight="470.0" prefWidth="950.0" />
