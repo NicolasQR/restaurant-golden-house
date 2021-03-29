@@ -17,7 +17,9 @@ public class Restaurant   {
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
-	private ArrayList<Type> productTypes;
+	private ArrayList<Type> productsType;
+	private ArrayList<Size> productsSize;
+	
 	
 	private static List<User> users;
 	private List<Employee> employee;
@@ -27,29 +29,49 @@ public class Restaurant   {
 		
 		products = new ArrayList<>();
 		ingredients = new ArrayList<>();
+		productsSize = new ArrayList<>();
+		productsType = new ArrayList<>();
 		
 		users = new ArrayList<User>();
 		employee = new ArrayList<Employee>();
+		
+		
 	}
 	
-	public boolean addProduct(String name, String size, long price, String typeProduct) {
+	public boolean addProduct(String name, long price,Type typeProduct, Size sizeProduct, ArrayList<Ingredient> ingredients) {
 		
 		boolean added = false;
 		
-			if(name != null && size != null && price > 0 && typeProduct != null) {
-			
-				Product product = new Product(name, size, price, typeProduct);
+			if(!name.isEmpty() && price >= 0 && typeProduct != null && sizeProduct != null && ingredients.size() != 0 && !ingredients.isEmpty()) {
 				
-				for(int i = 0; i < products.size(); i++) {
-					int mini = 0;
-					if(product.compareTo(products.get(i)) < 0) {
-						mini = i;
+				Product product = new Product(name, price, typeProduct, sizeProduct, ingredients);
+				
+				if(products.size() > 0) {
+					int mini = -1;
+					for(int i = 0; i < products.size(); i++) {
+						
+						if(product.compareTo(products.get(i)) < 0) {
+							mini = i;
+							i = products.size();
+						} else if(product.compareTo(products.get(i)) == 0){
+							mini = -2;
+							i = ingredients.size();
+						}
 					}
-					Product aux = products.get(i);
-					products.set(i, products.get(mini));
-					products.set(mini, aux);
+					if(mini != -1 && mini != -2) {
+						products.add(mini,product);
+						added = true;
+						System.out.println("si");
+					} else if(mini != -2){
+						products.add(product);
+						added = true;
+					} else {
+						added = false;
+					}
+				}else {
+					products.add(product);
+					added = true;
 				}
-				added = true;
 			}
 		
 		return added;
@@ -66,18 +88,31 @@ public class Restaurant   {
 		if(name != null) {
 			
 			Ingredient ingredient = new Ingredient(name);
-			
-			for(int i = 0; i < ingredients.size(); i++) {
-				int mini = 0;
-				if(ingredient.compareTo(ingredients.get(i)) < 0) {
-					mini = i;
+			if(ingredients.size() > 0) {
+				int mini = -1;
+				for(int i = 0; i < ingredients.size(); i++) {
+					
+					if(ingredient.compareTo(ingredients.get(i)) < 0) {
+						mini = i;
+						i = ingredients.size();
+					} else if(ingredient.compareTo(ingredients.get(i)) == 0){
+						mini = -2;
+						i = ingredients.size();
+					}
 				}
-				Ingredient aux = ingredients.get(i);
-				ingredients.set(i, ingredients.get(mini));
-				ingredients.set(mini, aux);
+				if(mini != -1 && mini != -2) {
+					ingredients.add(mini,ingredient);
+					added = true;
+				} else if(mini != -2){
+					ingredients.add(ingredient);
+					added = true;
+				} else {
+					added = false;
+				}
+			}else {
+				ingredients.add(ingredient);
+				added = true;
 			}
-			added = true;
-
 		}
 		
 		return added;
@@ -88,20 +123,70 @@ public class Restaurant   {
 				
 			if(name != null) {
 			
-			Type productType = new Type(name);
-			
-			for(int i = 0; i < productTypes.size(); i++) {
-				int mini = 0;
-				if(productType.compareTo(productTypes.get(i)) < 0) {
-					mini = i;
+				Type productType = new Type(name);
+				if(productsType.size() > 0) {
+					int mini = -1;
+					for(int i = 0; i < productsType.size(); i++) {
+						
+						if(productType.compareTo(productsType.get(i)) < 0) {
+							mini = i;
+							i = productsType.size();
+						} else if(productType.compareTo(productsType.get(i)) == 0) {
+							mini = -2;
+							i = products.size();
+						}
+					}
+					if(mini != -1 && mini != -2){
+						productsType.add(mini, productType);
+						added = true;
+					} else if(mini != -2){
+						productsType.add(productType);
+						added = true;
+					} else {
+						added = false;
+					}
+				}else {
+					productsType.add(productType);
+					added = true;
 				}
-				Type aux = productTypes.get(i);
-				productTypes.set(i, productTypes.get(mini));
-				productTypes.set(mini, aux);
-			}
-
 		}
 				
+		return added;
+	}
+	
+	public boolean addProductSize(String name) {
+		boolean added = false;
+				
+			if(name != null) {
+			
+			Size size = new Size(name);
+				if(productsSize.size() > 0) {
+					int mini = -1;
+					for(int i = 0; i < productsSize.size(); i++) {
+						
+						if(size.compareTo(productsSize.get(i)) < 0) {
+							mini = i;
+							i = productsSize.size();
+						}else if(size.compareTo(productsSize.get(i)) == 0) {
+							mini = -2;
+							i = productsSize.size();
+						}
+						
+						if(mini != -1 && mini != -2) {
+							productsSize.add(mini, size);
+							added = true;
+						} else if(mini != -2){
+							productsSize.add(size);
+							added = true;
+						} else {
+							added = false;
+						}
+					}
+				} else {
+					productsSize.add(size);
+					added = true;
+				}
+			}
 		return added;
 	}
 	
@@ -162,5 +247,47 @@ public class Restaurant   {
 		return employee;
 	}
 	
+	public void brayan() {
+		System.out.println("Que ondaaaasasnasajsbahjsbajbajab");
+	}
 
+	public ArrayList<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
+	}
+
+	public ArrayList<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public ArrayList<Type> getProductTypes() {
+		return productsType;
+	}
+
+	public void setProductTypes(ArrayList<Type> productTypes) {
+		this.productsType = productTypes;
+	}
+	
+	public ArrayList<Size> getProductsSize() {
+		return productsSize;
+	}
+
+	public void setProductsSize(ArrayList<Size> productsSize) {
+		this.productsSize = productsSize;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public void setEmployee(List<Employee> employee) {
+		this.employee = employee;
+	}
 }

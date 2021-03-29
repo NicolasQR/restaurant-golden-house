@@ -52,7 +52,6 @@ public class LoginGUI {
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
-    	
     }
 	
 	public MenuGUI getMenuController() {
@@ -148,7 +147,7 @@ public class LoginGUI {
     		}
 		}
 		if(login){
-			
+			 
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
 			fxmlLoader.setController(menuController);
 			menuController.receiveData(restaurant);
@@ -163,6 +162,7 @@ public class LoginGUI {
    		 	alert.setContentText("El usuario o la contraseña es incorrecta.");
    		 	alert.showAndWait();
 		}
+	
 	}
     
 }

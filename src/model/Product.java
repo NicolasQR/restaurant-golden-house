@@ -4,43 +4,48 @@ import java.util.ArrayList;
 
 public class Product implements Comparable<Product>{
 	private String name;
-	private String size;
 	private long price;
+	private String typeProduct;
+	private String ingredients;
+	private String size;
 	private boolean status;
-	private ArrayList<Ingredient> ingredients;
-	private Type typeProduct;
 	
-	public Product(String name, String size, long price, String typeProduct) {
+	private ArrayList<Ingredient> ingredientsList;
+	private Type typeProductOb;
+	private Size sizeProduct;
+	
+	public Product(String name, long price,Type typeProduct, Size sizeProduct, ArrayList<Ingredient> ingredients) {
 		this.name = name;
-		this.size = size;
+		this.sizeProduct = sizeProduct;
 		this.price = price;
-		this.typeProduct = new Type(typeProduct); 
-		ingredients = new ArrayList<Ingredient>();
+		this.typeProductOb = typeProduct;
+		this.sizeProduct = sizeProduct;
+		ingredientsList = ingredients;
+		componentsToString();
 	}
 	
 	public void updateStatus(boolean status) {
 		this.status = status;
 	}
 	
-	public void addIngredient(String name) {
-		Ingredient ingredient = new Ingredient(name);
-		ingredients.add(ingredient); 
+	public void componentsToString() {
+		typeProduct = typeProductOb.getName();
+		
+		ingredients = "";
+		for(int i = 0; i < ingredientsList.size(); i++) {
+			ingredients += ingredientsList.get(i).getName() + ", ";
+		}
+		ingredients = ingredients.substring(0, ingredients.length() - 2);
+		
+		size = sizeProduct.getName();
 	}
-
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
 	}
 
 	public long getPrice() {
@@ -55,20 +60,52 @@ public class Product implements Comparable<Product>{
 		return status;
 	}
 
-	public ArrayList<Ingredient> getIngredients() {
-		return ingredients;
+	public ArrayList<Ingredient> getIngredientsList() {
+		return ingredientsList;
 	}
 
-	public void setIngredients(ArrayList<Ingredient> ingredients) {
-		this.ingredients = ingredients;
+	public void setIngredientsList(ArrayList<Ingredient> ingredientsList) {
+		this.ingredientsList = ingredientsList;
 	}
 
-	public Type getTypeProduct() {
+	public Type getTypeProductOb() {
+		return typeProductOb;
+	}
+
+	public void setTypeProductOb(Type typeProductOb) {
+		this.typeProductOb = typeProductOb;
+	}
+
+	public Size getSizeProduct() {
+		return sizeProduct;
+	}
+
+	public void setSizeProduct(Size sizeProduct) {
+		this.sizeProduct = sizeProduct;
+	}
+	
+	public String getTypeProduct() {
 		return typeProduct;
 	}
 
-	public void setTypeProduct(Type typeProduct) {
+	public void setTypeProduct(String typeProduct) {
 		this.typeProduct = typeProduct;
+	}
+
+	public String getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(String ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 
 	@Override
