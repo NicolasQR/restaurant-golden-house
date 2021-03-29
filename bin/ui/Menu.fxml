@@ -26,11 +26,12 @@
                               <MenuItem mnemonicParsing="false" onAction="#showProductsList" text="Mostrar productos" />
                           <MenuItem mnemonicParsing="false" onAction="#showIngredientList" text="Motrar ingredientes" />
                               <MenuItem mnemonicParsing="false" onAction="#showPorductsType" text="Mostrar tipos de producto" />
+                              <MenuItem mnemonicParsing="false" text="Mostrar tamaños" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="EMPLEADOS">
+                      <Menu mnemonicParsing="false" text="TRABAJADORES">
                         <items>
-                          <MenuItem mnemonicParsing="false" onAction="#showEmployeeList" text="Mostrar trabajadores" />
+                          <MenuItem mnemonicParsing="false" onAction="#showEmployeeList" text="Mostrar empleados" />
                               <MenuItem mnemonicParsing="false" onAction="#showUserList" text="Mostrar usuarios" />
                         </items>
                       </Menu>
