@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -119,7 +120,7 @@ public class CreateProductGUI {
 
 
     @FXML
-    public void createProduct(ActionEvent event) {
+    public void createProduct(ActionEvent event) throws FileNotFoundException, IOException {
     	
     	try {
     		ArrayList<Ingredient> items = new ArrayList<>(listAddedIngredients.getItems());

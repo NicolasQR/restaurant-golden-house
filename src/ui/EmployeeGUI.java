@@ -131,6 +131,12 @@ public class EmployeeGUI {
     @FXML
     public void disableEmployee(ActionEvent event) {
     	
+    	//TableRow<Employee> row = new TableRow<Employee>();
+    	//row = (TableRow<Employee>) tableEmployee.getSelectionModel().getSelectedItems();
+    	//row.setStyle("-fx-background-color: green;");
+    	int index = tableEmployee.getSelectionModel().getFocusedIndex();
+    	restaurant.getEmployee().get(index).setStatus(false);
+    	System.out.println(restaurant.getEmployee().get(index).getStatus());
     }
     
 
@@ -144,7 +150,9 @@ public class EmployeeGUI {
 
     @FXML
     public void enableEmployee(ActionEvent event) {
-
+    	int index = tableEmployee.getSelectionModel().getFocusedIndex();
+    	restaurant.getEmployee().get(index).setStatus(true);
+    	System.out.println(restaurant.getEmployee().get(index).getStatus());
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -40,6 +41,14 @@ public class MenuGUI {
 			
 			restaurant = new Restaurant();
 			controllerEmployee = new EmployeeGUI();
+			
+			try {
+				restaurant.loadDatafEmployee();
+				restaurant.loadDataofProducts();
+				restaurant.loadDataofIngredients();
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		@FXML
@@ -101,7 +110,7 @@ public class MenuGUI {
 	    public void showProductsType(ActionEvent event) throws IOException {
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-type.fxml"));
 	    	open.setController(controllerTypes);
-	    	controllerIngredients.receiveData(restaurant);
+	    	controllerTypes.receiveData(restaurant);
 	    	Parent root = open.load();
 	    	
 	    	Scene scene = new Scene(root);
@@ -169,7 +178,7 @@ public class MenuGUI {
 	    	amountOfProducts.setText(Integer.toString(restaurant.getProduct().size()));
 	    }
 	    
-	    public void initialize() {
+	    public void initialize() throws FileNotFoundException, IOException {
 	    	showLabelsInformation();
 	    	restaurant.addIngredient("Aguacate");
 			restaurant.addIngredient("Paprica");
@@ -185,11 +194,6 @@ public class MenuGUI {
 			
 			restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
 					restaurant.getProductsSize().get(1),restaurant.getIngredients());
-
 	    	
-	    }
-	    
-	    public void receiveData(Restaurant a) {
-	    	restaurant = a;
 	    }
 }

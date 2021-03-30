@@ -15,10 +15,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import model.Ingredient;
 import model.Restaurant;
 import model.Type;
-import model.User;
 
 public class TypeManagerGUI {
 	  	@FXML

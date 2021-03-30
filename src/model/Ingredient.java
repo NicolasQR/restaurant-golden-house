@@ -1,6 +1,10 @@
 package model;
 
-public class Ingredient extends Complement{
+import java.io.Serializable;
+
+public class Ingredient extends Complement implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private final static String txtCode = "IG";
 	private static long numberCode;
 	

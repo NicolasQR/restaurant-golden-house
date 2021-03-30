@@ -11,13 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import model.Product;
 import model.Restaurant;
  
@@ -79,30 +77,11 @@ public class ProductManagerGUI {
 	    	tableSize.setCellValueFactory(new PropertyValueFactory<Product, String>("size"));
 	    	tablePrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
 	    }
-	    /*
-	    public TableCell<Product, String> changedColorRow(TableColumn<Product, String> tableName) {
-	    	tableName.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>(){ 
-	            @Override
-	            public TableCell<Product, String> call(TableColumn<Product, String> param) {
 
-	                return new TableCell<Product, String>(){
-	                    @Override
-	                    protected void updateItem(String item, boolean empty) {
-	                        super.updateItem(item, empty);
-
-	                      if (item != null){
-	                            setStyle("-fx-background-color:#"+item);
-	                     }
-
-	                    }
-	                };
-	            }
-	        });
-	    }
-	    */
 	    public void initialize() {
 	    	loadTableView();
-		}
+	    }
+	    
 	    
 		@FXML
 	    public void deactivateProduct(ActionEvent event) {

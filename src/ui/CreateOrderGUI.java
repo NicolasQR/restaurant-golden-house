@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.Client;
 import model.Employee;
-import model.Ingredient;
 import model.Product;
 import model.Restaurant;
 
