@@ -92,14 +92,15 @@ public class ProductManagerGUI {
 	                };
 	            }
 	        });*/
-	        
+	       
+	    	/*
 	        restaurant.addIngredient("Aguacate");
 			restaurant.addIngredient("Paprica");
-			restaurant.addIngredient("Oro");
-			
+			restaurant.addIngredient("Oro");*/
+			/*
 			restaurant.addProductType("familiar");
 			restaurant.addProductType("para mi");
-			restaurant.addProductType("para todos");
+			restaurant.addProductType("para todos");*/
 			
 			restaurant.addProductSize("grande");
 			restaurant.addProductSize("mediano");

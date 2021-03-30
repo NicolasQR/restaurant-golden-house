@@ -42,10 +42,11 @@ public class MenuGUI {
 				restaurant.loadDatafEmployee();
 				restaurant.loadDataofProducts();
 				restaurant.loadDataofIngredients();
+				restaurant.loadDataofProductsSize();
+				restaurant.loadDataofProductType();
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
 			}
-			restaurant.getEmployee().forEach(System.out::println);
 		}
 		
 	    @FXML

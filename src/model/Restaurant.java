@@ -17,6 +17,7 @@ public class Restaurant   {
 	public final static String SAVE_PATH_FILE_OF_PRODUCTS = "data/products.ap2";
 	public final static String SAVE_PATH_FILE_OF_INGREDIENTS = "data/ingredients.ap2";
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_SIZE = "data/productsSize.ap2";
+	public final static String SAVE_PATH_FILE_OF_PRODUCT_TYPE = "data/productsType.ap2";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -160,7 +161,7 @@ public class Restaurant   {
 	    return loaded;
 	}
 	
-	public boolean addProductType(String name) {
+	public boolean addProductType(String name) throws FileNotFoundException, IOException {
 		boolean added = false;
 				
 			if(name != null) {
@@ -192,8 +193,27 @@ public class Restaurant   {
 					added = true;
 				}
 		}
-				
+		saveDataofProductType();
 		return added;
+	}
+	
+	public void saveDataofProductType() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE_OF_PRODUCT_TYPE));
+	    oos.writeObject(productsType);
+	    oos.close();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean loadDataofProductType() throws FileNotFoundException, IOException, ClassNotFoundException {
+		File f = new File(SAVE_PATH_FILE_OF_INGREDIENTS);
+	    boolean loaded = false;
+	    if(f.exists()){
+	      ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+	      productsType = (ArrayList<Type>)ois.readObject();
+	      ois.close();
+	      loaded = true;
+	    }
+	    return loaded;
 	}
 	
 	public boolean addProductSize(String name) {
