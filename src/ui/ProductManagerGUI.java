@@ -45,23 +45,34 @@ public class ProductManagerGUI {
 	    
 	    private CreateProductGUI controller;
 	    
+		private IngredientManagerGUI passController;
+	    
 	    public ProductManagerGUI() {
 	    	restaurant = new Restaurant();
 	    	controller = new CreateProductGUI();
+	    	passController = new IngredientManagerGUI();
 	    }
 	    
 	    public void receiveData(Restaurant restaurant) {
 	    	this.restaurant = restaurant;
 	    }
 	    
+	    public void passController(IngredientManagerGUI controller) {
+	    	this.passController = controller;
+	    }
+	    
 	    public Restaurant getRestaurant() {
 	    	return restaurant;
 	    }
 	    
-	    public void loadTableView() {
-	    	ObservableList<Product> accounts = FXCollections.observableArrayList(restaurant.getProducts());
+	    public IngredientManagerGUI getPassController() {
+			return passController;
+		}
+
+		public void loadTableView() {
+	    	ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
 	    	
-	    	tableViewProducts.setItems(accounts);
+	    	tableViewProducts.setItems(products);
 	    	tableName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 	    	tableType.setCellValueFactory(new PropertyValueFactory<Product, String>("typeProduct"));
 	    	tableIngredients.setCellValueFactory(new PropertyValueFactory<Product, String>("ingredients"));
@@ -90,20 +101,6 @@ public class ProductManagerGUI {
 	    }
 	    */
 	    public void initialize() {
-	    	restaurant.addIngredient("Aguacate");
-			restaurant.addIngredient("Paprica");
-			restaurant.addIngredient("Oro");
-			
-			restaurant.addProductType("familiar");
-			restaurant.addProductType("para mi");
-			restaurant.addProductType("para todos");
-			
-			restaurant.addProductSize("grande");
-			restaurant.addProductSize("mediano");
-			restaurant.addProductSize("pequeño");
-			
-			restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
-					restaurant.getProductsSize().get(1),restaurant.getIngredients());
 	    	loadTableView();
 		}
 	    
@@ -128,7 +125,7 @@ public class ProductManagerGUI {
 	    	
 	    	controller = new CreateProductGUI();
 	    	controller.receiveData(restaurant); //Pasamos informacion
-	    	
+	    	controller.passController(passController);
 	    	open.setController(controller);
 	    	
 	    	Parent root = open.load();
@@ -146,6 +143,7 @@ public class ProductManagerGUI {
 				@Override
 				public void handle(javafx.stage.WindowEvent event) { //Recibimos informacion
 					restaurant = controller.getRestaurant();
+					passController = controller.getPassController();
 					loadTableView();
 				}
 			});

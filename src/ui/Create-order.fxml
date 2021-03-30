@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1131.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea disable="true" editable="false" layoutX="16.0" layoutY="16.0" prefHeight="224.0" prefWidth="1100.0" />
+      <TableView fx:id="tableViewProducts" layoutX="42.0" layoutY="42.0" onMouseClicked="#selectItem" prefHeight="187.0" prefWidth="567.0">
+         <columns>
+            <TableColumn fx:id="tableName" editable="false" prefWidth="105.0" resizable="false" text="Nombre" />
+            <TableColumn fx:id="tableType" editable="false" prefWidth="99.0" resizable="false" text="Tipo" />
+            <TableColumn fx:id="tableIngredients" editable="false" prefWidth="180.0" resizable="false" text="Ingredientes" />
+            <TableColumn fx:id="tableSize" editable="false" prefWidth="112.0" resizable="false" text="Tamaño" />
+            <TableColumn fx:id="tablePrice" editable="false" prefWidth="72.0" resizable="false" text="Precio" />
+         </columns>
+      </TableView>
+      <Button layoutX="677.0" layoutY="152.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="37.0" prefWidth="126.0" text="Agregar -&gt;" />
+      <TableView fx:id="tableAddedProducts" layoutX="856.0" layoutY="42.0" prefHeight="187.0" prefWidth="223.0">
+        <columns>
+          <TableColumn fx:id="columName" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="columPrice" prefWidth="75.0" text="Precio" />
+            <TableColumn fx:id="columQuantity" prefWidth="75.0" text="Cantidad" />
+        </columns>
+      </TableView>
+      <Spinner fx:id="ingredientQuantity" layoutX="769.0" layoutY="111.0" prefHeight="30.0" prefWidth="68.0" />
+      <TextField fx:id="txtSelectedIngredient" layoutX="630.0" layoutY="111.0" prefHeight="30.0" prefWidth="126.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="comboClient" layoutX="136.0" layoutY="287.0" prefHeight="30.0" prefWidth="178.0" />
+      <Label layoutX="55.0" layoutY="289.0" text="Cliente:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="348.0" text="Empleado:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="ComboEmployee" layoutX="136.0" layoutY="347.0" prefHeight="30.0" prefWidth="178.0" />
+      <DatePicker fx:id="datePicker" layoutX="136.0" layoutY="398.0" prefHeight="30.0" prefWidth="178.0" />
+      <Label layoutX="60.0" layoutY="399.0" text="Fecha:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="456.0" text="Hora:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtHour" layoutX="153.0" layoutY="455.0" prefHeight="30.0" prefWidth="50.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="210.0" layoutY="455.0" text=":" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtMinutes" layoutX="225.0" layoutY="455.0" prefHeight="30.0" prefWidth="50.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextArea fx:id="txtAreaObservations" layoutX="344.0" layoutY="312.0" prefHeight="232.0" prefWidth="519.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="538.0" layoutY="274.0" text="Observaciones" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="53.0" layoutY="503.0" text="Estado:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboStatus" layoutX="136.0" layoutY="502.0" prefHeight="30.0" prefWidth="178.0" />
+      <TextArea disable="true" layoutX="906.0" layoutY="272.0" prefHeight="283.0" prefWidth="211.0" />
+      <Button layoutX="945.0" layoutY="370.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="59.0" prefWidth="143.0" style="-fx-background-radius: 15;" text="Crear pedido">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

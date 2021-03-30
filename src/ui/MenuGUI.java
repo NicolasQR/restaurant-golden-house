@@ -30,14 +30,28 @@ public class MenuGUI {
 	private EmployeeGUI controllerEmployee;
 	private ProductManagerGUI controllerProducts;
 	private IngredientManagerGUI controllerIngredients;
+	private TypeManagerGUI controllerTypes;
 	
 		public MenuGUI() {
 			controllerUsers = new UsersGUI();
 			controllerProducts = new ProductManagerGUI();
 			controllerIngredients = new IngredientManagerGUI();
+			controllerTypes = new TypeManagerGUI();
+			
 			restaurant = new Restaurant();
 			controllerEmployee = new EmployeeGUI();
 		}
+		
+		@FXML
+	    void showClientList(ActionEvent event) {
+
+	    }
+		
+
+	    @FXML
+	    void showOrderList(ActionEvent event) {
+
+	    }
 		
 	    @FXML
 	    public void showEmployeeList(ActionEvent event) throws IOException {
@@ -63,6 +77,7 @@ public class MenuGUI {
 	    public void showIngredientList(ActionEvent event) throws IOException {
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-ingredient.fxml"));
 	    	open.setController(controllerIngredients);
+	    	controllerIngredients.receiveData(restaurant);
 	    	Parent root = open.load();
 	    	
 	    	Scene scene = new Scene(root);
@@ -84,7 +99,26 @@ public class MenuGUI {
 
 	    @FXML
 	    public void showProductsType(ActionEvent event) throws IOException {
+	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-type.fxml"));
+	    	open.setController(controllerTypes);
+	    	controllerIngredients.receiveData(restaurant);
+	    	Parent root = open.load();
 	    	
+	    	Scene scene = new Scene(root);
+	    	Stage stage = new Stage();
+	    	
+	    	stage.initModality(Modality.APPLICATION_MODAL);
+	    	stage.setScene(scene);
+	    	stage.setTitle("Gestionar tipos");
+	    	stage.setResizable(false);
+	    	stage.setOnHidden(new EventHandler<WindowEvent>() {
+				
+				@Override
+				public void handle(WindowEvent event) {
+					restaurant = controllerIngredients.getRestaurant();
+				}
+			});
+	    	stage.showAndWait();
 	    }
 
 	    @FXML
@@ -92,6 +126,7 @@ public class MenuGUI {
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-product.fxml"));
 	    	open.setController(controllerProducts);
 	    	controllerProducts.receiveData(restaurant);
+	    	controllerProducts.passController(controllerIngredients);
 	    	Parent root = open.load();
 	    	
 	    	Scene scene = new Scene(root);
@@ -105,7 +140,8 @@ public class MenuGUI {
 				
 				@Override
 				public void handle(WindowEvent event) {
-					restaurant = controllerProducts.getRestaurant(); 
+					restaurant = controllerProducts.getRestaurant();
+					controllerIngredients = controllerProducts.getPassController();
 				}
 			});
 	    	stage.showAndWait();
@@ -135,6 +171,21 @@ public class MenuGUI {
 	    
 	    public void initialize() {
 	    	showLabelsInformation();
+	    	restaurant.addIngredient("Aguacate");
+			restaurant.addIngredient("Paprica");
+			restaurant.addIngredient("Oro");
+			
+			restaurant.addProductType("familiar");
+			restaurant.addProductType("para mi");
+			restaurant.addProductType("para todos");
+			
+			restaurant.addProductSize("grande");
+			restaurant.addProductSize("mediano");
+			restaurant.addProductSize("pequeño");
+			
+			restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
+					restaurant.getProductsSize().get(1),restaurant.getIngredients());
+
 	    	
 	    }
 	    
