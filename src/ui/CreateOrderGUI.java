@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
@@ -11,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.Client;
@@ -49,9 +51,12 @@ public class CreateOrderGUI {
 
 	    @FXML
 	    private TableColumn<Product, String> columQuantity;
-
+	    
 	    @FXML
-	    private Spinner<Integer> ingredientQuantity;
+	    private Button addProductButton;
+	    
+	    @FXML
+	    private Spinner<Integer> productQuantity;
 
 	    @FXML
 	    private TextField txtSelectedIngredient;
@@ -83,6 +88,10 @@ public class CreateOrderGUI {
 			restaurant = new Restaurant();
 		}
 	    
+	    public void receiveData(Restaurant restaurant) {
+	    	this.restaurant = restaurant;
+	    }
+	    
 	    public void loadTableProducts() {
 	    	ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
 	    	
@@ -94,18 +103,38 @@ public class CreateOrderGUI {
 	    	tablePrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
 	    }
 	    
-	    public void initialize() {
+	    public void loadAddedTableProduct() {
+	    	ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
 	    	
+	    	tableAddedProducts.setItems(products);
+	    	columName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+	    	columPrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+	    	columQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+	    }
+	    
+	    public void putClients() {
+	    	
+	    }
+	    
+	    public void initialize() {
+	    	loadTableProducts();
+	    	productQuantity.setValueFactory(new IntegerSpinnerValueFactory(0, 999, 0));
+	    	addProductButton.setDisable(true);
 	    }
 	    
 	    @FXML
 	    public void addProduct(ActionEvent event) {
+	    	Product product = tableViewProducts.getSelectionModel().getSelectedItem();
 	    	
+	    	if(product != null && !txtSelectedIngredient.getText().isEmpty() &&  productQuantity.getValue() > 0) {
+		    	restaurant.getProducts().get(tableViewProducts.getSelectionModel().getSelectedIndex()).setQuantity(productQuantity.getValue());
+		    	loadAddedTableProduct();
+	    	}
 	    }
 	    
 	    @FXML
 	    public void createOrder(ActionEvent event) {
-
+	    	
 	    }
 	    
 	    @FXML
@@ -113,7 +142,7 @@ public class CreateOrderGUI {
 	    	Product p = tableViewProducts.getSelectionModel().getSelectedItem();
 	    	
 	    	if(p != null) {
-	    		
+	    		addProductButton.setDisable(false);
 	    	}
 	    }
 }

@@ -1,6 +1,5 @@
 package ui;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,14 +32,15 @@ public class MenuGUI {
 	private IngredientManagerGUI controllerIngredients;
 	private TypeManagerGUI controllerTypes;
 	private ClientManagerGUI controllerClient;
-	
+	private SizeManagerGUI controllerSizes;
+
 		public MenuGUI() {
 			controllerUsers = new UsersGUI();
 			controllerProducts = new ProductManagerGUI();
 			controllerIngredients = new IngredientManagerGUI();
 			controllerTypes = new TypeManagerGUI();
 			controllerClient = new ClientManagerGUI();
-			
+			controllerSizes = new SizeManagerGUI();
 			restaurant = new Restaurant();
 			controllerEmployee = new EmployeeGUI();
 			
@@ -72,12 +72,10 @@ public class MenuGUI {
 	    	stage.setScene(scene);
 	    	stage.setTitle("Gestionar clientes");
 	    	stage.showAndWait();
-	    }
-		
+		}
 
-	    @FXML
-	    public void showOrderList(ActionEvent event) throws IOException {
-	    	
+	    public void showOrderList(ActionEvent event) {
+
 	    }
 		
 	    @FXML
@@ -149,6 +147,30 @@ public class MenuGUI {
 	    }
 
 	    @FXML
+	    public void showSizeList(ActionEvent event) throws IOException {
+	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-size.fxml"));
+	    	open.setController(controllerSizes);
+	    	controllerTypes.receiveData(restaurant);
+	    	Parent root = open.load();
+	    	
+	    	Scene scene = new Scene(root);
+	    	Stage stage = new Stage();
+	    	
+	    	stage.initModality(Modality.APPLICATION_MODAL);
+	    	stage.setScene(scene);
+	    	stage.setTitle("Gestionar tamaños");
+	    	stage.setResizable(false);
+	    	stage.setOnHidden(new EventHandler<WindowEvent>() {
+				
+				@Override
+				public void handle(WindowEvent event) {
+					restaurant = controllerSizes.getRestaurant();
+				}
+			});
+	    	stage.showAndWait();
+	    }
+	    
+	    @FXML
 	    public void showProductsList(ActionEvent event) throws IOException {
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-product.fxml"));
 	    	open.setController(controllerProducts);
@@ -173,7 +195,7 @@ public class MenuGUI {
 			});
 	    	stage.showAndWait();
 	    }
-
+	    
 	    @FXML
 	    public void showUserList(ActionEvent event) throws IOException {
 	    	
@@ -196,22 +218,7 @@ public class MenuGUI {
 	    	amountOfProducts.setText(Integer.toString(restaurant.getProduct().size()));
 	    }
 	    
-	    public void initialize() throws FileNotFoundException, IOException {
+	    public void initialize(){
 	    	showLabelsInformation();
-	    	restaurant.addIngredient("Aguacate");
-			restaurant.addIngredient("Paprica");
-			restaurant.addIngredient("Oro");
-			
-			restaurant.addProductType("familiar");
-			restaurant.addProductType("para mi");
-			restaurant.addProductType("para todos");
-			
-			restaurant.addProductSize("grande");
-			restaurant.addProductSize("mediano");
-			restaurant.addProductSize("pequeño");
-			
-			/*restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
-					restaurant.getProductsSize().get(1),restaurant.getIngredients());*/
-	    	
 	    }
 }

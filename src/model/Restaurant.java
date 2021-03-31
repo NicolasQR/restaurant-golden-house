@@ -284,7 +284,7 @@ public class Restaurant   {
 	public boolean addProductSize(String name) {
 		boolean added = false;
 				
-			if(name != null) {
+			if(!name.isEmpty()) {
 			
 			Size size = new Size(name);
 				if(productsSize.size() > 0) {

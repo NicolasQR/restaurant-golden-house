@@ -4,15 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Product implements Comparable<Product>, Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	private String name;
 	private long price;
 	private String typeProduct;
 	private String ingredients;
 	private String size;
+	private int Quantity;
 	private boolean status;
 	
 	private ArrayList<Ingredient> ingredientsList;
@@ -111,6 +110,14 @@ public class Product implements Comparable<Product>, Serializable{
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+	
+	public int getQuantity() {
+		return Quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		Quantity = quantity;
 	}
 
 	@Override
