@@ -236,7 +236,7 @@ public class Restaurant   {
 	
 	@SuppressWarnings("unchecked")
 	public boolean loadDataofProductType() throws FileNotFoundException, IOException, ClassNotFoundException {
-		File f = new File(SAVE_PATH_FILE_OF_INGREDIENTS);
+		File f = new File(SAVE_PATH_FILE_OF_PRODUCT_TYPE);
 	    boolean loaded = false;
 	    if(f.exists()){
 	      ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
@@ -420,9 +420,6 @@ public class Restaurant   {
 		return employee;
 	}
 	
-	public void brayan() {
-		System.out.println("Que ondaaaasasnasajsbahjsbajbajab");
-	}
 
 	public ArrayList<Product> getProducts() {
 		return products;

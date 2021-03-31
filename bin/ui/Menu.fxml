@@ -65,16 +65,17 @@
                      </font>
                   </Label>
                   <TextArea disable="true" editable="false" layoutX="18.0" layoutY="29.0" prefHeight="75.0" prefWidth="427.0" />
-                  <Label layoutX="487.0" layoutY="49.0" text="Cantidad de productos existentes:" textFill="#e2dda8">
+                  <Label layoutX="487.0" layoutY="52.0" text="Cantidad de productos existentes:" textFill="#e2dda8">
                      <font>
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="amountOfProducts" layoutX="874.0" layoutY="46.0" text="Label" textFill="#e2dda8">
+                  <Label fx:id="amountOfProducts" layoutX="874.0" layoutY="46.0" text="0" textFill="#e2dda8">
                      <font>
                         <Font name="Tw Cen MT Bold Italic" size="36.0" />
                      </font>
                   </Label>
+                  <TextArea disable="true" editable="false" layoutX="469.0" layoutY="29.0" prefHeight="75.0" prefWidth="440.0" />
                </children></AnchorPane>
          </children>
       </VBox>

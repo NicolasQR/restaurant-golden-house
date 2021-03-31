@@ -1,6 +1,5 @@
 package ui;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -205,7 +204,7 @@ public class MenuGUI {
 	    	amountOfProducts.setText(Integer.toString(restaurant.getProduct().size()));
 	    }
 	    
-	    public void initialize() throws FileNotFoundException, IOException {
+	    public void initialize(){
 	    	showLabelsInformation();
 	    }
 }
