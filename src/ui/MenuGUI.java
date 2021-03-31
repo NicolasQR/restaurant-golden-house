@@ -194,8 +194,8 @@ public class MenuGUI {
 			restaurant.addProductSize("mediano");
 			restaurant.addProductSize("pequeño");
 			
-			restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
-					restaurant.getProductsSize().get(1),restaurant.getIngredients());
+			/*restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
+					restaurant.getProductsSize().get(1),restaurant.getIngredients());*/
 	    	
 	    }
 }
