@@ -13,9 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -130,8 +128,7 @@ public class EmployeeGUI {
         stage.close();
     }
 
-    @SuppressWarnings("unchecked")
-	@FXML
+    @FXML
     public void disableEmployee(ActionEvent event) {
     	
     	//TableRow<Employee> row = new TableRow<Employee>();

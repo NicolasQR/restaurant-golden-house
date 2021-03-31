@@ -1,6 +1,5 @@
 package ui;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -12,13 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import model.Product;
 import model.Restaurant;
  
@@ -46,23 +43,34 @@ public class ProductManagerGUI {
 	    
 	    private CreateProductGUI controller;
 	    
+		private IngredientManagerGUI passController;
+	    
 	    public ProductManagerGUI() {
 	    	restaurant = new Restaurant();
 	    	controller = new CreateProductGUI();
+	    	passController = new IngredientManagerGUI();
 	    }
 	    
 	    public void receiveData(Restaurant restaurant) {
 	    	this.restaurant = restaurant;
 	    }
 	    
+	    public void passController(IngredientManagerGUI controller) {
+	    	this.passController = controller;
+	    }
+	    
 	    public Restaurant getRestaurant() {
 	    	return restaurant;
 	    }
 	    
-	    public void loadTableView() {
-	    	ObservableList<Product> accounts = FXCollections.observableArrayList(restaurant.getProducts());
+	    public IngredientManagerGUI getPassController() {
+			return passController;
+		}
+
+		public void loadTableView() {
+	    	ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
 	    	
-	    	tableViewProducts.setItems(accounts);
+	    	tableViewProducts.setItems(products);
 	    	tableName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 	    	tableType.setCellValueFactory(new PropertyValueFactory<Product, String>("typeProduct"));
 	    	tableIngredients.setCellValueFactory(new PropertyValueFactory<Product, String>("ingredients"));
@@ -70,44 +78,8 @@ public class ProductManagerGUI {
 	    	tablePrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
 	    }
 
-	    
-	    public void initialize() throws FileNotFoundException, IOException {
 
-	    /*
-	    public TableCell<Product, String> changedColorRow(TableColumn<Product, String> tableName) {
-	    	tableName.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>(){ 
-	            @Override
-	            public TableCell<Product, String> call(TableColumn<Product, String> param) {
-
-	                return new TableCell<Product, String>(){
-	                    @Override
-	                    protected void updateItem(String item, boolean empty) {
-	                        super.updateItem(item, empty);
-
-	                      if (item != null){
-	                            setStyle("-fx-background-color:#"+item);
-	                     }
-
-	                    }
-	                };
-	            }
-	        });*/
-	       
-	    	/*
-	        restaurant.addIngredient("Aguacate");
-			restaurant.addIngredient("Paprica");
-			restaurant.addIngredient("Oro");*/
-			/*
-			restaurant.addProductType("familiar");
-			restaurant.addProductType("para mi");
-			restaurant.addProductType("para todos");*/
-			
-			restaurant.addProductSize("grande");
-			restaurant.addProductSize("mediano");
-			restaurant.addProductSize("pequeño");
-			
-			/*restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
-					restaurant.getProductsSize().get(1),restaurant.getIngredients());*/
+	    public void initialize() {
 	    	loadTableView();
 	    }
 	    
@@ -133,7 +105,7 @@ public class ProductManagerGUI {
 	    	
 	    	controller = new CreateProductGUI();
 	    	controller.receiveData(restaurant); //Pasamos informacion
-	    	
+	    	controller.passController(passController);
 	    	open.setController(controller);
 	    	
 	    	Parent root = open.load();
@@ -151,6 +123,7 @@ public class ProductManagerGUI {
 				@Override
 				public void handle(javafx.stage.WindowEvent event) { //Recibimos informacion
 					restaurant = controller.getRestaurant();
+					passController = controller.getPassController();
 					loadTableView();
 				}
 			});

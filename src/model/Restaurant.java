@@ -109,7 +109,7 @@ public class Restaurant   {
 		
 		boolean added = false;
 		
-		if(name != null) {
+		if(!name.isEmpty()) {
 			
 			Ingredient ingredient = new Ingredient(name);
 			if(ingredients.size() > 0) {
@@ -142,6 +142,36 @@ public class Restaurant   {
 		return added;
 	}
 	
+	public boolean updateIngredient(int idx, String name) {
+		boolean updated = true;
+		Ingredient temp = new Ingredient(name);
+		
+		if(ingredients.size() > idx) {
+			
+			int pos = -1;
+			int i = 0;
+			int j = ingredients.size() - 1;
+			
+			while (i <= j && pos < 0) {
+				int m = (i+j)/2;
+				if(temp.compareTo(ingredients.get(i)) == 0) {
+					pos = m;
+					updated = false;
+				} else if(temp.compareTo(ingredients.get(i)) > 0) {
+					i = m+1;
+				} else {
+					j = m-1;	
+			
+				}
+			}
+			
+			if(updated) {
+				ingredients.get(idx).setName(name);
+			}
+		}
+		return updated;
+	}
+		
 	public void saveDataofIngredient() throws FileNotFoundException, IOException {
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE_OF_INGREDIENTS));
 	    oos.writeObject(ingredients);
@@ -164,7 +194,7 @@ public class Restaurant   {
 	public boolean addProductType(String name) throws FileNotFoundException, IOException {
 		boolean added = false;
 				
-			if(name != null) {
+			if(!name.isEmpty()) {
 			
 				Type productType = new Type(name);
 				if(productsType.size() > 0) {
@@ -176,7 +206,7 @@ public class Restaurant   {
 							i = productsType.size();
 						} else if(productType.compareTo(productsType.get(i)) == 0) {
 							mini = -2;
-							i = products.size();
+							i = productsType.size();
 						}
 					}
 					if(mini != -1 && mini != -2){
@@ -197,6 +227,7 @@ public class Restaurant   {
 		return added;
 	}
 	
+
 	public void saveDataofProductType() throws FileNotFoundException, IOException {
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE_OF_PRODUCT_TYPE));
 	    oos.writeObject(productsType);
@@ -214,6 +245,37 @@ public class Restaurant   {
 	      loaded = true;
 	    }
 	    return loaded;
+	}
+	
+	public boolean updateType(int idx, String name) {
+		boolean updated = true;
+		Type temp = new Type(name);
+		
+		if(productsType.size() > idx) {
+			
+			int pos = -1;
+			int i = 0;
+			int j = productsType.size() - 1;
+			
+			while (i <= j && pos < 0) {
+				int m = (i+j)/2;
+				if(temp.compareTo(productsType.get(i)) == 0) {
+					pos = m;
+					updated = false;
+				} else if(temp.compareTo(productsType.get(i)) > 0) {
+					i = m+1;
+				} else {
+					j = m-1;	
+			
+				}
+			}
+			
+			if(updated) {
+				productsType.get(idx).setName(name);
+			}
+		}
+		return updated;
+
 	}
 	
 	public boolean addProductSize(String name) {
@@ -252,6 +314,36 @@ public class Restaurant   {
 		return added;
 	}
 	
+	public boolean updateSize(int idx, String name) {
+		boolean updated = true;
+		Size temp = new Size(name);
+		
+		if(productsSize.size() > idx) {
+			
+			int pos = -1;
+			int i = 0;
+			int j = productsSize.size() - 1;
+			
+			while (i <= j && pos < 0) {
+				int m = (i+j)/2;
+				if(temp.compareTo(productsSize.get(i)) == 0) {
+					pos = m;
+					updated = false;
+				} else if(temp.compareTo(productsSize.get(i)) > 0) {
+					i = m+1;
+				} else {
+					j = m-1;	
+			
+				}
+			}
+			
+			if(updated) {
+				productsSize.get(idx).setName(name);
+			}
+		}
+		return updated;
+	}
+
 	public void saveDataofProductSize() throws FileNotFoundException, IOException {
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE_OF_PRODUCT_SIZE));
 	    oos.writeObject(productsSize);
@@ -270,7 +362,6 @@ public class Restaurant   {
 	    }
 	    return loaded;
 	}
-	
 	
 	public void addUsers(String name, String lastName, long iD, String userName, String password) throws IOException {
 		users.add(new User(name, lastName, iD, userName, password));
@@ -363,10 +454,6 @@ public class Restaurant   {
 
 	public void setProductsSize(ArrayList<Size> productsSize) {
 		this.productsSize = productsSize;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
 	}
 
 	public void setEmployee(List<Employee> employee) {

@@ -36,6 +36,12 @@
                               <MenuItem mnemonicParsing="false" onAction="#showUserList" text="Mostrar usuarios" />
                         </items>
                       </Menu>
+                        <Menu mnemonicParsing="false" text="PEDIDOS">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showOrderList" text="Mostrar pedidos" />
+                              <MenuItem mnemonicParsing="false" onAction="#showClientList" text="Motrar clientes" />
+                           </items>
+                        </Menu>
                       <Menu mnemonicParsing="false" text="HELP">
                         <items>
                           <MenuItem mnemonicParsing="false" text="Preguntas frecuentes" />
