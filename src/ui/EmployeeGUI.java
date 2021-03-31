@@ -13,11 +13,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -179,18 +179,6 @@ public class EmployeeGUI {
     	
     }
     
-    @FXML
-    public void showTableInformation(MouseEvent event) {
-    	Employee p = tableEmployee.getSelectionModel().getSelectedItem();
-    	
-    	if(p != null) {
-    		txtNameEmployeeScreen1.setText(p.getName());
-        	txtLastNameEmployeeScreen1.setText(p.getLastName());
-        	txtIdEmployeeScreen1.setText(String.valueOf(p.getID()));
-    	}
-    }
-    
-    
     public void tableView() {
     	ObservableList<Employee> datos;
     	datos = FXCollections.observableArrayList(restaurant.getEmployee());
@@ -199,6 +187,21 @@ public class EmployeeGUI {
     	this.nameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
     	this.lastNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
     	this.idEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("iD"));
+    	
+    	tableEmployee.setRowFactory( tv -> {
+			TableRow<Employee> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+					Employee rowData = row.getItem();
+					//updateButton.setDisable(false);
+					txtNameEmployeeScreen1.setText(rowData.getName());
+					txtLastNameEmployeeScreen1.setText(rowData.getLastName());
+					toString();
+					txtIdEmployeeScreen1.setText(String.valueOf(rowData.getID()));
+				}
+			});
+			return row ;
+		});
     }
     
     public void receiveData(Restaurant a) {

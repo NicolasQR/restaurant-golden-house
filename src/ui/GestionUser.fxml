@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tableUser" layoutX="23.0" layoutY="21.0" onMouseClicked="#showTxtInformation" prefHeight="402.0" prefWidth="629.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="21.0">
+      <TableView fx:id="tableUser" layoutX="23.0" layoutY="21.0" prefHeight="420.0" prefWidth="630.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="21.0">
         <columns>
           <TableColumn fx:id="columnNameUser" prefWidth="142.3999900817871" text="Nombres" />
           <TableColumn fx:id="columnLastNameUser" prefWidth="151.2000274658203" text="Apellidos" />
@@ -20,9 +20,9 @@
             <TableColumn fx:id="columnUser" prefWidth="168.79998779296875" text="Usuario" />
         </columns>
       </TableView>
-      <TextArea disable="true" editable="false" layoutX="683.0" layoutY="20.0" prefHeight="394.0" prefWidth="239.0" />
-      <Button layoutX="743.0" layoutY="304.0" mnemonicParsing="false" onAction="#upgradeUserAccount" prefWidth="120.0" style="-fx-background-radius: 15;" text="Actualizar" />
-      <Button layoutX="743.0" layoutY="363.0" mnemonicParsing="false" onAction="#eliminateUserAccount" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" />
+      <TextArea disable="true" editable="false" layoutX="683.0" layoutY="20.0" prefHeight="420.0" prefWidth="239.0" />
+      <Button layoutX="743.0" layoutY="327.0" mnemonicParsing="false" onAction="#upgradeUserAccount" prefWidth="120.0" style="-fx-background-radius: 15;" text="Actualizar" />
+      <Button layoutX="743.0" layoutY="386.0" mnemonicParsing="false" onAction="#eliminateUserAccount" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eliminar" />
       <Label layoutX="708.0" layoutY="41.0" text="Nombre:" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="14.0" />

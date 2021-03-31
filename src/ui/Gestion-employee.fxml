@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tableEmployee" layoutX="142.0" layoutY="66.0" onMouseClicked="#showTableInformation" prefHeight="403.0" prefWidth="670.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="33.0">
+      <TableView fx:id="tableEmployee" layoutX="142.0" layoutY="66.0" prefHeight="403.0" prefWidth="670.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="33.0">
         <columns>
           <TableColumn fx:id="nameEmployee" prefWidth="180.79995346069336" text="Nombres" />
           <TableColumn fx:id="lastNameEmployee" prefWidth="248.80003356933594" text="Apellidos" />

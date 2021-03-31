@@ -32,12 +32,14 @@ public class MenuGUI {
 	private ProductManagerGUI controllerProducts;
 	private IngredientManagerGUI controllerIngredients;
 	private TypeManagerGUI controllerTypes;
+	private ClientManagerGUI controllerClient;
 	
 		public MenuGUI() {
 			controllerUsers = new UsersGUI();
 			controllerProducts = new ProductManagerGUI();
 			controllerIngredients = new IngredientManagerGUI();
 			controllerTypes = new TypeManagerGUI();
+			controllerClient = new ClientManagerGUI();
 			
 			restaurant = new Restaurant();
 			controllerEmployee = new EmployeeGUI();
@@ -48,20 +50,34 @@ public class MenuGUI {
 				restaurant.loadDataofIngredients();
 				restaurant.loadDataofProductsSize();
 				restaurant.loadDataofProductType();
+				restaurant.loadDataofClients();
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
 			}
 		}
 		
 		@FXML
-	    void showClientList(ActionEvent event) {
-
+	    public void showClientList(ActionEvent event) throws IOException {
+			FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-client.fxml"));
+	    	open.setController(controllerClient);
+	    	controllerClient.receiveData(restaurant);
+	    	Parent root = open.load();
+	    	
+	    	Scene scene = new Scene(root);
+	    	Stage stage = new Stage();
+	    	
+	    	
+	    	
+	    	stage.initModality(Modality.APPLICATION_MODAL);
+	    	stage.setScene(scene);
+	    	stage.setTitle("Gestionar clientes");
+	    	stage.showAndWait();
 	    }
 		
 
 	    @FXML
-	    void showOrderList(ActionEvent event) {
-
+	    public void showOrderList(ActionEvent event) throws IOException {
+	    	
 	    }
 		
 	    @FXML

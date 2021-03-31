@@ -1,6 +1,12 @@
 package model;
 
-public class Client {
+import java.io.Serializable;
+
+public class Client implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String lastName;
 	private long ID;
@@ -9,12 +15,13 @@ public class Client {
 	private String observations;
 	private boolean status;
 	
-	public Client(String name, String lastName, long ID, String address, long phone) {
+	public Client(String name, String lastName, long ID, String address, long phone, String observations) {
 		this.name = name;
 		this.lastName = lastName;
 		this.ID = ID;
 		this.address = address;
 		this.phone = phone;
+		this.observations = observations;
 	}
 		
 	public String getName() {

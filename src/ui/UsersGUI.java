@@ -7,11 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import model.Restaurant;
 import model.User;
 
@@ -112,19 +112,24 @@ public class UsersGUI {
     	this.columnLastNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
     	this.columnIdUser.setCellValueFactory(new PropertyValueFactory<User, String>("iD"));
     	this.columnUser.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
+    	
+    	tableUser.setRowFactory( tv -> {
+			TableRow<User> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+					User rowData = row.getItem();
+					//updateButton.setDisable(false);
+					txtName.setText(rowData.getName());
+					txtLastName.setText(rowData.getLastName());
+					toString();
+					txtId.setText(String.valueOf(rowData.getID()));
+					txtUserAccount.setText(rowData.getUserName());
+				}
+			});
+			return row ;
+		});
     }
     
-    @FXML
-    public void showTxtInformation(MouseEvent event) {
-    	User p = tableUser.getSelectionModel().getSelectedItem();
-    	
-    	if(p != null) {
-    		txtName.setText(p.getName());
-        	txtLastName.setText(p.getLastName());
-        	txtId.setText(String.valueOf(p.getID()));
-        	txtUserAccount.setText(p.getUserName());
-    	}
-    }
     
     public void initialize() {
     	tableViewUser();
