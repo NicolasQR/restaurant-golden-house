@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1131.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextArea disable="true" editable="false" layoutX="16.0" layoutY="16.0" prefHeight="224.0" prefWidth="1100.0" />
@@ -25,7 +24,7 @@
             <TableColumn fx:id="tablePrice" editable="false" prefWidth="72.0" resizable="false" text="Precio" />
          </columns>
       </TableView>
-      <Button layoutX="677.0" layoutY="152.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="37.0" prefWidth="126.0" text="Agregar -&gt;" />
+      <Button fx:id="addProductButton" layoutX="677.0" layoutY="152.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="37.0" prefWidth="126.0" text="Agregar -&gt;" />
       <TableView fx:id="tableAddedProducts" layoutX="856.0" layoutY="42.0" prefHeight="187.0" prefWidth="223.0">
         <columns>
           <TableColumn fx:id="columName" prefWidth="75.0" text="Nombre" />
@@ -33,7 +32,7 @@
             <TableColumn fx:id="columQuantity" prefWidth="75.0" text="Cantidad" />
         </columns>
       </TableView>
-      <Spinner fx:id="ingredientQuantity" layoutX="769.0" layoutY="111.0" prefHeight="30.0" prefWidth="68.0" />
+      <Spinner fx:id="productQuantity" layoutX="769.0" layoutY="111.0" prefHeight="30.0" prefWidth="68.0" />
       <TextField fx:id="txtSelectedIngredient" layoutX="630.0" layoutY="111.0" prefHeight="30.0" prefWidth="126.0">
          <font>
             <Font size="14.0" />

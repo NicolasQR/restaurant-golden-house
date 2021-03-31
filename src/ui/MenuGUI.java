@@ -180,20 +180,5 @@ public class MenuGUI {
 	    
 	    public void initialize() throws FileNotFoundException, IOException {
 	    	showLabelsInformation();
-	    	restaurant.addIngredient("Aguacate");
-			restaurant.addIngredient("Paprica");
-			restaurant.addIngredient("Oro");
-			
-			restaurant.addProductType("familiar");
-			restaurant.addProductType("para mi");
-			restaurant.addProductType("para todos");
-			
-			restaurant.addProductSize("grande");
-			restaurant.addProductSize("mediano");
-			restaurant.addProductSize("pequeño");
-			
-			restaurant.addProduct("Pizza", 12000, restaurant.getProductTypes().get(0), 
-					restaurant.getProductsSize().get(1),restaurant.getIngredients());
-	    	
 	    }
 }
