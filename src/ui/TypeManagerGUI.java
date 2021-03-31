@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 
 import javafx.collections.FXCollections;
@@ -116,7 +118,7 @@ public class TypeManagerGUI {
 	    }
 
 	    @FXML
-	    void newType(ActionEvent event) {
+	    void newType(ActionEvent event) throws FileNotFoundException, IOException {
 	    	boolean added = restaurant.addProductType(txtName.getText());
 	    	
 	    	if(added) {
@@ -143,6 +145,7 @@ public class TypeManagerGUI {
 
 	    @FXML
 	    void updateType(ActionEvent event) {
+	    	
 	    	if(!txtName.getText().isEmpty()) {
 	    		
 	    		int idx = tableViewType.getSelectionModel().getSelectedIndex();
@@ -160,7 +163,7 @@ public class TypeManagerGUI {
 		    		alert.setContentText("Tipo en existencia.");
 		    		alert.showAndWait();
 	    		}
-	    		System.out.println(Arrays.toString(restaurant.getProductTypes().toArray()));
+	    		
 	    	} else {
 	    		Alert alert = new Alert(AlertType.WARNING);
 	    		alert.setTitle("Empty fields");

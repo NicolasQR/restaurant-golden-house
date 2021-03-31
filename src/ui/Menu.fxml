@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Separator orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
       <Separator orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
@@ -25,7 +25,7 @@
                         <items>
                               <MenuItem mnemonicParsing="false" onAction="#showProductsList" text="Mostrar productos" />
                           <MenuItem mnemonicParsing="false" onAction="#showIngredientList" text="Motrar ingredientes" />
-                              <MenuItem mnemonicParsing="false" text="Mostrar tamaños" />
+                              <MenuItem mnemonicParsing="false" onAction="#showSizeList" text="Mostrar tamaños" />
                               <MenuItem mnemonicParsing="false" onAction="#showProductsType" text="Mostrar tipos de producto" />
 
                         </items>

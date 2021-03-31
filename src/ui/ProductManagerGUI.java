@@ -78,6 +78,7 @@ public class ProductManagerGUI {
 	    	tablePrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
 	    }
 
+
 	    public void initialize() {
 	    	loadTableView();
 	    }
