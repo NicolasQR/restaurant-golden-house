@@ -98,37 +98,66 @@ public class LoginGUI {
 	@FXML
     public void createUser(ActionEvent event) throws IOException {
 		
-		String userName = txtUserName.getText();
-		String userLastName = txtUserLastName.getText();
-		long id = Long.parseLong(txtId.getText());
-		String user = txtUser.getText();
-		String password = txtPassword.getText();
 		
-		if(!userName.equals("") && !userLastName.equals("") && id != 0 &&
-				!user.equals("") && !password.equals("")) {
+		try {
+			String userName = txtUserName.getText();
+			String userLastName = txtUserLastName.getText();
+			long id = Long.parseLong(txtId.getText());
+			String user = txtUser.getText();
+			String password = txtPassword.getText();
+			boolean userRepeat = false;
 			
-			restaurant.addUsers(userName, userLastName, id, user, password);
+			if(!userName.equals("") && !userLastName.equals("") && id != 0 &&
+					!user.equals("") && !password.equals("")) {
+				
+				for(int i = 0; i < restaurant.getUsers().size(); i++) {
+					
+					if(restaurant.getUsers().get(i).getID() == id) {
+						
+						Alert alert = new Alert(AlertType.WARNING);
+			    		alert.setTitle("Warning");
+			    		alert.setHeaderText(null);
+			    		alert.setContentText("Ya existe un usuario con ese número de identificación, intenta con otro número");
+			    		alert.showAndWait();
+			    		
+			    		userRepeat = true;
+					}
+				}
+				
+				if(!userRepeat) {
+					restaurant.addUsers(userName, userLastName, id, user, password);
+					
+					
+					txtUserName.setText("");
+					txtUserLastName.setText("");
+					txtId.setText("");
+					txtUser.setText("");
+					txtPassword.setText("");
+					
+					Alert alert = new Alert(AlertType.INFORMATION);
+		        	alert.setTitle("User Creted");
+		        	alert.setHeaderText(null);
+		        	alert.setContentText("El usuario ha sido creado correctamente");
+		        	alert.showAndWait();
+				}
+				
+	        	
+			} else {
+				Alert alert = new Alert(AlertType.WARNING);
+	    		alert.setTitle("Warning");
+	    		alert.setHeaderText(null);
+	    		alert.setContentText("Debes diligenciar toda la información requerida para crear un usuario");
+	    		alert.showAndWait();
+			}
 			
-			
-			txtUserName.setText("");
-			txtUserLastName.setText("");
-			txtId.setText("");
-			txtUser.setText("");
-			txtPassword.setText("");
-			
-			Alert alert = new Alert(AlertType.INFORMATION);
-        	alert.setTitle("User Creted");
-        	alert.setHeaderText(null);
-        	alert.setContentText("El usuario ha sido creado correctamente");
-        	alert.showAndWait();
-        	
-		} else {
+		} catch (NumberFormatException e) {
 			Alert alert = new Alert(AlertType.WARNING);
     		alert.setTitle("Warning");
-    		alert.setHeaderText("Error");
-    		alert.setContentText("Debes diligenciar toda la información requerida para crear un usuario");
+    		alert.setHeaderText(null);
+    		alert.setContentText("Solo puedes poner caracteres númericos en identificación y no dejarlo vacío");
     		alert.showAndWait();
 		}
+		
     }
 	
 	@FXML
@@ -156,6 +185,7 @@ public class LoginGUI {
 	
 		}else {
 			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText(null);
    		 	alert.setTitle("Login incorrect");
    		 	alert.setContentText("El usuario o la contraseña es incorrecta.");
    		 	alert.showAndWait();

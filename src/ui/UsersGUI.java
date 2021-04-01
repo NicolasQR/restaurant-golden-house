@@ -70,7 +70,7 @@ public class UsersGUI {
     	
     	try {
     		int index = tableUser.getSelectionModel().getFocusedIndex();
-    		 
+    		
         	restaurant.getUsers().get(index).setName(txtName.getText());
         	restaurant.getUsers().get(index).setLastName(txtLastName.getText());
         	restaurant.getUsers().get(index).setID(Long.parseLong(txtId.getText()));
@@ -130,7 +130,9 @@ public class UsersGUI {
 		});
     }
     
-    
+    public void receiveData(Restaurant a) {
+    	restaurant = a;
+    }
     public void initialize() {
     	tableViewUser();
     }

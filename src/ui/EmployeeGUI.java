@@ -87,26 +87,42 @@ public class EmployeeGUI {
     		String name = txtNameEmployee.getText();
         	String lastName = txtLastNameEmployee.getText();
         	long id = Long.parseLong(txtIdEmployee.getText());
+        	boolean employeeRepeat = false;
         	
         	if(!name.equals("") && !lastName.equals("") && id > 0) {
-        		restaurant.addEmployee(name, lastName, id);
         		
+        		for(int i = 0; i < restaurant.getEmployee().size(); i++) {
+        			if(restaurant.getEmployee().get(i).getID() == id) {
+        				employeeRepeat = true;
+        				
+        				Alert alert = new Alert(AlertType.WARNING);
+                		alert.setTitle("Warning");
+                		alert.setHeaderText(null);
+                		alert.setContentText("Ya existe un empleado con este número de identificación, intenta con otro número");
+                		alert.showAndWait();
+        			}
+        		}
         		
-        		Alert alert = new Alert(AlertType.INFORMATION);
-            	alert.setTitle("Employee Created");
-            	alert.setHeaderText(null);
-            	alert.setContentText("El empleado ha sido creado correctamente");
-            	alert.showAndWait();
-            	
-            	txtNameEmployee.setText("");
-            	txtLastNameEmployee.setText("");
-            	txtIdEmployee.setText("");
-            	tableView();
+        		if(!employeeRepeat) {
+        			restaurant.addEmployee(name, lastName, id);
+
+            		Alert alert = new Alert(AlertType.INFORMATION);
+                	alert.setTitle("Employee Created");
+                	alert.setHeaderText(null);
+                	alert.setContentText("El empleado ha sido creado correctamente");
+                	alert.showAndWait();
+                	
+                	txtNameEmployee.setText("");
+                	txtLastNameEmployee.setText("");
+                	txtIdEmployee.setText("");
+                	tableView();
+        		}
+        		
 
         	} else {
         		Alert alert = new Alert(AlertType.WARNING);
         		alert.setTitle("Warning");
-        		alert.setHeaderText("Error");
+        		alert.setHeaderText(null);
         		alert.setContentText("Debes diligenciar toda la información requerida para crear un empelado");
         		alert.showAndWait();
         	}
@@ -131,9 +147,7 @@ public class EmployeeGUI {
     @FXML
     public void disableEmployee(ActionEvent event) {
     	
-    	//TableRow<Employee> row = new TableRow<Employee>();
-    	//row = (TableRow<Employee>) tableEmployee.getSelectionModel().getSelectedItems();
-    	//row.setStyle("-fx-background-color: green;");
+    	
     	int index = tableEmployee.getSelectionModel().getFocusedIndex();
     	restaurant.getEmployee().get(index).setStatus(false);
     	System.out.println(restaurant.getEmployee().get(index).getStatus());
@@ -158,7 +172,7 @@ public class EmployeeGUI {
     @FXML
     public void upgradeEmployee(ActionEvent event) throws IOException {
     	int index = tableEmployee.getSelectionModel().getFocusedIndex();
-    	 
+    	
     	restaurant.getEmployee().get(index).setName(txtNameEmployeeScreen1.getText());
     	restaurant.getEmployee().get(index).setLastName(txtLastNameEmployeeScreen1.getText());
     	restaurant.getEmployee().get(index).setID(Long.parseLong(txtIdEmployeeScreen1.getText()));

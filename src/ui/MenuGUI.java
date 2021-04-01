@@ -23,6 +23,19 @@ public class MenuGUI {
     
     @FXML
     private Label amountOfProducts;
+    
+    @FXML
+    private Label amountOfEmployee;
+
+    @FXML
+    private Label amountOfClients;
+
+    @FXML
+    private Label amountOfProductsSize;
+
+    @FXML
+    private Label amountOfProductType;
+
 	
     private Restaurant restaurant;
     
@@ -49,6 +62,7 @@ public class MenuGUI {
 				restaurant.loadDataofProducts();
 				restaurant.loadDataofIngredients();
 				restaurant.loadDataofProductsSize();
+				restaurant.loadDataofUsers();
 				restaurant.loadDataofProductType();
 				restaurant.loadDataofClients();
 			} catch (ClassNotFoundException | IOException e) {
@@ -201,6 +215,7 @@ public class MenuGUI {
 	    	
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("GestionUser.fxml"));
 	    	open.setController(controllerUsers);
+	    	controllerUsers.receiveData(restaurant);
 	    	Parent root = open.load();
 	    	
 	    	Scene scene = new Scene(root);
@@ -216,9 +231,20 @@ public class MenuGUI {
 	    public void showLabelsInformation() {
 	    	amountOfUsers.setText(Integer.toString(restaurant.getUsers().size()));
 	    	amountOfProducts.setText(Integer.toString(restaurant.getProduct().size()));
+	    	amountOfEmployee.setText(Integer.toString(restaurant.getEmployee().size()));
+	    	amountOfClients.setText(Integer.toString(restaurant.getClients().size()));
+	    	amountOfProductsSize.setText(Integer.toString(restaurant.getProductsSize().size()));
+	    	amountOfProductType.setText(Integer.toString(restaurant.getProductsSize().size()));
 	    }
+	    
+	    @FXML
+	    public void updateLabelsInfo(ActionEvent event) {
+	    	showLabelsInformation();
+	    }
+	    
 	    
 	    public void initialize(){
 	    	showLabelsInformation();
 	    }
+	    
 }

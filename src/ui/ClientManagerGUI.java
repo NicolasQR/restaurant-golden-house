@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -101,30 +102,61 @@ public class ClientManagerGUI {
     
     @FXML
     public void btnCancelCreatedofClient(ActionEvent event) {
-
+    	Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     public void btnCreateClient(ActionEvent event) throws FileNotFoundException, IOException {
-    	String name = txtScreen2Name.getText();
-    	String lastName = txtScreen2LastName.getText();
-    	long id = Long.parseLong(txtScreen2Id.getText());
-    	String address = txtScreen2Address.getText();
-    	long phone = Long.parseLong(txtScreen2Phone.getText());
-    	String observations = txtAreaObservations.getText();
     	
-    	if(!name.equals("") && !lastName.equals("") && id > 0 && !address.equals("") && phone > 0) {
-    		
-    		restaurant.addClient(name, lastName, id, address, phone, observations);
-    		
-    		Alert alert = new Alert(AlertType.INFORMATION);
-        	alert.setTitle("Client Created");
-        	alert.setHeaderText(null);
-        	alert.setContentText("El cliente ha sido creado correctamente");
-        	alert.showAndWait();
+    	try {
+    		String name = txtScreen2Name.getText();
+        	String lastName = txtScreen2LastName.getText();
+        	long id = Long.parseLong(txtScreen2Id.getText());
+        	String address = txtScreen2Address.getText();
+        	long phone = Long.parseLong(txtScreen2Phone.getText());
+        	String observations = txtAreaObservations.getText();
         	
-        	tableView();
-    	}
+        	if(!name.equals("") && !lastName.equals("") && id > 0 && !address.equals("") && phone > 0) {
+        		
+        		restaurant.addClient(name, lastName, id, address, phone, observations);
+        		
+        		Alert alert = new Alert(AlertType.INFORMATION);
+            	alert.setTitle("Client Created");
+            	alert.setHeaderText(null);
+            	alert.setContentText("El cliente ha sido creado correctamente");
+            	alert.showAndWait();
+            	
+            	txtScreen2Name.setText("");
+            	txtScreen2LastName.setText("");
+            	txtScreen2Id.setText("");
+            	txtScreen2Address.setText("");
+            	txtScreen2Phone.setText("");
+            	txtAreaObservations.setText("");
+            	
+            	tableView();
+        	}
+		} catch (NumberFormatException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+    		alert.setTitle("Warning");
+    		alert.setHeaderText(null);
+    		alert.setContentText("Solo puedes poner caracteres númericos en identificación y telefono y no dejarlos vacíos");
+    		alert.showAndWait();
+		}
+    	
+    }
+    
+    @FXML
+    void disableClient(ActionEvent event) {
+    	int index = tableClient.getSelectionModel().getFocusedIndex();
+    	restaurant.getClients().get(index).updateStatus(false);
+    }
+
+    @FXML
+    void enableClient(ActionEvent event) {
+    	int index = tableClient.getSelectionModel().getFocusedIndex();
+    	restaurant.getClients().get(index).updateStatus(true);
     }
     
     public void tableView() {

@@ -22,39 +22,39 @@
         </columns>
       </TableView>
       <TextArea disable="true" editable="false" layoutX="725.0" layoutY="11.0" prefHeight="735.0" prefWidth="224.0" />
-      <Button layoutX="754.0" layoutY="411.0" mnemonicParsing="false" onAction="#btnNewClient" prefWidth="150.0" style="-fx-background-radius: 15;" text="Nuevo" />
+      <Button layoutX="753.0" layoutY="304.0" mnemonicParsing="false" onAction="#btnNewClient" prefWidth="150.0" style="-fx-background-radius: 15;" text="Nuevo" />
       <Button layoutX="754.0" layoutY="459.0" mnemonicParsing="false" onAction="#deleteClient" prefWidth="150.0" style="-fx-background-radius: 15;" text="Eliminar" />
-      <Button layoutX="754.0" layoutY="353.0" mnemonicParsing="false" onAction="#updateClienInformation" prefWidth="150.0" style="-fx-background-radius: 15;" text="Actualizar información" />
-      <Label layoutX="794.0" layoutY="14.0" text="Nombre:" textFill="#e2dda8">
+      <Button layoutX="753.0" layoutY="341.0" mnemonicParsing="false" onAction="#updateClienInformation" prefWidth="150.0" style="-fx-background-radius: 15;" text="Actualizar información" />
+      <Label layoutX="794.0" layoutY="11.0" text="Nombre:" textFill="#e2dda8">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="741.0" layoutY="41.0" />
-      <Label layoutX="794.0" layoutY="80.0" text="Apellidos:" textFill="#e2dda8">
+      <TextField fx:id="txtName" layoutX="741.0" layoutY="38.0" />
+      <Label layoutX="793.0" layoutY="65.0" text="Apellidos:" textFill="#e2dda8">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtLastName" layoutX="741.0" layoutY="107.0" />
-      <Label layoutX="777.0" layoutY="155.0" text="Identificación:" textFill="#e2dda8">
+      <TextField fx:id="txtLastName" layoutX="741.0" layoutY="92.0" />
+      <Label layoutX="776.0" layoutY="118.0" text="Identificación:" textFill="#e2dda8">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="795.0" layoutY="219.0" text="Dirección:" textFill="#e2dda8">
+      <Label layoutX="793.0" layoutY="177.0" text="Dirección:" textFill="#e2dda8">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="796.0" layoutY="284.0" text="Telefono:" textFill="#e2dda8">
+      <Label layoutX="792.0" layoutY="240.0" text="Telefono:" textFill="#e2dda8">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="741.0" layoutY="182.0" />
-      <TextField fx:id="txtAddress" layoutX="741.0" layoutY="246.0" />
-      <TextField fx:id="txtPhone" layoutX="741.0" layoutY="311.0" />
+      <TextField fx:id="txtId" layoutX="741.0" layoutY="145.0" />
+      <TextField fx:id="txtAddress" layoutX="741.0" layoutY="204.0" />
+      <TextField fx:id="txtPhone" layoutX="741.0" layoutY="268.0" />
       <Label layoutX="731.0" layoutY="509.0" text="Observacines del cliente:" textFill="WHITE">
          <font>
             <Font size="18.0" />
@@ -65,5 +65,7 @@
       <Separator layoutX="764.0" layoutY="419.0" prefHeight="11.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Separator layoutX="-3.0" layoutY="146.0" orientation="VERTICAL" prefHeight="767.0" prefWidth="12.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Separator layoutX="932.0" layoutY="159.0" orientation="VERTICAL" prefHeight="767.0" prefWidth="12.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button layoutX="753.0" layoutY="379.0" mnemonicParsing="false" onAction="#enableClient" prefWidth="150.0" style="-fx-background-radius: 15;" text="Habilitar" />
+      <Button layoutX="753.0" layoutY="421.0" mnemonicParsing="false" onAction="#disableClient" prefWidth="150.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
    </children>
 </AnchorPane>
