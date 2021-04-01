@@ -278,7 +278,7 @@ public class Restaurant   {
 
 	}
 	
-	public boolean addProductSize(String name) {
+	public boolean addProductSize(String name) throws FileNotFoundException, IOException {
 		boolean added = false;
 				
 			if(!name.isEmpty()) {
@@ -311,7 +311,8 @@ public class Restaurant   {
 					added = true;
 				}
 			}
-		return added;
+		saveDataofProductSize();
+		return added; 
 	}
 	
 	public boolean updateSize(int idx, String name) {

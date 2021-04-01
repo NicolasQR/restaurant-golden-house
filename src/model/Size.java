@@ -10,10 +10,7 @@ public class Size extends Complement implements Serializable{
 	
 	public Size(String name) {
 		super(name);
-		super.setCode(txtCode + generateCode());
-	}
-	
-	public long generateCode() {
-		return numberCode++;
+		numberCode++;
+		super.setCode(txtCode + numberCode);
 	}
 }

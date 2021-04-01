@@ -10,10 +10,7 @@ public class Type extends Complement{
 	
 	public Type(String name) {
 		super(name);
-		super.setCode(txtCode + generateCode());
-	}
-
-	public long generateCode() {
-		return numberCode++;
+		numberCode++;
+		super.setCode(txtCode + numberCode);
 	}
 }

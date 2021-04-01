@@ -2,8 +2,6 @@ package ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -130,6 +128,7 @@ public class TypeManagerGUI {
 	    		alert.setHeaderText(null);
 	    		alert.setContentText("El tipo se agrego con éxito.");
 	    		alert.showAndWait();
+	    		loadTableView();
 	    	} else {
 	    		Alert alert = new Alert(AlertType.WARNING);
 	    		alert.setTitle("Empty field");

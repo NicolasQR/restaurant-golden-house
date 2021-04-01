@@ -1,5 +1,8 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -117,7 +120,7 @@ public class SizeManagerGUI {
     }
     
     @FXML
-    public void newSize(ActionEvent event) {
+    public void newSize(ActionEvent event) throws FileNotFoundException, IOException {
     	boolean added = restaurant.addProductSize(txtName.getText());
     	
     	if(added) {
