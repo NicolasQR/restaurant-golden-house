@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="319.0" layoutY="14.0" prefHeight="35.0" prefWidth="101.0" text="Nombre:" textFill="#e2dda8">
          <font>
@@ -70,8 +70,8 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Separator layoutX="4.0" layoutY="-161.0" orientation="VERTICAL" prefHeight="670.0" prefWidth="18.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" />
-      <Separator layoutX="-1.0" layoutY="448.0" prefHeight="15.0" prefWidth="950.0" AnchorPane.bottomAnchor="4.0" />
-      <Separator layoutX="907.0" layoutY="-161.0" orientation="VERTICAL" prefHeight="670.0" prefWidth="18.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="4.0" />
+      <Separator layoutX="4.0" layoutY="-161.0" orientation="VERTICAL" prefHeight="670.0" prefWidth="0.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" />
+      <Separator layoutY="416.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="44.0" />
+      <Separator layoutX="907.0" layoutY="-161.0" orientation="VERTICAL" prefHeight="670.0" prefWidth="0.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" />
    </children>
 </AnchorPane>

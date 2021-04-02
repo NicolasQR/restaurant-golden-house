@@ -23,6 +23,19 @@ public class MenuGUI {
     
     @FXML
     private Label amountOfProducts;
+    
+    @FXML
+    private Label amountOfEmployee;
+
+    @FXML
+    private Label amountOfClients;
+
+    @FXML
+    private Label amountOfProductsSize;
+
+    @FXML
+    private Label amountOfProductType;
+
 	
     private Restaurant restaurant;
     
@@ -31,14 +44,16 @@ public class MenuGUI {
 	private ProductManagerGUI controllerProducts;
 	private IngredientManagerGUI controllerIngredients;
 	private TypeManagerGUI controllerTypes;
+	private ClientManagerGUI controllerClient;
 	private SizeManagerGUI controllerSizes;
+
 		public MenuGUI() {
 			controllerUsers = new UsersGUI();
 			controllerProducts = new ProductManagerGUI();
 			controllerIngredients = new IngredientManagerGUI();
 			controllerTypes = new TypeManagerGUI();
+			controllerClient = new ClientManagerGUI();
 			controllerSizes = new SizeManagerGUI();
-			
 			restaurant = new Restaurant();
 			controllerEmployee = new EmployeeGUI();
 			
@@ -47,19 +62,32 @@ public class MenuGUI {
 				restaurant.loadDataofProducts();
 				restaurant.loadDataofIngredients();
 				restaurant.loadDataofProductsSize();
+				restaurant.loadDataofUsers();
 				restaurant.loadDataofProductType();
+				restaurant.loadDataofClients();
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
 			}
 		}
 		
 		@FXML
-	    public void showClientList(ActionEvent event) {
+	    public void showClientList(ActionEvent event) throws IOException {
+			FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-client.fxml"));
+	    	open.setController(controllerClient);
+	    	controllerClient.receiveData(restaurant);
+	    	Parent root = open.load();
+	    	
+	    	Scene scene = new Scene(root);
+	    	Stage stage = new Stage();
+	    	
+	    	
+	    	
+	    	stage.initModality(Modality.APPLICATION_MODAL);
+	    	stage.setScene(scene);
+	    	stage.setTitle("Gestionar clientes");
+	    	stage.showAndWait();
+		}
 
-	    }
-		
-
-	    @FXML
 	    public void showOrderList(ActionEvent event) {
 
 	    }
@@ -187,6 +215,7 @@ public class MenuGUI {
 	    	
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("GestionUser.fxml"));
 	    	open.setController(controllerUsers);
+	    	controllerUsers.receiveData(restaurant);
 	    	Parent root = open.load();
 	    	
 	    	Scene scene = new Scene(root);
@@ -202,9 +231,20 @@ public class MenuGUI {
 	    public void showLabelsInformation() {
 	    	amountOfUsers.setText(Integer.toString(restaurant.getUsers().size()));
 	    	amountOfProducts.setText(Integer.toString(restaurant.getProduct().size()));
+	    	amountOfEmployee.setText(Integer.toString(restaurant.getEmployee().size()));
+	    	amountOfClients.setText(Integer.toString(restaurant.getClients().size()));
+	    	amountOfProductsSize.setText(Integer.toString(restaurant.getProductsSize().size()));
+	    	amountOfProductType.setText(Integer.toString(restaurant.getProductsSize().size()));
 	    }
+	    
+	    @FXML
+	    public void updateLabelsInfo(ActionEvent event) {
+	    	showLabelsInformation();
+	    }
+	    
 	    
 	    public void initialize(){
 	    	showLabelsInformation();
 	    }
+	    
 }

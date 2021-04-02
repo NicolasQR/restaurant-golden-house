@@ -18,6 +18,7 @@ public class Restaurant   {
 	public final static String SAVE_PATH_FILE_OF_INGREDIENTS = "data/ingredients.ap2";
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_SIZE = "data/productsSize.ap2";
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_TYPE = "data/productsType.ap2";
+	public final static String SAVE_PATH_FILE_OF_CLIENTS = "data/clients.ap2";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -25,8 +26,9 @@ public class Restaurant   {
 	private ArrayList<Size> productsSize;
 	
 	
-	private static List<User> users;
+	private List<User> users;
 	private List<Employee> employee;
+	private List<Client> clients;
 	
 	public Restaurant() {
 		
@@ -38,6 +40,7 @@ public class Restaurant   {
 		
 		users = new ArrayList<User>();
 		employee = new ArrayList<Employee>();
+		clients = new ArrayList<Client>();
 		
 		
 	}
@@ -283,7 +286,8 @@ public class Restaurant   {
 				
 			if(!name.isEmpty()) {
 			
-			Size size = new Size(name);
+				Size size = new Size(name);
+				
 				if(productsSize.size() > 0) {
 					int mini = -1;
 					for(int i = 0; i < productsSize.size(); i++) {
@@ -333,7 +337,7 @@ public class Restaurant   {
 				} else if(temp.compareTo(productsSize.get(i)) > 0) {
 					i = m+1;
 				} else {
-					j = m-1;	
+					j = m-1;
 			
 				}
 			}
@@ -411,6 +415,34 @@ public class Restaurant   {
 	      loaded = true;
 	    }
 	    return loaded;
+	}
+	
+	public void addClient(String name, String lastName, long ID, String address, long phone, String observations) throws FileNotFoundException, IOException {
+		clients.add(new Client(name, lastName, ID, address, phone, observations));
+		saveDataofClient();
+	}
+	
+	public void saveDataofClient() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE_OF_CLIENTS));
+	    oos.writeObject(clients);
+	    oos.close();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean loadDataofClients() throws FileNotFoundException, IOException, ClassNotFoundException {
+		File f = new File(SAVE_PATH_FILE_OF_CLIENTS);
+	    boolean loaded = false;
+	    if(f.exists()){
+	      ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+	      clients = (List<Client>)ois.readObject();
+	      ois.close();
+	      loaded = true;
+	    }
+	    return loaded;
+	}
+	
+	public List<Client> getClients(){
+		return clients;
 	}
 	
 	public List<User> getUsers(){

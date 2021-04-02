@@ -13,11 +13,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -87,26 +87,42 @@ public class EmployeeGUI {
     		String name = txtNameEmployee.getText();
         	String lastName = txtLastNameEmployee.getText();
         	long id = Long.parseLong(txtIdEmployee.getText());
+        	boolean employeeRepeat = false;
         	
         	if(!name.equals("") && !lastName.equals("") && id > 0) {
-        		restaurant.addEmployee(name, lastName, id);
         		
+        		for(int i = 0; i < restaurant.getEmployee().size(); i++) {
+        			if(restaurant.getEmployee().get(i).getID() == id) {
+        				employeeRepeat = true;
+        				
+        				Alert alert = new Alert(AlertType.WARNING);
+                		alert.setTitle("Warning");
+                		alert.setHeaderText(null);
+                		alert.setContentText("Ya existe un empleado con este número de identificación, intenta con otro número");
+                		alert.showAndWait();
+        			}
+        		}
         		
-        		Alert alert = new Alert(AlertType.INFORMATION);
-            	alert.setTitle("Employee Created");
-            	alert.setHeaderText(null);
-            	alert.setContentText("El empleado ha sido creado correctamente");
-            	alert.showAndWait();
-            	
-            	txtNameEmployee.setText("");
-            	txtLastNameEmployee.setText("");
-            	txtIdEmployee.setText("");
-            	tableView();
+        		if(!employeeRepeat) {
+        			restaurant.addEmployee(name, lastName, id);
+
+            		Alert alert = new Alert(AlertType.INFORMATION);
+                	alert.setTitle("Employee Created");
+                	alert.setHeaderText(null);
+                	alert.setContentText("El empleado ha sido creado correctamente");
+                	alert.showAndWait();
+                	
+                	txtNameEmployee.setText("");
+                	txtLastNameEmployee.setText("");
+                	txtIdEmployee.setText("");
+                	tableView();
+        		}
+        		
 
         	} else {
         		Alert alert = new Alert(AlertType.WARNING);
         		alert.setTitle("Warning");
-        		alert.setHeaderText("Error");
+        		alert.setHeaderText(null);
         		alert.setContentText("Debes diligenciar toda la información requerida para crear un empelado");
         		alert.showAndWait();
         	}
@@ -131,9 +147,7 @@ public class EmployeeGUI {
     @FXML
     public void disableEmployee(ActionEvent event) {
     	
-    	//TableRow<Employee> row = new TableRow<Employee>();
-    	//row = (TableRow<Employee>) tableEmployee.getSelectionModel().getSelectedItems();
-    	//row.setStyle("-fx-background-color: green;");
+    	
     	int index = tableEmployee.getSelectionModel().getFocusedIndex();
     	restaurant.getEmployee().get(index).setStatus(false);
     	System.out.println(restaurant.getEmployee().get(index).getStatus());
@@ -158,7 +172,7 @@ public class EmployeeGUI {
     @FXML
     public void upgradeEmployee(ActionEvent event) throws IOException {
     	int index = tableEmployee.getSelectionModel().getFocusedIndex();
-    	 
+    	
     	restaurant.getEmployee().get(index).setName(txtNameEmployeeScreen1.getText());
     	restaurant.getEmployee().get(index).setLastName(txtLastNameEmployeeScreen1.getText());
     	restaurant.getEmployee().get(index).setID(Long.parseLong(txtIdEmployeeScreen1.getText()));
@@ -179,18 +193,6 @@ public class EmployeeGUI {
     	
     }
     
-    @FXML
-    public void showTableInformation(MouseEvent event) {
-    	Employee p = tableEmployee.getSelectionModel().getSelectedItem();
-    	
-    	if(p != null) {
-    		txtNameEmployeeScreen1.setText(p.getName());
-        	txtLastNameEmployeeScreen1.setText(p.getLastName());
-        	txtIdEmployeeScreen1.setText(String.valueOf(p.getID()));
-    	}
-    }
-    
-    
     public void tableView() {
     	ObservableList<Employee> datos;
     	datos = FXCollections.observableArrayList(restaurant.getEmployee());
@@ -199,6 +201,21 @@ public class EmployeeGUI {
     	this.nameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
     	this.lastNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
     	this.idEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("iD"));
+    	
+    	tableEmployee.setRowFactory( tv -> {
+			TableRow<Employee> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+					Employee rowData = row.getItem();
+					//updateButton.setDisable(false);
+					txtNameEmployeeScreen1.setText(rowData.getName());
+					txtLastNameEmployeeScreen1.setText(rowData.getLastName());
+					toString();
+					txtIdEmployeeScreen1.setText(String.valueOf(rowData.getID()));
+				}
+			});
+			return row ;
+		});
     }
     
     public void receiveData(Restaurant a) {
