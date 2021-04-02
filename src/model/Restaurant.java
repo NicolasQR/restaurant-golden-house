@@ -96,9 +96,6 @@ public class Restaurant   {
 		return added;
 	}
 	
-	public List<Product> getProduct(){
-		return products;
-	}
 	
 	public void saveDataofProducts() throws FileNotFoundException, IOException {
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE_OF_PRODUCTS));

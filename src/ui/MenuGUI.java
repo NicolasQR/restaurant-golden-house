@@ -241,12 +241,12 @@ public class MenuGUI {
 	    }
 	    
 	    public void showLabelsInformation() {
-	    	amountOfUsers.setText(Integer.toString(restaurant.getUsers().size()));
-	    	amountOfProducts.setText(Integer.toString(restaurant.getProduct().size()));
-	    	amountOfEmployee.setText(Integer.toString(restaurant.getEmployee().size()));
-	    	amountOfClients.setText(Integer.toString(restaurant.getClients().size()));
-	    	amountOfProductsSize.setText(Integer.toString(restaurant.getProductsSize().size()));
-	    	amountOfProductType.setText(Integer.toString(restaurant.getProductTypes().size()));
+	    	amountOfUsers.setText(String.valueOf(restaurant.getUsers().size()));
+	    	amountOfProducts.setText(String.valueOf(restaurant.getProducts().size()));
+	    	amountOfEmployee.setText(String.valueOf(restaurant.getEmployee().size()));
+	    	amountOfClients.setText(String.valueOf(restaurant.getClients().size()));
+	    	amountOfProductsSize.setText(String.valueOf(restaurant.getProductsSize().size()));
+	    	amountOfProductType.setText(String.valueOf(restaurant.getProductTypes().size()));
 	    }
 	    
 	    @FXML
