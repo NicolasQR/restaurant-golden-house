@@ -79,7 +79,7 @@ public class TypeManagerGUI {
 	    
 
 	    @FXML
-	    void selectItem(MouseEvent event) {
+	    public void selectItem(MouseEvent event) {
 	    	Type p = tableViewType.getSelectionModel().getSelectedItem();
 	    	
 	    	if(p != null) {
@@ -92,9 +92,10 @@ public class TypeManagerGUI {
 	    }
 
 		@FXML
-	    void deleteType(ActionEvent event) {
+	    public void deleteType(ActionEvent event) throws FileNotFoundException, IOException {
 			if (!tableViewType.getSelectionModel().isEmpty()) {
 				restaurant.getProductTypes().remove(tableViewType.getSelectionModel().getSelectedIndex());
+				restaurant.saveDataofProductType();
 				loadTableView();
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
@@ -116,7 +117,7 @@ public class TypeManagerGUI {
 	    }
 
 	    @FXML
-	    void newType(ActionEvent event) throws FileNotFoundException, IOException {
+	    public void newType(ActionEvent event) throws FileNotFoundException, IOException {
 	    	boolean added = restaurant.addProductType(txtName.getText());
 	    	
 	    	if(added) {
@@ -143,7 +144,7 @@ public class TypeManagerGUI {
 	    }
 
 	    @FXML
-	    void updateType(ActionEvent event) {
+	    public void updateType(ActionEvent event) throws FileNotFoundException, IOException {
 	    	
 	    	if(!txtName.getText().isEmpty()) {
 	    		
@@ -154,6 +155,7 @@ public class TypeManagerGUI {
 	    			tableViewType.getSelectionModel().getSelectedItem().setName(txtName.getText());;
 		    		txtName.clear(); 
 		    		txtCode.clear();
+		    		restaurant.saveDataofProductType();
 		    		loadTableView();
 	    		} else {
 	    			Alert alert = new Alert(AlertType.WARNING);

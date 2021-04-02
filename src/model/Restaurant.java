@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Restaurant   {
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_SIZE = "data/productsSize.ap2";
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_TYPE = "data/productsType.ap2";
 	public final static String SAVE_PATH_FILE_OF_CLIENTS = "data/clients.ap2";
+	public final static String FILESEPARATOR = ";";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -43,6 +45,15 @@ public class Restaurant   {
 		clients = new ArrayList<Client>();
 		
 		
+	}
+	
+	public void exportDataofOrder(String fileName) {
+		/**PrintWriter pw = new PrintWriter(fileName);
+		
+		for(int i = 0; i < orders.size(); i++) {
+			 pw.println(orders.get(i).getName() + FILESEPARATOR + orders.get(i).getEmail());
+		}
+		pw.close();*/
 	}
 	
 	public boolean addProduct(String name, long price,Type typeProduct, Size sizeProduct, ArrayList<Ingredient> ingredients) throws FileNotFoundException, IOException {

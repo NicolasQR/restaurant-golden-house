@@ -101,12 +101,12 @@ public class SizeManagerGUI {
     }
 
     @FXML
-    void desactivateSize(ActionEvent event) {
+    public void desactivateSize(ActionEvent event) {
 
     }
 
     @FXML
-    void enableSize(ActionEvent event) {
+    public void enableSize(ActionEvent event) {
 
     }
     
@@ -147,7 +147,7 @@ public class SizeManagerGUI {
     }
 
     @FXML
-    public void updateSize(ActionEvent event) {
+    public void updateSize(ActionEvent event) throws FileNotFoundException, IOException {
     	
     	if(!txtName.getText().isEmpty()) {
     		
@@ -158,6 +158,7 @@ public class SizeManagerGUI {
     			tableViewSize.getSelectionModel().getSelectedItem().setName(txtName.getText());;
 	    		txtName.clear();
 	    		txtCode.clear();
+	    		restaurant.saveDataofProductSize();
 	    		loadTableView();
     		} else {
     			Alert alert = new Alert(AlertType.WARNING);
