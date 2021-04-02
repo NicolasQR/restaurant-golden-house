@@ -89,7 +89,7 @@ public class MenuGUI {
 		}
 
 	    public void showOrderList(ActionEvent event) {
-
+	    	
 	    }
 		
 	    @FXML
@@ -108,8 +108,6 @@ public class MenuGUI {
 	    	stage.setScene(scene);
 	    	stage.setTitle("Gestionar empleados");
 	    	stage.showAndWait();
-	    	
-	    	
 	    }
 
 	    @FXML

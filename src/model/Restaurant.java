@@ -85,8 +85,34 @@ public class Restaurant   {
 		return added;
 	}
 	
-	public List<Product> getProduct(){
-		return products;
+	public boolean updateProduct(int idx, String name, long price,Type typeProduct, Size sizeProduct, ArrayList<Ingredient> ingredients) throws FileNotFoundException, IOException {
+		
+		boolean updated = true;
+			
+		for (int i = 0; i < products.size(); i++) {
+			
+			if(ingredients.containsAll(products.get(i).getIngredientsList()) 
+					&& products.get(i).getIngredientsList().containsAll(ingredients) && name.equals(products.get(i).getName())) {
+				i = products.size();
+				updated = false;
+			}
+		}
+		
+		if(updated) {
+			products.get(idx).setName(name);
+			products.get(idx).setPrice(price);
+			products.get(idx).setTypeProductOb(typeProduct);
+			products.get(idx).setSizeProduct(sizeProduct);
+			products.get(idx).setIngredientsList(ingredients);
+			products.get(idx).componentsToString();
+		}
+		saveDataofProducts();
+		return updated;
+	}
+	
+	public void deleteProduct(int idx) throws FileNotFoundException, IOException {
+		products.remove(idx);
+		saveDataofProducts();
 	}
 	
 	public void saveDataofProducts() throws FileNotFoundException, IOException {
@@ -146,7 +172,7 @@ public class Restaurant   {
 	}
 	
 	public boolean updateIngredient(int idx, String name) {
-		boolean updated = true;
+		boolean updated = false;
 		Ingredient temp = new Ingredient(name);
 		
 		if(ingredients.size() > idx) {
@@ -455,7 +481,11 @@ public class Restaurant   {
 	public ArrayList<Product> getProducts() {
 		return products;
 	}
-
+	
+	public List<Product> getProduct(){
+		return products;
+	}
+	
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
 	}

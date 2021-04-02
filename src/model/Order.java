@@ -7,14 +7,19 @@ public class Order {
 	private int code;
 	private String status;
 	private String employeeName;
+	private String clientName;
 	private Date dateAndHour;
 	private String observations;
-	private Client client;
+	
+	private Client client;	
+	private Employee employee;
 	private ArrayList<Product> products;
 	private ArrayList<Integer> quantityProducts;
 	
-	public Order(String employeeName, Date dateAndHour, Client client) {
-		this.employeeName = employeeName;
+	public Order(Employee employee, Date dateAndHour, Client client) {
+		products = new ArrayList<Product>();
+		quantityProducts = new ArrayList<Integer>();
+		this.employeeName = employee.getName() + employee.getLastName();
 		this.dateAndHour = dateAndHour;
 		this.client = client;
 	}
@@ -82,6 +87,20 @@ public class Order {
 	public void setQuantityProducts(ArrayList<Integer> quantityProducts) {
 		this.quantityProducts = quantityProducts;
 	}
-	
-	
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}	
 }
