@@ -282,41 +282,39 @@ public class Restaurant   {
 	}
 	
 	public boolean addProductSize(String name) throws FileNotFoundException, IOException {
-		boolean added = false;
-				
+			boolean added = false;
+			
 			if(!name.isEmpty()) {
 			
-				Size size = new Size(name);
-				
+				Size productSize = new Size(name);
 				if(productsSize.size() > 0) {
 					int mini = -1;
 					for(int i = 0; i < productsSize.size(); i++) {
 						
-						if(size.compareTo(productsSize.get(i)) < 0) {
+						if(productSize.compareTo(productsSize.get(i)) < 0) {
 							mini = i;
 							i = productsSize.size();
-						}else if(size.compareTo(productsSize.get(i)) == 0) {
+						} else if(productSize.compareTo(productsSize.get(i)) == 0) {
 							mini = -2;
 							i = productsSize.size();
 						}
-						
-						if(mini != -1 && mini != -2) {
-							productsSize.add(mini, size);
-							added = true;
-						} else if(mini != -2){
-							productsSize.add(size);
-							added = true;
-						} else {
-							added = false;
-						}
 					}
-				} else {
-					productsSize.add(size);
+					if(mini != -1 && mini != -2){
+						productsSize.add(mini, productSize);
+						added = true;
+					} else if(mini != -2){
+						productsSize.add(productSize);
+						added = true;
+					} else {
+						added = false;
+					}
+				}else {
+					productsSize.add(productSize);
 					added = true;
 				}
-			}
+		}
 		saveDataofProductSize();
-		return added; 
+		return added;
 	}
 	
 	public boolean updateSize(int idx, String name) {
