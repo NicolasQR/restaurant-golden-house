@@ -1,8 +1,6 @@
 package model;
 
-import java.io.Serializable;
-
-public class Size extends Complement implements Serializable{
+public class Size extends Complement {
 	private static final long serialVersionUID = 1L;
 	
 	private final static String txtCode = "IG";
@@ -10,10 +8,7 @@ public class Size extends Complement implements Serializable{
 	
 	public Size(String name) {
 		super(name);
-		super.setCode(txtCode + generateCode());
-	}
-	
-	public long generateCode() {
-		return numberCode++;
+		numberCode++;
+		super.setCode(txtCode + numberCode);
 	}
 }

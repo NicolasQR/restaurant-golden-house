@@ -281,12 +281,13 @@ public class Restaurant   {
 
 	}
 	
-	public boolean addProductSize(String name) {
+	public boolean addProductSize(String name) throws FileNotFoundException, IOException {
 		boolean added = false;
 				
 			if(!name.isEmpty()) {
 			
-			Size size = new Size(name);
+				Size size = new Size(name);
+				
 				if(productsSize.size() > 0) {
 					int mini = -1;
 					for(int i = 0; i < productsSize.size(); i++) {
@@ -314,7 +315,8 @@ public class Restaurant   {
 					added = true;
 				}
 			}
-		return added;
+		saveDataofProductSize();
+		return added; 
 	}
 	
 	public boolean updateSize(int idx, String name) {
@@ -335,7 +337,7 @@ public class Restaurant   {
 				} else if(temp.compareTo(productsSize.get(i)) > 0) {
 					i = m+1;
 				} else {
-					j = m-1;	
+					j = m-1;
 			
 				}
 			}

@@ -154,7 +154,7 @@ public class MenuGUI {
 				
 				@Override
 				public void handle(WindowEvent event) {
-					restaurant = controllerIngredients.getRestaurant();
+					restaurant = controllerTypes.getRestaurant();
 				}
 			});
 	    	stage.showAndWait();
@@ -164,7 +164,7 @@ public class MenuGUI {
 	    public void showSizeList(ActionEvent event) throws IOException {
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-size.fxml"));
 	    	open.setController(controllerSizes);
-	    	controllerTypes.receiveData(restaurant);
+	    	controllerSizes.receiveData(restaurant);
 	    	Parent root = open.load();
 	    	
 	    	Scene scene = new Scene(root);
@@ -175,7 +175,7 @@ public class MenuGUI {
 	    	stage.setTitle("Gestionar tamaños");
 	    	stage.setResizable(false);
 	    	stage.setOnHidden(new EventHandler<WindowEvent>() {
-				
+			
 				@Override
 				public void handle(WindowEvent event) {
 					restaurant = controllerSizes.getRestaurant();
