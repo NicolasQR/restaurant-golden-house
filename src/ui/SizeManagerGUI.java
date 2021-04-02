@@ -140,6 +140,7 @@ public class SizeManagerGUI {
 	    		alert.setContentText("El campo está vacío.");
     		}else {
     			alert.setContentText("El tamaño ya está agregado.");
+    			loadTableView();
     		}
     		alert.showAndWait();
     	}
