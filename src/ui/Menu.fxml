@@ -6,7 +6,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -55,12 +54,6 @@
             </AnchorPane>
             <AnchorPane prefHeight="587.0" prefWidth="950.0">
                <children>
-                  <TextArea disable="true" editable="false" layoutX="24.0" layoutY="44.0" prefHeight="42.0" prefWidth="427.0" />
-                  <TextArea disable="true" editable="false" layoutX="469.0" layoutY="42.0" prefHeight="42.0" prefWidth="440.0" />
-                  <TextArea disable="true" editable="false" layoutX="24.0" layoutY="114.0" prefHeight="42.0" prefWidth="427.0" />
-                  <TextArea disable="true" editable="false" layoutX="469.0" layoutY="114.0" prefHeight="42.0" prefWidth="440.0" />
-                  <TextArea disable="true" editable="false" layoutX="24.0" layoutY="180.0" prefHeight="42.0" prefWidth="427.0" />
-                  <TextArea disable="true" editable="false" layoutX="469.0" layoutY="180.0" prefHeight="42.0" prefWidth="440.0" />
                   <Label fx:id="amountOfUsers" layoutX="399.0" layoutY="46.0" text="0" textFill="#e2dda8">
                      <font>
                         <Font name="Tw Cen MT Bold Italic" size="36.0" />
