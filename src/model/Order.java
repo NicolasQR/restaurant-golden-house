@@ -8,6 +8,7 @@ public class Order {
 	private String status;
 	private String employeeName;
 	private String clientName;
+	private String date;
 	private Date dateAndHour;
 	private String observations;
 	

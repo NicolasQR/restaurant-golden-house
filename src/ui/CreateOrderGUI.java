@@ -21,15 +21,14 @@ import model.Product;
 import model.Restaurant;
 
 public class CreateOrderGUI {
-		
-	 	@FXML
+		@FXML
 	    private TableView<Product> tableViewProducts;
 
 	    @FXML
 	    private TableColumn<Product, String> tableName;
 
 	    @FXML
-	    private TableColumn<Product, String> tableType;
+	    private TableColumn<Product,String> tableType;
 
 	    @FXML
 	    private TableColumn<Product, String> tableIngredients;
@@ -39,6 +38,9 @@ public class CreateOrderGUI {
 
 	    @FXML
 	    private TableColumn<Product, String> tablePrice;
+
+	    @FXML
+	    private Button addProductButton;
 
 	    @FXML
 	    private TableView<Product> tableAddedProducts;
@@ -51,10 +53,7 @@ public class CreateOrderGUI {
 
 	    @FXML
 	    private TableColumn<Product, String> columQuantity;
-	    
-	    @FXML
-	    private Button addProductButton;
-	    
+
 	    @FXML
 	    private Spinner<Integer> productQuantity;
 
@@ -65,11 +64,8 @@ public class CreateOrderGUI {
 	    private ComboBox<Client> comboClient;
 
 	    @FXML
-	    private ComboBox<Employee> ComboEmployee;
+	    private ComboBox<Employee> comboEmployee;
 
-	    @FXML
-	    private ComboBox<String> comboStatus;
-	    
 	    @FXML
 	    private DatePicker datePicker;
 
@@ -81,18 +77,21 @@ public class CreateOrderGUI {
 
 	    @FXML
 	    private TextArea txtAreaObservations;
+
+	    @FXML
+	    private ComboBox<String> comboStatus;
 	    
 	    private Restaurant restaurant;
 	    
 	    public CreateOrderGUI() {
-			restaurant = new Restaurant();
-		}
+	    	restaurant = new Restaurant();
+	    }
 	    
 	    public void receiveData(Restaurant restaurant) {
 	    	this.restaurant = restaurant;
 	    }
 	    
-	    public void loadTableProducts() {
+	    public void loadTableViewProducts() {
 	    	ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
 	    	
 	    	tableViewProducts.setItems(products);
@@ -117,13 +116,13 @@ public class CreateOrderGUI {
 	    }
 	    
 	    public void initialize() {
-	    	loadTableProducts();
+	    	loadTableViewProducts();
 	    	productQuantity.setValueFactory(new IntegerSpinnerValueFactory(0, 999, 0));
 	    	addProductButton.setDisable(true);
 	    }
 	    
 	    @FXML
-	    public void addProduct(ActionEvent event) {
+	    void addProduct(ActionEvent event) {
 	    	Product product = tableViewProducts.getSelectionModel().getSelectedItem();
 	    	
 	    	if(product != null && !txtSelectedIngredient.getText().isEmpty() &&  productQuantity.getValue() > 0) {
@@ -133,12 +132,12 @@ public class CreateOrderGUI {
 	    }
 	    
 	    @FXML
-	    public void createOrder(ActionEvent event) {
-	    	
+	    void createOrder(ActionEvent event) {
+
 	    }
-	    
+
 	    @FXML
-	    public void selectItem(MouseEvent event) {
+	    void selectItem(MouseEvent event) {
 	    	Product p = tableViewProducts.getSelectionModel().getSelectedItem();
 	    	
 	    	if(p != null) {

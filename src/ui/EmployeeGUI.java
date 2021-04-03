@@ -145,12 +145,12 @@ public class EmployeeGUI {
     }
 
     @FXML
-    public void disableEmployee(ActionEvent event) {
+    public void disableEmployee(ActionEvent event) throws FileNotFoundException, IOException {
     	
     	
     	int index = tableEmployee.getSelectionModel().getFocusedIndex();
     	restaurant.getEmployee().get(index).setStatus(false);
-    	System.out.println(restaurant.getEmployee().get(index).getStatus());
+    	restaurant.saveDataOfEmployees();
     }
     
 
@@ -163,10 +163,10 @@ public class EmployeeGUI {
     }
 
     @FXML
-    public void enableEmployee(ActionEvent event) {
+    public void enableEmployee(ActionEvent event) throws FileNotFoundException, IOException {
     	int index = tableEmployee.getSelectionModel().getFocusedIndex();
     	restaurant.getEmployee().get(index).setStatus(true);
-    	System.out.println(restaurant.getEmployee().get(index).getStatus());
+    	restaurant.saveDataOfEmployees();
     }
 
     @FXML

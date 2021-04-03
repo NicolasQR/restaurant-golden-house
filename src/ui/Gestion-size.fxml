@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="660.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="660.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="tableViewSize" layoutX="26.0" layoutY="29.0" onMouseClicked="#selectItem" prefHeight="412.0" prefWidth="304.0">
          <columns>
@@ -42,5 +42,9 @@
             <Font size="14.0" />
          </font>
       </TextField>
+      <Separator layoutX="14.0" layoutY="13.0" prefHeight="10.0" prefWidth="660.0" style="-fx-background-color: #DC143C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0" />
+      <Separator layoutX="11.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="10.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="647.0" layoutY="34.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="10.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="10.0" layoutY="453.0" prefHeight="10.0" prefWidth="660.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

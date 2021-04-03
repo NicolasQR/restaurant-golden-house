@@ -19,12 +19,14 @@ public class Restaurant   {
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_SIZE = "data/productsSize.ap2";
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_TYPE = "data/productsType.ap2";
 	public final static String SAVE_PATH_FILE_OF_CLIENTS = "data/clients.ap2";
+	public final static String FILESEPARATOR = ";";
 	
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
 	private ArrayList<Type> productsType;
 	private ArrayList<Size> productsSize;
 	
+	private ArrayList<Order> orders;
 	
 	private List<User> users;
 	private List<Employee> employee;
@@ -37,12 +39,22 @@ public class Restaurant   {
 		ingredients = new ArrayList<>();
 		productsSize = new ArrayList<>();
 		productsType = new ArrayList<>();
+		orders = new ArrayList<Order>();
 		
 		users = new ArrayList<User>();
 		employee = new ArrayList<Employee>();
 		clients = new ArrayList<Client>();
 		
 		
+	}
+	
+	public void exportDataofOrder(String fileName) {
+		/**PrintWriter pw = new PrintWriter(fileName);
+		
+		for(int i = 0; i < orders.size(); i++) {
+			 pw.println(orders.get(i).getName() + FILESEPARATOR + orders.get(i).getEmail());
+		}
+		pw.close();*/
 	}
 	
 	public boolean addProduct(String name, long price,Type typeProduct, Size sizeProduct, ArrayList<Ingredient> ingredients) throws FileNotFoundException, IOException {
@@ -516,5 +528,13 @@ public class Restaurant   {
 
 	public void setEmployee(List<Employee> employee) {
 		this.employee = employee;
+	}
+
+	public ArrayList<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(ArrayList<Order> orders) {
+		this.orders = orders;
 	}
 }

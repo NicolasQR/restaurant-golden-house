@@ -46,6 +46,7 @@ public class MenuGUI {
 	private TypeManagerGUI controllerTypes;
 	private ClientManagerGUI controllerClient;
 	private SizeManagerGUI controllerSizes;
+	private OrderManagerGUI controllerOrder;
 
 		public MenuGUI() {
 			controllerUsers = new UsersGUI();
@@ -56,6 +57,7 @@ public class MenuGUI {
 			controllerSizes = new SizeManagerGUI();
 			restaurant = new Restaurant();
 			controllerEmployee = new EmployeeGUI();
+			controllerOrder = new OrderManagerGUI();
 			
 			try {
 				restaurant.loadDatafEmployee();
@@ -87,9 +89,19 @@ public class MenuGUI {
 	    	stage.setTitle("Gestionar clientes");
 	    	stage.showAndWait();
 		}
-
-	    public void showOrderList(ActionEvent event) {
+		
+	    public void showOrderList(ActionEvent event) throws IOException {
+	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-order.fxml"));
+	    	open.setController(controllerOrder);
+	    	Parent root = open.load();
 	    	
+	    	Scene scene = new Scene(root);
+	    	Stage stage = new Stage();
+	    	
+	    	stage.initModality(Modality.APPLICATION_MODAL);
+	    	stage.setScene(scene);
+	    	stage.setTitle("Gestionar ordenes");
+	    	stage.showAndWait();
 	    }
 		
 	    @FXML
@@ -227,12 +239,12 @@ public class MenuGUI {
 	    }
 	    
 	    public void showLabelsInformation() {
-	    	amountOfUsers.setText(Integer.toString(restaurant.getUsers().size()));
-	    	amountOfProducts.setText(Integer.toString(restaurant.getProduct().size()));
-	    	amountOfEmployee.setText(Integer.toString(restaurant.getEmployee().size()));
-	    	amountOfClients.setText(Integer.toString(restaurant.getClients().size()));
-	    	amountOfProductsSize.setText(Integer.toString(restaurant.getProductsSize().size()));
-	    	amountOfProductType.setText(Integer.toString(restaurant.getProductsSize().size()));
+	    	amountOfUsers.setText(String.valueOf(restaurant.getUsers().size()));
+	    	amountOfProducts.setText(String.valueOf(restaurant.getProducts().size()));
+	    	amountOfEmployee.setText(String.valueOf(restaurant.getEmployee().size()));
+	    	amountOfClients.setText(String.valueOf(restaurant.getClients().size()));
+	    	amountOfProductsSize.setText(String.valueOf(restaurant.getProductsSize().size()));
+	    	amountOfProductType.setText(String.valueOf(restaurant.getProductTypes().size()));
 	    }
 	    
 	    @FXML

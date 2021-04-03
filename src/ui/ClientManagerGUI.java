@@ -148,15 +148,17 @@ public class ClientManagerGUI {
     }
     
     @FXML
-    void disableClient(ActionEvent event) {
+    public void disableClient(ActionEvent event) throws FileNotFoundException, IOException {
     	int index = tableClient.getSelectionModel().getFocusedIndex();
     	restaurant.getClients().get(index).updateStatus(false);
+    	restaurant.saveDataofClient();
     }
 
     @FXML
-    void enableClient(ActionEvent event) {
+    public void enableClient(ActionEvent event) throws FileNotFoundException, IOException {
     	int index = tableClient.getSelectionModel().getFocusedIndex();
     	restaurant.getClients().get(index).updateStatus(true);
+    	restaurant.saveDataofClient();
     }
     
     public void tableView() {
