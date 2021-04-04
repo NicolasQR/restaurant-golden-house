@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class Restaurant   {
@@ -19,6 +21,7 @@ public class Restaurant   {
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_SIZE = "data/productsSize.ap2";
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_TYPE = "data/productsType.ap2";
 	public final static String SAVE_PATH_FILE_OF_CLIENTS = "data/clients.ap2";
+	public final static String SAVE_PATH_FILE_OF_ORDERS = "data/orders.ap2";
 	public final static String FILESEPARATOR = ";";
 	
 	private ArrayList<Product> products;
@@ -55,6 +58,36 @@ public class Restaurant   {
 			 pw.println(orders.get(i).getName() + FILESEPARATOR + orders.get(i).getEmail());
 		}
 		pw.close();*/
+	}
+	public boolean addOrder(Employee employee, Date dateAndHour, Client client, ArrayList<Product> products, String status, String observations) {
+		boolean added = false;
+		
+		if(employee != null && client != null && products.size() > 0 && !status.isEmpty() && dateAndHour != null) {
+			Order order = new Order(employee, dateAndHour, client, products, status, observations); 
+			orders.add(order);
+			added = true;
+		}
+		
+		return added;
+	}
+	
+	public void saveDataofOrder() throws FileNotFoundException, IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE_OF_ORDERS));
+	    oos.writeObject(orders);
+	    oos.close();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean loadDataofOrders() throws FileNotFoundException, IOException, ClassNotFoundException {
+		File f = new File(SAVE_PATH_FILE_OF_ORDERS);
+	    boolean loaded = false;
+	    if(f.exists()){
+	      ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+	      orders = (ArrayList<Order>)ois.readObject();
+	      ois.close();
+	      loaded = true;
+	    }
+	    return loaded;
 	}
 	
 	public boolean addProduct(String name, long price,Type typeProduct, Size sizeProduct, ArrayList<Ingredient> ingredients) throws FileNotFoundException, IOException {
@@ -431,7 +464,15 @@ public class Restaurant   {
 	
 	public void addEmployee(String name, String lastName, long iD) throws FileNotFoundException, IOException {
 		employee.add(new Employee(name, lastName, iD));
+		ComparatorEmployee();
 		saveDataOfEmployees();
+	}
+	
+	public void updateEmployee(int index, String name, String lastName, long ID) throws FileNotFoundException, IOException {
+		employee.get(index).setName(name);
+		employee.get(index).setLastName(lastName);
+		employee.get(index).setID(ID);
+    	saveDataOfEmployees();
 	}
 	
 	public void saveDataOfEmployees() throws FileNotFoundException, IOException {
@@ -453,9 +494,53 @@ public class Restaurant   {
 	    return loaded;
 	}
 	
-	public void addClient(String name, String lastName, long ID, String address, long phone, String observations) throws FileNotFoundException, IOException {
-		clients.add(new Client(name, lastName, ID, address, phone, observations));
+	public boolean addClient(String name, String lastName, long ID, String address, long phone, String observations) throws FileNotFoundException, IOException {
+		
+		boolean added = false;
+		
+		if(!name.isEmpty()) {
+			
+			Client client = new Client(name, observations, phone, observations, phone, observations);
+			if(clients.size() > 0) {
+				int mini = -1;
+				for(int i = 0; i < clients.size(); i++) {
+					
+					if(client.compareTo(clients.get(i)) < 0) {
+						mini = i;
+						i = clients.size();
+					} else if(client.compareTo(clients.get(i)) == 0){
+						mini = -2;
+						i = clients.size();
+					}
+				}
+				if(mini != -1 && mini != -2) {
+					clients.add(mini,client);
+					added = true;
+				} else if(mini != -2){
+					clients.add(client);
+					added = true;
+				} else {
+					added = false;
+				}
+			}else {
+				clients.add(client);
+				added = true;
+			}
+		}
 		saveDataofClient();
+		return added;
+		
+		//clients.add(new Client(name, lastName, ID, address, phone, observations));
+		
+	}
+	
+	public void updateClient(int index, String name, String lastName, long ID, String address, long phone) throws FileNotFoundException, IOException {
+		clients.get(index).setName(name);
+		clients.get(index).setLastName(lastName);
+		clients.get(index).setID(ID);
+		clients.get(index).setAddress(address);
+		clients.get(index).setPhone(phone);
+    	saveDataofClient();
 	}
 	
 	public void saveDataofClient() throws FileNotFoundException, IOException {
@@ -493,8 +578,7 @@ public class Restaurant   {
 	public ArrayList<Product> getProducts() {
 		return products;
 	}
-	
-	
+
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
 	}
@@ -534,4 +618,10 @@ public class Restaurant   {
 	public void setOrders(ArrayList<Order> orders) {
 		this.orders = orders;
 	}
+	
+	public void ComparatorEmployee() {
+		ComparatorEmployee ce = new ComparatorEmployee();
+		Collections.sort(employee,ce);
+	}
+	
 }

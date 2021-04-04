@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
@@ -59,11 +60,15 @@ public class OrderManagerGUI {
 
     private Restaurant restaurant;
     
-    private CreateProductGUI createProductController;
+    private CreateOrderGUI createOrderController;
     
     public OrderManagerGUI() {
     	restaurant = new Restaurant();
-    	createProductController = new CreateProductGUI();
+    	createOrderController = new CreateOrderGUI();
+    }
+    
+    public void receiveData(Restaurant restaurant) {
+    	this.restaurant = restaurant;
     }
     
     public void initialize() {
@@ -78,7 +83,6 @@ public class OrderManagerGUI {
     	columEmployee.setCellValueFactory(new PropertyValueFactory<Order, String>("employeeName"));
     	columDateAndHour.setCellValueFactory(new PropertyValueFactory<Order, String>("date"));
     	columStatus.setCellValueFactory(new PropertyValueFactory<Order, String>("status"));
-    	/**
     	tableViewOrder.setRowFactory( tv -> {
 			TableRow<Order> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
@@ -88,31 +92,32 @@ public class OrderManagerGUI {
 			});
 			return row;
 		});
-		**/
     }
     
     @FXML
     public void showCreateOrder(ActionEvent event) throws IOException {
     	FXMLLoader open = new FXMLLoader(getClass().getResource("Create-order.fxml"));
-    	createProductController.receiveData(restaurant);
-    	open.setController(createProductController);
+    	
+    	createOrderController.receiveData(restaurant);
+    	open.setController(createOrderController);
+    	
     	Parent root = open.load();
     	
     	Scene scene = new Scene(root);
     	Stage stage = new Stage();
     	
-    	stage.setOnHidden(new EventHandler<javafx.stage.WindowEvent>() { 
+    	stage.initModality(Modality.APPLICATION_MODAL);
+    	stage.setScene(scene);
+    	stage.setTitle("Crear order");
+    	stage.setResizable(false);
+    	stage.setOnHidden(new EventHandler<javafx.stage.WindowEvent>() {
 			
 			@Override
 			public void handle(javafx.stage.WindowEvent event) {
-				restaurant = createProductController.getRestaurant();
+				restaurant = createOrderController.getRestaurant();
 				loadTableView();
 			}
 		});
-    	
-    	stage.initModality(Modality.APPLICATION_MODAL);
-    	stage.setScene(scene);
-    	stage.setTitle("Create order");
     	stage.showAndWait();
     }
 	

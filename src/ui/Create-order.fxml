@@ -25,7 +25,7 @@
          </columns>
       </TableView>
       <Button fx:id="addProductButton" layoutX="677.0" layoutY="152.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="37.0" prefWidth="126.0" text="Agregar -&gt;" />
-      <TableView fx:id="tableAddedProducts" layoutX="856.0" layoutY="42.0" prefHeight="187.0" prefWidth="223.0">
+      <TableView fx:id="tableAddedProducts" layoutX="856.0" layoutY="42.0" onMouseClicked="#deleteProduct" prefHeight="187.0" prefWidth="223.0">
         <columns>
           <TableColumn fx:id="columName" prefWidth="75.0" text="Nombre" />
           <TableColumn fx:id="columPrice" prefWidth="75.0" text="Precio" />
@@ -33,7 +33,7 @@
         </columns>
       </TableView>
       <Spinner fx:id="productQuantity" layoutX="769.0" layoutY="111.0" prefHeight="30.0" prefWidth="68.0" />
-      <TextField fx:id="txtSelectedIngredient" layoutX="630.0" layoutY="111.0" prefHeight="30.0" prefWidth="126.0">
+      <TextField fx:id="txtSelectedProduct" layoutX="630.0" layoutY="111.0" prefHeight="30.0" prefWidth="126.0">
          <font>
             <Font size="14.0" />
          </font>

@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Client implements Serializable{
+public class Client implements Serializable, Comparable<Client>{
 	/**
 	 * 
 	 */
@@ -80,4 +80,14 @@ public class Client implements Serializable{
 		this.observations = observations;
 	}
 	
+	@Override
+	public String toString() {
+		return name + " " + lastName;
+	}
+
+	@Override
+	public int compareTo(Client o) {
+		
+		return name.compareTo(o.getName());
+	}
 }

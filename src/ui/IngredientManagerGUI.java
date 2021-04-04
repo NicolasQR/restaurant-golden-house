@@ -1,11 +1,13 @@
 package ui;
 
+import java.awt.Color;
 import java.io.IOException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -15,6 +17,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import model.Ingredient;
 import model.Restaurant;
 
@@ -56,7 +61,6 @@ public class IngredientManagerGUI {
     	tableViewIngredient.setItems(ingredients);
     	columName.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("name"));
     	columCode.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("code"));
-    	
     	tableViewIngredient.setRowFactory( tv -> {
 			TableRow<Ingredient> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {

@@ -1,8 +1,15 @@
 package ui;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.Date;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,6 +28,7 @@ import model.Product;
 import model.Restaurant;
 
 public class CreateOrderGUI {
+		
 		@FXML
 	    private TableView<Product> tableViewProducts;
 
@@ -58,7 +66,7 @@ public class CreateOrderGUI {
 	    private Spinner<Integer> productQuantity;
 
 	    @FXML
-	    private TextField txtSelectedIngredient;
+	    private TextField txtSelectedProduct;
 
 	    @FXML
 	    private ComboBox<Client> comboClient;
@@ -82,12 +90,17 @@ public class CreateOrderGUI {
 	    private ComboBox<String> comboStatus;
 	    
 	    private Restaurant restaurant;
+	    private int statusIdex;
 	    
 	    public CreateOrderGUI() {
 	    	restaurant = new Restaurant();
 	    }
 	    
-	    public void receiveData(Restaurant restaurant) {
+	    public Restaurant getRestaurant() {
+			return restaurant;
+		}
+
+		public void receiveData(Restaurant restaurant) {
 	    	this.restaurant = restaurant;
 	    }
 	    
@@ -103,44 +116,81 @@ public class CreateOrderGUI {
 	    }
 	    
 	    public void loadAddedTableProduct() {
-	    	ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
-	    	
-	    	tableAddedProducts.setItems(products);
-	    	columName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-	    	columPrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-	    	columQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+	    	ObservableList<Product> productList = tableAddedProducts.getItems();
+	    	tableAddedProducts.setItems(productList);
+			columName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+			columPrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+			columQuantity.setCellValueFactory(new PropertyValueFactory<Product, String>("quantity"));
 	    }
 	    
 	    public void putClients() {
-	    	
+	    	ObservableList<Client> products = FXCollections.observableList(restaurant.getClients());
+	    	comboClient.setItems(products);
 	    }
+	    
+	    public void putEmployee() {
+	    	ObservableList<Employee> employees = FXCollections.observableArrayList(restaurant.getEmployee());
+	    	comboEmployee.setItems(employees); 
+	    }
+	    
+	    public void putStatus() {
+	    	comboStatus.getItems().add("SOLICITADO");
+	    	comboStatus.getItems().add("EN PROCESO");
+	    	comboStatus.getItems().add("ENVIADO");
+	    	comboStatus.getItems().add("ENTREGADO");
+	    	comboStatus.setOnAction(e-> statusIdex = comboStatus.getSelectionModel().getSelectedIndex());
+	    }	
 	    
 	    public void initialize() {
 	    	loadTableViewProducts();
+	    	putClients();
+	    	putEmployee();
+	    	putStatus();
 	    	productQuantity.setValueFactory(new IntegerSpinnerValueFactory(0, 999, 0));
 	    	addProductButton.setDisable(true);
 	    }
 	    
 	    @FXML
-	    void addProduct(ActionEvent event) {
-	    	Product product = tableViewProducts.getSelectionModel().getSelectedItem();
+	    public void addProduct(ActionEvent event) {
 	    	
-	    	if(product != null && !txtSelectedIngredient.getText().isEmpty() &&  productQuantity.getValue() > 0) {
-		    	restaurant.getProducts().get(tableViewProducts.getSelectionModel().getSelectedIndex()).setQuantity(productQuantity.getValue());
-		    	loadAddedTableProduct();
+	    	if(!txtSelectedProduct.getText().isEmpty() &&  productQuantity.getValue() > 0) {
+	    		Product product = tableViewProducts.getSelectionModel().getSelectedItem();
+	    		product.setQuantity(productQuantity.getValue());
+	    		
+	    		if (!tableAddedProducts.getItems().contains(product)) {
+					tableAddedProducts.getItems().add(product);
+	    		} else {
+					tableAddedProducts.getItems().remove(product);
+					tableAddedProducts.getItems().add(product);
+				}
+	    		loadAddedTableProduct();
+	    	}	
+	    }
+	    
+	    @FXML
+	    public void createOrder(ActionEvent event) {
+	    	Date date = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+	    	int hour = Integer.parseInt(txtHour.getText());
+	    	date.setHours(hour);
+	    	//added = restaurant.addOrder(comboEmployee.getValue(), , null, null, null, null)
+	    }
+	    
+	    @FXML
+	    public void deleteProduct(MouseEvent event) {
+	    	Product p = tableAddedProducts.getSelectionModel().getSelectedItem();
+	    	
+	    	if(p != null) {
+	    		tableAddedProducts.getItems().remove(p);
+	    		loadAddedTableProduct();
 	    	}
 	    }
 	    
 	    @FXML
-	    void createOrder(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void selectItem(MouseEvent event) {
+	    public void selectItem(MouseEvent event) {
 	    	Product p = tableViewProducts.getSelectionModel().getSelectedItem();
 	    	
 	    	if(p != null) {
+	    		txtSelectedProduct.setText(p.getName());
 	    		addProductButton.setDisable(false);
 	    	}
 	    }

@@ -67,6 +67,7 @@ public class MenuGUI {
 				restaurant.loadDataofUsers();
 				restaurant.loadDataofProductType();
 				restaurant.loadDataofClients();
+				restaurant.loadDataofOrders();
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
 			}
@@ -87,11 +88,20 @@ public class MenuGUI {
 	    	stage.initModality(Modality.APPLICATION_MODAL);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Gestionar clientes");
+	    	stage.setOnHidden(new EventHandler<WindowEvent>() {
+				
+				@Override
+				public void handle(WindowEvent event) {
+					restaurant = controllerClient.getRestaurant();
+				}
+			});
+	    	stage.showAndWait();
 	    	stage.showAndWait();
 		}
 		
 	    public void showOrderList(ActionEvent event) throws IOException {
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-order.fxml"));
+	    	controllerOrder.receiveData(restaurant);
 	    	open.setController(controllerOrder);
 	    	Parent root = open.load();
 	    	
@@ -107,8 +117,8 @@ public class MenuGUI {
 	    @FXML
 	    public void showEmployeeList(ActionEvent event) throws IOException {
 	    	FXMLLoader open = new FXMLLoader(getClass().getResource("Gestion-employee.fxml"));
-	    	open.setController(controllerEmployee);
 	    	controllerEmployee.receiveData(restaurant);
+	    	open.setController(controllerEmployee);
 	    	Parent root = open.load();
 	    	
 	    	Scene scene = new Scene(root);
@@ -119,6 +129,13 @@ public class MenuGUI {
 	    	stage.initModality(Modality.APPLICATION_MODAL);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Gestionar empleados");
+	    	stage.setOnHidden(new EventHandler<WindowEvent>() {
+				
+				@Override
+				public void handle(WindowEvent event) {
+					restaurant = controllerEmployee.getRestaurant();
+				}
+			});
 	    	stage.showAndWait();
 	    }
 
