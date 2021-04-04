@@ -48,9 +48,6 @@ public class UsersGUI {
 	
 	private Restaurant restaurant;
 
-	@SuppressWarnings("unused")
-	private MenuGUI stage_controler_stage2;
-    
     public UsersGUI() {
     	restaurant = new Restaurant();
     }

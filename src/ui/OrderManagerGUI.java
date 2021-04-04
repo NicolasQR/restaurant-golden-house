@@ -17,7 +17,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
@@ -155,6 +154,7 @@ public class OrderManagerGUI {
 			   
 		   }
     }
+	
 	
 	@FXML
     public void cancelExport(ActionEvent event) {

@@ -494,9 +494,6 @@ public class Restaurant   {
 		return products;
 	}
 	
-	public List<Product> getProduct(){
-		return products;
-	}
 	
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
