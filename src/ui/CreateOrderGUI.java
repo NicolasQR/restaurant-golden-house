@@ -1,16 +1,14 @@
 package ui;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -19,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -90,7 +89,6 @@ public class CreateOrderGUI {
 	    private ComboBox<String> comboStatus;
 	    
 	    private Restaurant restaurant;
-	    private int statusIdex;
 	    
 	    public CreateOrderGUI() {
 	    	restaurant = new Restaurant();
@@ -138,8 +136,7 @@ public class CreateOrderGUI {
 	    	comboStatus.getItems().add("EN PROCESO");
 	    	comboStatus.getItems().add("ENVIADO");
 	    	comboStatus.getItems().add("ENTREGADO");
-	    	comboStatus.setOnAction(e-> statusIdex = comboStatus.getSelectionModel().getSelectedIndex());
-	    }	
+	    }
 	    
 	    public void initialize() {
 	    	loadTableViewProducts();
@@ -163,16 +160,48 @@ public class CreateOrderGUI {
 					tableAddedProducts.getItems().remove(product);
 					tableAddedProducts.getItems().add(product);
 				}
+	    		txtSelectedProduct.clear();
+	    		productQuantity.getValueFactory().setValue(0);
 	    		loadAddedTableProduct();
 	    	}	
 	    }
 	    
-	    @FXML
+	    @SuppressWarnings("deprecation")
+		@FXML
 	    public void createOrder(ActionEvent event) {
 	    	Date date = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 	    	int hour = Integer.parseInt(txtHour.getText());
+	    	int min = Integer.parseInt(txtMinutes.getText());
 	    	date.setHours(hour);
-	    	//added = restaurant.addOrder(comboEmployee.getValue(), , null, null, null, null)
+	    	date.setMinutes(min);
+	    	
+	    	ArrayList<Product> products = new ArrayList<>(tableAddedProducts.getItems());
+	    	boolean added = restaurant.addOrder(comboEmployee.getValue(), date, comboClient.getValue(), products, comboStatus.getValue(), txtAreaObservations.getText());
+	    	
+	    	if(added) {
+	    		Alert alert = new Alert(AlertType.INFORMATION);
+        		alert.setTitle("Successfully created");
+        		alert.setHeaderText(null);
+        		alert.setContentText("La orden fue creado con éxito.");
+        		alert.showAndWait();
+        		
+        		txtSelectedProduct.clear();
+	    		productQuantity.getValueFactory().setValue(0);
+	    		tableAddedProducts.getItems().clear();
+	    		comboClient.getSelectionModel().clearSelection();
+	    		comboEmployee.getSelectionModel().clearSelection();
+	    		datePicker.setValue(null);
+	    		comboStatus.getSelectionModel().clearSelection();
+	    		txtHour.clear();
+	    		txtMinutes.clear();
+	    		txtAreaObservations.clear();
+	    	} else {
+	    		Alert alert = new Alert(AlertType.INFORMATION);
+        		alert.setTitle("Successfully created");
+        		alert.setHeaderText(null);
+        		alert.setContentText("Hay campos vacíos.");
+        		alert.showAndWait();
+	    	}
 	    }
 	    
 	    @FXML

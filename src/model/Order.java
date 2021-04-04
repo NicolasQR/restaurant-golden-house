@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,6 +31,8 @@ public class Order {
 	public void objectToString() {
 		employeeName = employee.getName() + " " + employee.getLastName();
 		clientName = client.getName() + " " + client.getLastName();
+		DateFormat dateHour = new SimpleDateFormat("yyyy-MM-dd / HH:mm");
+		date = dateHour.format(dateAndHour);
 	}
 	
 	public int getCode() {

@@ -57,6 +57,7 @@ public class Restaurant   {
 		}
 		pw.close();*/
 	}
+	
 	public boolean addOrder(Employee employee, Date dateAndHour, Client client, ArrayList<Product> products, String status, String observations) {
 		boolean added = false;
 		
@@ -65,7 +66,6 @@ public class Restaurant   {
 			orders.add(order);
 			added = true;
 		}
-		
 		return added;
 	}
 	
