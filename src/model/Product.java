@@ -11,7 +11,7 @@ public class Product implements Comparable<Product>, Serializable{
 	private String typeProduct;
 	private String ingredients;
 	private String size;
-	private int Quantity;
+	private int quantity;
 	private boolean status;
 	
 	private ArrayList<Ingredient> ingredientsList;
@@ -113,11 +113,11 @@ public class Product implements Comparable<Product>, Serializable{
 	}
 	
 	public int getQuantity() {
-		return Quantity;
+		return quantity;
 	}
 
 	public void setQuantity(int quantity) {
-		Quantity = quantity;
+		this.quantity = quantity;
 	}
 
 	@Override

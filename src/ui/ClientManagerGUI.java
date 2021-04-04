@@ -85,7 +85,11 @@ public class ClientManagerGUI {
     	restaurant = new Restaurant();
     }
     
-    @FXML
+    public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	@FXML
     public void btnNewClient(ActionEvent event) throws IOException {
     	FXMLLoader open = new FXMLLoader(getClass().getResource("AddClient.fxml"));
     	open.setController(this);
@@ -177,7 +181,6 @@ public class ClientManagerGUI {
 			row.setOnMouseClicked(event -> {
 				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
 					Client rowData = row.getItem();
-					//updateButton.setDisable(false);
 					txtName.setText(rowData.getName());
 					txtLastName.setText(rowData.getLastName());
 					toString();
@@ -200,12 +203,8 @@ public class ClientManagerGUI {
     public void updateClienInformation(ActionEvent event) throws FileNotFoundException, IOException {
     	int index = tableClient.getSelectionModel().getFocusedIndex();
    	 
-    	restaurant.getClients().get(index).setName(txtName.getText());
-    	restaurant.getClients().get(index).setLastName(txtLastName.getText());
-    	restaurant.getClients().get(index).setID(Long.parseLong(txtId.getText()));
-    	restaurant.getClients().get(index).setAddress(txtAddress.getText());
-    	restaurant.getClients().get(index).setPhone(Long.parseLong(txtPhone.getText()));
-    	restaurant.saveDataofClient();
+    	restaurant.updateClient(index, txtName.getText(), txtLastName.getText(), Long.parseLong(txtId.getText())
+    			, txtAddress.getText(), Long.parseLong(txtPhone.getText()));
     }
     
     @FXML

@@ -27,10 +27,15 @@ import model.Restaurant;
 public class EmployeeGUI {
 
 	private Restaurant restaurant;
+	
 	public EmployeeGUI() {
 		restaurant = new Restaurant();
 	}
 	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
 	@FXML
     private TextField txtNameEmployeeScreen1;
 
@@ -173,17 +178,7 @@ public class EmployeeGUI {
     public void upgradeEmployee(ActionEvent event) throws IOException {
     	int index = tableEmployee.getSelectionModel().getFocusedIndex();
     	
-    	restaurant.getEmployee().get(index).setName(txtNameEmployeeScreen1.getText());
-    	restaurant.getEmployee().get(index).setLastName(txtLastNameEmployeeScreen1.getText());
-    	restaurant.getEmployee().get(index).setID(Long.parseLong(txtIdEmployeeScreen1.getText()));
-    	restaurant.saveDataOfEmployees();
-    	
-    	try {
-			restaurant.loadDatafEmployee();
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
-		}
-    	tableView();
+    	restaurant.updateEmployee(index, txtNameEmployeeScreen1.getText(), txtLastNameEmployeeScreen1.getText(), Long.parseLong(txtIdEmployeeScreen1.getText()));
     	
     	Alert alert = new Alert(AlertType.INFORMATION);
     	alert.setTitle("User Upgrade");

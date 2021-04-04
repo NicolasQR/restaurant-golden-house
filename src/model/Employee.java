@@ -56,4 +56,9 @@ public class Employee implements Serializable{
 	public void updateStatus(boolean status) {
 		this.status = status;
 	}
+	
+	@Override
+	public String toString() {
+		return name + " " + lastName;
+	}
 }

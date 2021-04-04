@@ -9,22 +9,28 @@ public class Order {
 	private String employeeName;
 	private String clientName;
 	private String date;
-	private Date dateAndHour;
 	private String observations;
 	
+	private Date dateAndHour;
 	private Client client;	
 	private Employee employee;
 	private ArrayList<Product> products;
-	private ArrayList<Integer> quantityProducts;
 	
-	public Order(Employee employee, Date dateAndHour, Client client) {
-		products = new ArrayList<Product>();
-		quantityProducts = new ArrayList<Integer>();
-		this.employeeName = employee.getName() + employee.getLastName();
-		this.dateAndHour = dateAndHour;
+	public Order(Employee employee, Date dateAndHour, Client client, ArrayList<Product> products,String status, String observations) {
+		this.products = products;
+		this.employee = employee;
 		this.client = client;
+		this.dateAndHour = dateAndHour;
+		this.observations = observations;
+		this.status = status;
+		objectToString();
 	}
-
+	
+	public void objectToString() {
+		employeeName = employee.getName() + " " + employee.getLastName();
+		clientName = client.getName() + " " + client.getLastName();
+	}
+	
 	public int getCode() {
 		return code;
 	}
@@ -81,14 +87,6 @@ public class Order {
 		this.products = products;
 	}
 
-	public ArrayList<Integer> getQuantityProducts() {
-		return quantityProducts;
-	}
-
-	public void setQuantityProducts(ArrayList<Integer> quantityProducts) {
-		this.quantityProducts = quantityProducts;
-	}
-
 	public String getClientName() {
 		return clientName;
 	}
@@ -103,5 +101,13 @@ public class Order {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
-	}	
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 }
