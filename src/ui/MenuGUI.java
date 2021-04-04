@@ -111,6 +111,13 @@ public class MenuGUI {
 	    	stage.initModality(Modality.APPLICATION_MODAL);
 	    	stage.setScene(scene);
 	    	stage.setTitle("Gestionar ordenes");
+	    	stage.setOnHidden(new EventHandler<WindowEvent>() {
+				
+				@Override
+				public void handle(WindowEvent event) {
+					restaurant = controllerOrder.getRestaurant();
+				}
+			});
 	    	stage.showAndWait();
 	    }
 		

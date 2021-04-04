@@ -2,6 +2,7 @@ package ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,16 +16,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Client;
 import model.Order;
 import model.Product;
 import model.Restaurant;
@@ -53,14 +52,21 @@ public class OrderManagerGUI {
     private TextArea txtAreaObservations;
 
     @FXML
-    private TableView<Product> listAddedProducts;
+    private TableView<Product> tableAddedProducts;
+    
+    @FXML
+    private TableColumn<Product, String> columProductName;
 
     @FXML
-    private ComboBox<String> comboStatus;
+    private TableColumn<Product, String> columProductPrice;
 
+    @FXML
+    private TableColumn<Product, String> columProductQuantity;
+    
     private Restaurant restaurant;
     
     private CreateOrderGUI createOrderController;
+    
     
     public OrderManagerGUI() {
     	restaurant = new Restaurant();
@@ -71,8 +77,28 @@ public class OrderManagerGUI {
     	this.restaurant = restaurant;
     }
     
+    public Restaurant getRestaurant() {
+    	return restaurant;
+    }
+    
     public void initialize() {
     	loadTableView();
+    }
+    
+    public int numberItem(String status) {
+    	int select = 0;
+    	
+    	if(status.equals("SOLICITADO")) {
+    		select = 1;
+    	} else if(status.equals("EN PROCESO")) {
+    		select = 2;
+    	} else if(status.equals("ENVIADO")) {
+    		select = 3;
+    	} else if(status.equals("ENTREGADO")){
+    		select = 4;
+    	}
+    	
+    	return select;
     }
     
     public void loadTableView() {
@@ -83,15 +109,20 @@ public class OrderManagerGUI {
     	columEmployee.setCellValueFactory(new PropertyValueFactory<Order, String>("employeeName"));
     	columDateAndHour.setCellValueFactory(new PropertyValueFactory<Order, String>("date"));
     	columStatus.setCellValueFactory(new PropertyValueFactory<Order, String>("status"));
-    	tableViewOrder.setRowFactory( tv -> {
-			TableRow<Order> row = new TableRow<>();
-			row.setOnMouseClicked(event -> {
-				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-					Order rowData = row.getItem();
-				}
-			});
-			return row;
-		});
+    }
+    
+    public void loadAddedTable(ArrayList<Product> products) {
+    	ObservableList<Product> productList = FXCollections.observableArrayList(products);
+    	
+    	tableAddedProducts.setItems(productList);
+		columProductName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		columProductPrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+		columProductQuantity.setCellValueFactory(new PropertyValueFactory<Product, String>("quantity"));
+    }
+   
+    @FXML
+    public void selectOrder(MouseEvent event) {
+    	
     }
     
     @FXML
@@ -139,6 +170,78 @@ public class OrderManagerGUI {
 		
     }
 	
+	@FXML
+    public void selectDelivered(ActionEvent event) {
+		int select = 4;
+    	String status = "ENTREGADO";
+    	
+    	Order order = tableViewOrder.getSelectionModel().getSelectedItem();
+    	int index = tableViewOrder.getSelectionModel().getSelectedIndex();
+		if (order != null) {
+			if (select > numberItem(order.getStatus())) {
+				restaurant.getOrders().remove(index);
+				loadTableView();
+				order.setStatus(status);
+				restaurant.getOrders().add(order);
+			}
+		}
+		loadTableView();
+    }
+
+    @FXML
+    public void selectInProcess(ActionEvent event) {
+    	int select = 2;
+    	String status = "EN PROCESO";
+    	
+    	Order order = tableViewOrder.getSelectionModel().getSelectedItem();
+    	int index = tableViewOrder.getSelectionModel().getSelectedIndex();
+		if (order != null) {
+			if (select > numberItem(order.getStatus())) {
+				restaurant.getOrders().remove(index);
+				loadTableView();
+				order.setStatus(status);
+				restaurant.getOrders().add(order);
+			} 
+		}
+		loadTableView();
+    }
+
+    @FXML
+    public void selectRequested(ActionEvent event) {
+    	int select = 1;
+    	String status = "SOLICITADO";
+    	
+    	Order order = tableViewOrder.getSelectionModel().getSelectedItem();
+    	int index = tableViewOrder.getSelectionModel().getSelectedIndex();
+		if (order != null) {
+			if (select > numberItem(order.getStatus())) {
+				restaurant.getOrders().remove(index);
+				loadTableView();
+				order.setStatus(status);
+				restaurant.getOrders().add(order);
+			} 
+		}
+		loadTableView();
+    }
+
+    @FXML
+    public void selectSend(ActionEvent event) {
+    	int select = 3;
+    	String status = "ENVIADO";
+    	
+    	Order order = tableViewOrder.getSelectionModel().getSelectedItem();
+    	int index = tableViewOrder.getSelectionModel().getSelectedIndex();
+		if (order != null) {
+			if (select > numberItem(order.getStatus())) {
+				restaurant.getOrders().remove(index);
+				loadTableView();
+				order.setStatus(status);
+				restaurant.getOrders().add(order);
+			} 
+		}
+		loadTableView();
+    }
+    
 	@FXML
     public void exportDataofOrder(ActionEvent event) {
 		FileChooser filechooser = new FileChooser();
