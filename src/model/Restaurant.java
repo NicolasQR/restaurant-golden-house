@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -58,6 +59,16 @@ public class Restaurant   {
 			 pw.println(orders.get(i).getName() + FILESEPARATOR + orders.get(i).getEmail());
 		}
 		pw.close();*/
+	}
+	
+	public void exportDataofEmployee(String fileName) throws FileNotFoundException {
+		PrintWriter pw = new PrintWriter(fileName);
+		pw.println("NOMBRE" + FILESEPARATOR + "NUMERO DE PEDIDOS A CRGO" + FILESEPARATOR + "PRECIO TOTAL DE LOS PEDIDOS" );
+		for(int i = 0; i < employee.size(); i++) {
+			 pw.println(employee.get(i).getName() + " " + employee.get(i).getLastName() + FILESEPARATOR + employee.get(i).getNumberOfOrdersCompleted() +
+					 FILESEPARATOR +employee.get(i).getTotalPriceOfOrderCompleted());
+		}
+		pw.close();
 	}
 	
 	public boolean addOrder(Employee employee, Date dateAndHour, Client client, ArrayList<Product> products, String status, String observations) {
@@ -438,7 +449,7 @@ public class Restaurant   {
 	}
 	
 	public void addUsers(String name, String lastName, long iD, String userName, String password) throws IOException {
-		users.add(new User(name, lastName, iD, userName, password));
+		users.add(new User(name, lastName, iD, userName, password, 0));
 		saveDataofUsers();
 	}
 	

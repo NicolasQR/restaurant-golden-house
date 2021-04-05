@@ -9,10 +9,14 @@ public class Employee implements Serializable{
 	private String lastName;
 	private long ID;
 	private boolean status;
+	private int numberOfOrdersCompleted;
+	private int totalPriceOfOrderCompleted;
 	
-	public Employee(String name, String lastName, long iD) {
+	public Employee(String name, String lastName, long iD ) {
 		this.name = name;
 		this.lastName = lastName;
+		numberOfOrdersCompleted = 0;
+		totalPriceOfOrderCompleted = 0;
 		ID = iD;
 		status = true;
 	}
@@ -60,5 +64,21 @@ public class Employee implements Serializable{
 	@Override
 	public String toString() {
 		return name + " " + lastName;
+	}
+
+	public int getNumberOfOrdersCompleted() {
+		return numberOfOrdersCompleted;
+	}
+
+	public void numberOfOrdersCompleted() {
+		numberOfOrdersCompleted++;
+	}
+
+	public int getTotalPriceOfOrderCompleted() {
+		return totalPriceOfOrderCompleted;
+	}
+
+	public void totalPriceOfOrderCompleted(int a) {
+		totalPriceOfOrderCompleted += a;
 	}
 }
