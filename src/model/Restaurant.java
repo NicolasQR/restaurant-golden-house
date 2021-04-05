@@ -23,6 +23,7 @@ public class Restaurant   {
 	public final static String SAVE_PATH_FILE_OF_PRODUCT_TYPE = "data/productsType.ap2";
 	public final static String SAVE_PATH_FILE_OF_CLIENTS = "data/clients.ap2";
 	public final static String SAVE_PATH_FILE_OF_ORDERS = "data/orders.ap2";
+	public final static String FILESEPARATOR = ";";
 		
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
@@ -72,7 +73,18 @@ public class Restaurant   {
 		pw.close();
 	}
 	
+	public void exportDataofEmployee(String fileName) throws FileNotFoundException {
+		PrintWriter pw = new PrintWriter(fileName);
+		pw.println("NOMBRE" + FILESEPARATOR + "NUMERO DE PEDIDOS A CRGO" + FILESEPARATOR + "PRECIO TOTAL DE LOS PEDIDOS" );
+		for(int i = 0; i < employee.size(); i++) {
+			 pw.println(employee.get(i).getName() + " " + employee.get(i).getLastName() + FILESEPARATOR + employee.get(i).getNumberOfOrdersCompleted() +
+					 FILESEPARATOR +employee.get(i).getTotalPriceOfOrderCompleted());
+		}
+		pw.close();
+	}
+	
 	public boolean addOrder(Employee employee, Date dateAndHour, Client client, ArrayList<Product> products, String status, String observations) throws FileNotFoundException, IOException {
+
 		boolean added = false;
 		
 		if(employee != null && client != null && products.size() > 0 && !status.isEmpty() && dateAndHour != null) {
@@ -461,7 +473,7 @@ public class Restaurant   {
 	}
 	
 	public void addUsers(String name, String lastName, long iD, String userName, String password) throws IOException {
-		users.add(new User(name, lastName, iD, userName, password));
+		users.add(new User(name, lastName, iD, userName, password, 0));
 		saveDataofUsers();
 	}
 	

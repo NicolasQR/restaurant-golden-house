@@ -9,7 +9,7 @@ public class User extends Employee implements Serializable{
 	private String userName;
 	private String password;
 	
-	public User(String name, String lastName, long iD,String userName, String password) {
+	public User(String name, String lastName, long iD,String userName, String password, int numberOfOrdersCompleted) {
 		super(name, lastName, iD);
 		this.userName = userName;
 		this.password = password;

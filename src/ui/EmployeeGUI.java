@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -19,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Employee;
@@ -36,6 +38,10 @@ public class EmployeeGUI {
 		return restaurant;
 	}
 
+	
+	@FXML
+    private AnchorPane container;
+	
 	@FXML
     private TextField txtNameEmployeeScreen1;
 
@@ -215,6 +221,29 @@ public class EmployeeGUI {
     
     public void receiveData(Restaurant a) {
     	restaurant = a;
+    }
+    
+    @FXML
+    public void exportEmployees(ActionEvent event) {
+    	
+    	FileChooser filechooser = new FileChooser();
+		   filechooser.setTitle("Open Import File");
+		   filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"));
+		   File f = filechooser.showSaveDialog(container.getScene().getWindow());
+		   
+		   if(f != null) {
+			   Alert alert = new Alert(AlertType.INFORMATION);
+			   alert.setTitle("Export employee");
+			   alert.setHeaderText(null);
+			   		try {
+			   			restaurant.exportDataofEmployee(f.getAbsolutePath());
+				   		alert.setContentText("Los empleados se han exportado correctamente");
+				   		alert.showAndWait();
+			   		} catch (Exception e) {
+			   			alert.setContentText("Los empleados no se pudieron exportar");
+			   			alert.showAndWait();
+			   		}
+		   }
     }
 
 	public void initialize() {

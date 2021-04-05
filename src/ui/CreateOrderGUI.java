@@ -174,13 +174,27 @@ public class CreateOrderGUI {
 	    	Date date = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 	    	int hour = Integer.parseInt(txtHour.getText());
 	    	int min = Integer.parseInt(txtMinutes.getText());
+	    	int indexEmployee = 0;
+	    	int price = 0;
 	    	date.setHours(hour);
 	    	date.setMinutes(min);
+	    	
+	    	
 	    	
 	    	ArrayList<Product> products = new ArrayList<>(tableAddedProducts.getItems());
 	    	boolean added = restaurant.addOrder(comboEmployee.getValue(), date, comboClient.getValue(), products, comboStatus.getValue(), txtAreaObservations.getText());
 	    	
 	    	if(added) {
+	    		
+	    		for(int i = 0; i < products.size(); i++) {
+	    			price += products.get(i).getPrice() * products.get(i).getQuantity();
+	    		}	    		
+	    		
+	    		indexEmployee = comboEmployee.getSelectionModel().getSelectedIndex();
+	    		restaurant.getEmployee().get(indexEmployee).numberOfOrdersCompleted();
+	    		restaurant.getEmployee().get(indexEmployee).totalPriceOfOrderCompleted(price);
+	    		restaurant.saveDataOfEmployees();
+	    		
 	    		Alert alert = new Alert(AlertType.INFORMATION);
         		alert.setTitle("Successfully created");
         		alert.setHeaderText(null);
