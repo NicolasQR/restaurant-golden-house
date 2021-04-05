@@ -3,7 +3,9 @@ package ui;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
@@ -75,6 +78,24 @@ public class OrderManagerGUI {
     
     @FXML
     private TextField txtFileSeparator;
+    
+    @FXML
+    private DatePicker initialDate;
+
+    @FXML
+    private DatePicker finalDate;
+
+    @FXML
+    private TextField txtInitialHour;
+
+    @FXML
+    private TextField txtFinalHour;
+
+    @FXML
+    private TextField txtInitialMinute;
+
+    @FXML
+    private TextField txtFinalMinute;
     
     private Restaurant restaurant;
     
@@ -270,7 +291,7 @@ public class OrderManagerGUI {
 		   Alert alert = new Alert(AlertType.INFORMATION);
 		   alert.setTitle("Export orders");
 		   try {
-			   	restaurant.exportDataofOrder(f.getAbsolutePath(), txtFileSeparator.getText());
+			   	restaurant.exportDataofOrder(ordersBetweenDates(restaurant.getOrders()),f.getAbsolutePath(), txtFileSeparator.getText());
 				alert.setContentText("Las ordenes se han exportado correctamente");
 				alert.showAndWait();
 		  } catch (Exception e) {
@@ -280,6 +301,30 @@ public class OrderManagerGUI {
 		   
 	   }
     }
+	
+	@SuppressWarnings("deprecation")
+	public ArrayList<Order> ordersBetweenDates(ArrayList<Order> orders){
+		
+		Date initial = Date.from(initialDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+		int initialHour = Integer.parseInt(txtInitialHour.getText());
+		int initialMinute = Integer.parseInt(txtInitialMinute.getText());
+		initial.setHours(initialHour);
+		initial.setMinutes(initialMinute);
+				
+		Date end = Date.from(finalDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+		int finalHour = Integer.parseInt(txtFinalHour.getText());
+		int finalMinute = Integer.parseInt(txtFinalMinute.getText());
+		end.setHours(finalHour);
+		end.setMinutes(finalMinute);
+		
+		ArrayList<Order> order = new ArrayList<>();
+		for(int i = 0; i < orders.size(); i++) {
+			if(orders.get(i).getDateAndHour().after(initial) && orders.get(i).getDateAndHour().before(end)) {
+				order.add(orders.get(i));
+			}
+		}
+		return order;
+	}
 	
 	@FXML
     public void cancelExport(ActionEvent event) {

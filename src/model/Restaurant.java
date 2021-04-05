@@ -51,18 +51,23 @@ public class Restaurant   {
 		
 	}
 	
-	public void exportDataofOrder(String fileName, String fileSeparator) throws FileNotFoundException {
+	public void exportDataofOrder(ArrayList<Order> orders,String fileName, String fileSeparator) throws FileNotFoundException {
 		PrintWriter pw = new PrintWriter(fileName);
 		Order order = null;
-		pw.println(" " + fileSeparator  + "CLIENTE" + fileSeparator + " " + fileSeparator + "EMPLEADO" + fileSeparator + " " + fileSeparator + "PEDIDO");
+		
+		pw.println(" " + fileSeparator  + "CLIENTE" + fileSeparator + " " + fileSeparator + "EMPLEADO" + fileSeparator + " " + fileSeparator + "PEDIDO" + fileSeparator + " " + fileSeparator + " " + fileSeparator + "PRODUCTOS");
+		pw.println("Nombre" + fileSeparator + "Dirección" + fileSeparator + "Teléfono" + fileSeparator + "Nombre" + fileSeparator + "Fecha y hora"
+		+ fileSeparator + "Observaciones" + fileSeparator + "Estado" + fileSeparator + "Nombre" + fileSeparator + "Cantidad" + fileSeparator + "Precio");
+		
 		for(int i = 0; i < orders.size(); i++) {
 			order = orders.get(i);
 			 pw.print(order.getClient().getName() + fileSeparator + order.getClient().getAddress() + fileSeparator + order.getClient().getPhone() + fileSeparator 
 					 + order.getEmployeeName() + fileSeparator + order.getDate() + fileSeparator + order.getObservations() +  fileSeparator + order.getStatus() + fileSeparator);
 			 
 			 for(int j = 0; j < order.getProducts().size(); j++) {
-				 pw.println(order.getProducts().get(i).getName() + fileSeparator + order.getProducts().get(i).getQuantity() + fileSeparator + order.getProducts().get(i).getPrice());
+				 pw.print(order.getProducts().get(j).getName() + fileSeparator + order.getProducts().get(j).getQuantity() + fileSeparator + order.getProducts().get(j).getPrice());
 			 }
+			 pw.print("\n");
 		}
 		pw.close();
 	}
