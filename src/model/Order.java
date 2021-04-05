@@ -1,11 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Order {
+public class Order implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private int code;
 	private String status;
 	private String employeeName;

@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="1057.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tableViewOrder" layoutX="19.0" layoutY="22.0" prefHeight="641.0" prefWidth="622.0">
+      <TableView fx:id="tableViewOrder" layoutX="19.0" layoutY="22.0" onMouseClicked="#selectOrder" prefHeight="641.0" prefWidth="622.0">
         <columns>
           <TableColumn fx:id="columClient" prefWidth="163.999966442585" text="Cliente" />
           <TableColumn fx:id="columEmployee" prefWidth="172.7999725341797" text="Empleado" />
@@ -28,25 +28,25 @@
       </Label>
       <TextArea fx:id="txtAreaObservations" layoutX="672.0" layoutY="459.0" prefHeight="199.0" prefWidth="344.0" />
       <Separator layoutX="14.0" layoutY="672.0" prefHeight="10.0" prefWidth="1057.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <TableView fx:id="listAddedProducts" layoutX="672.0" layoutY="125.0" prefHeight="269.0" prefWidth="344.0">
+      <TableView fx:id="tableAddedProducts" layoutX="672.0" layoutY="125.0" prefHeight="269.0" prefWidth="344.0">
         <columns>
-          <TableColumn prefWidth="146.4000244140625" text="Productos" />
-          <TableColumn prefWidth="103.20001220703125" text="Precio " />
-            <TableColumn prefWidth="94.39996337890625" text="Cantidad" />
+          <TableColumn fx:id="columProductName" prefWidth="146.4000244140625" text="Productos" />
+          <TableColumn fx:id="columProductPrice" prefWidth="103.20001220703125" text="Precio " />
+            <TableColumn fx:id="columProductQuantity" prefWidth="94.39996337890625" text="Cantidad" />
         </columns>
       </TableView>
-      <Button layoutX="729.0" layoutY="22.0" mnemonicParsing="false" onAction="#showCreateOrder" prefHeight="39.0" prefWidth="210.0" text="Nuevo">
+      <Button layoutX="672.0" layoutY="22.0" mnemonicParsing="false" onAction="#showCreateOrder" prefHeight="39.0" prefWidth="210.0" text="Nuevo">
          <font>
             <Font size="15.0" />
          </font></Button>
       <Separator layoutX="7.0" layoutY="7.0" orientation="VERTICAL" prefHeight="686.0" prefWidth="8.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Separator layoutX="-49.0" layoutY="-2.0" prefHeight="10.0" prefWidth="1057.0" style="-fx-background-color: #DC143C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Separator layoutX="1018.0" layoutY="72.0" orientation="VERTICAL" prefHeight="686.0" prefWidth="15.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Button layoutX="897.0" layoutY="75.0" mnemonicParsing="false" onAction="#showScreenOfExport" prefHeight="39.0" prefWidth="85.0" text="Exportar">
+      <Button layoutX="908.0" layoutY="75.0" mnemonicParsing="false" onAction="#showScreenOfExport" prefHeight="39.0" prefWidth="85.0" text="Exportar">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <MenuButton layoutX="687.0" layoutY="79.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="161.0" text="ESTADOS">
+      <MenuButton fx:id="menuButtonStatus" layoutX="672.0" layoutY="75.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="210.0" text="ESTADOS">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#selectRequested" text="SOLICITADO" />
           <MenuItem mnemonicParsing="false" onAction="#selectInProcess" text="EN PROCESO" />
@@ -57,5 +57,10 @@
             <Font size="15.0" />
          </font>
       </MenuButton>
+      <Button fx:id="deleteButton" layoutX="908.0" layoutY="22.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="39.0" prefWidth="85.0" text="Eliminar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

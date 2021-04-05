@@ -24,7 +24,7 @@ public class Restaurant   {
 	public final static String SAVE_PATH_FILE_OF_CLIENTS = "data/clients.ap2";
 	public final static String SAVE_PATH_FILE_OF_ORDERS = "data/orders.ap2";
 	public final static String FILESEPARATOR = ";";
-	
+		
 	private ArrayList<Product> products;
 	private ArrayList<Ingredient> ingredients;
 	private ArrayList<Type> productsType;
@@ -52,13 +52,20 @@ public class Restaurant   {
 		
 	}
 	
-	public void exportDataofOrder(String fileName) {
-		/**PrintWriter pw = new PrintWriter(fileName);
-		
+	public void exportDataofOrder(String fileName, String fileSeparator) throws FileNotFoundException {
+		PrintWriter pw = new PrintWriter(fileName);
+		Order order = null;
+		pw.println(" " + fileSeparator  + "CLIENTE" + fileSeparator + " " + fileSeparator + "EMPLEADO" + fileSeparator + " " + fileSeparator + "PEDIDO");
 		for(int i = 0; i < orders.size(); i++) {
-			 pw.println(orders.get(i).getName() + FILESEPARATOR + orders.get(i).getEmail());
+			order = orders.get(i);
+			 pw.print(order.getClient().getName() + fileSeparator + order.getClient().getAddress() + fileSeparator + order.getClient().getPhone() + fileSeparator 
+					 + order.getEmployeeName() + fileSeparator + order.getDate() + fileSeparator + order.getObservations() +  fileSeparator + order.getStatus() + fileSeparator);
+			 
+			 for(int j = 0; j < order.getProducts().size(); j++) {
+				 pw.println(order.getProducts().get(i).getName() + fileSeparator + order.getProducts().get(i).getQuantity() + fileSeparator + order.getProducts().get(i).getPrice());
+			 }
 		}
-		pw.close();*/
+		pw.close();
 	}
 	
 	public void exportDataofEmployee(String fileName) throws FileNotFoundException {
@@ -71,7 +78,8 @@ public class Restaurant   {
 		pw.close();
 	}
 	
-	public boolean addOrder(Employee employee, Date dateAndHour, Client client, ArrayList<Product> products, String status, String observations) {
+	public boolean addOrder(Employee employee, Date dateAndHour, Client client, ArrayList<Product> products, String status, String observations) throws FileNotFoundException, IOException {
+
 		boolean added = false;
 		
 		if(employee != null && client != null && products.size() > 0 && !status.isEmpty() && dateAndHour != null) {
@@ -79,7 +87,18 @@ public class Restaurant   {
 			orders.add(order);
 			added = true;
 		}
+		saveDataofOrder();
 		return added;
+	}
+	
+	public void updateStatusOrder(int index, String status) throws FileNotFoundException, IOException {
+		orders.get(index).setStatus(status);
+		saveDataofOrder();
+	}
+	
+	public void deleteOrder(int index) throws FileNotFoundException, IOException {
+		orders.remove(index);
+		saveDataofOrder();
 	}
 	
 	public void saveDataofOrder() throws FileNotFoundException, IOException {
@@ -540,9 +559,6 @@ public class Restaurant   {
 		}
 		saveDataofClient();
 		return added;
-		
-		//clients.add(new Client(name, lastName, ID, address, phone, observations));
-		
 	}
 	
 	public void updateClient(int index, String name, String lastName, long ID, String address, long phone) throws FileNotFoundException, IOException {
