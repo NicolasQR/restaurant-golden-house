@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,12 +15,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -62,11 +66,19 @@ public class OrderManagerGUI {
 
     @FXML
     private TableColumn<Product, String> columProductQuantity;
+
+    @FXML
+    private MenuButton menuButtonStatus;
+    
+    @FXML
+    private Button deleteButton;
+    
+    @FXML
+    private TextField txtFileSeparator;
     
     private Restaurant restaurant;
     
     private CreateOrderGUI createOrderController;
-    
     
     public OrderManagerGUI() {
     	restaurant = new Restaurant();
@@ -83,6 +95,8 @@ public class OrderManagerGUI {
     
     public void initialize() {
     	loadTableView();
+    	menuButtonStatus.setDisable(true);
+    	deleteButton.setDisable(true);
     }
     
     public int numberItem(String status) {
@@ -122,7 +136,14 @@ public class OrderManagerGUI {
    
     @FXML
     public void selectOrder(MouseEvent event) {
+    	Order order = tableViewOrder.getSelectionModel().getSelectedItem();
     	
+    	if(order != null) {
+    		txtAreaObservations.setText(order.getObservations());
+    		loadAddedTable(order.getProducts());
+    		menuButtonStatus.setDisable(false);
+    		deleteButton.setDisable(false);
+    	}
     }
     
     @FXML
@@ -171,7 +192,7 @@ public class OrderManagerGUI {
     }
 	
 	@FXML
-    public void selectDelivered(ActionEvent event) {
+    public void selectDelivered(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
 		int select = 4;
     	String status = "ENTREGADO";
     	
@@ -179,17 +200,16 @@ public class OrderManagerGUI {
     	int index = tableViewOrder.getSelectionModel().getSelectedIndex();
 		if (order != null) {
 			if (select > numberItem(order.getStatus())) {
-				restaurant.getOrders().remove(index);
+				restaurant.updateStatusOrder(index, status);
+				restaurant.loadDataofOrders();
 				loadTableView();
-				order.setStatus(status);
-				restaurant.getOrders().add(order);
+				tableViewOrder.getSelectionModel().select(index);
 			}
 		}
-		loadTableView();
     }
 
     @FXML
-    public void selectInProcess(ActionEvent event) {
+    public void selectInProcess(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
     	int select = 2;
     	String status = "EN PROCESO";
     	
@@ -197,17 +217,16 @@ public class OrderManagerGUI {
     	int index = tableViewOrder.getSelectionModel().getSelectedIndex();
 		if (order != null) {
 			if (select > numberItem(order.getStatus())) {
-				restaurant.getOrders().remove(index);
+				restaurant.updateStatusOrder(index, status);
+				restaurant.loadDataofOrders();
 				loadTableView();
-				order.setStatus(status);
-				restaurant.getOrders().add(order);
+				tableViewOrder.getSelectionModel().select(index);
 			} 
 		}
-		loadTableView();
     }
 
     @FXML
-    public void selectRequested(ActionEvent event) {
+    public void selectRequested(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
     	int select = 1;
     	String status = "SOLICITADO";
     	
@@ -215,17 +234,16 @@ public class OrderManagerGUI {
     	int index = tableViewOrder.getSelectionModel().getSelectedIndex();
 		if (order != null) {
 			if (select > numberItem(order.getStatus())) {
-				restaurant.getOrders().remove(index);
+				restaurant.updateStatusOrder(index, status);
+				restaurant.loadDataofOrders();
 				loadTableView();
-				order.setStatus(status);
-				restaurant.getOrders().add(order);
+				tableViewOrder.getSelectionModel().select(index);
 			} 
 		}
-		loadTableView();
     }
 
     @FXML
-    public void selectSend(ActionEvent event) {
+    public void selectSend(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
     	int select = 3;
     	String status = "ENVIADO";
     	
@@ -233,41 +251,47 @@ public class OrderManagerGUI {
     	int index = tableViewOrder.getSelectionModel().getSelectedIndex();
 		if (order != null) {
 			if (select > numberItem(order.getStatus())) {
-				restaurant.getOrders().remove(index);
+				restaurant.updateStatusOrder(index, status);
+				restaurant.loadDataofOrders();
 				loadTableView();
-				order.setStatus(status);
-				restaurant.getOrders().add(order);
+				tableViewOrder.getSelectionModel().select(index);
 			} 
 		}
-		loadTableView();
     }
     
 	@FXML
     public void exportDataofOrder(ActionEvent event) {
 		FileChooser filechooser = new FileChooser();
-		   filechooser.setTitle("Open Import File");
-		   File f = filechooser.showSaveDialog(container.getScene().getWindow());
+		filechooser.setTitle("Export File");
+		filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"));
+		File f = filechooser.showSaveDialog(container.getScene().getWindow());
+	   
+		if(f != null) {
+		   Alert alert = new Alert(AlertType.INFORMATION);
+		   alert.setTitle("Export orders");
+		   try {
+			   	restaurant.exportDataofOrder(f.getAbsolutePath(), txtFileSeparator.getText());
+				alert.setContentText("Las ordenes se han exportado correctamente");
+				alert.showAndWait();
+		  } catch (Exception e) {
+				alert.setContentText("La orden no se pudo exportar");
+				alert.showAndWait();
+		  }
 		   
-		   if(f != null) {
-			   Alert alert = new Alert(AlertType.INFORMATION);
-			   alert.setTitle("Export orders");
-			   try {
-				   	restaurant.exportDataofOrder(f.getAbsolutePath());
-					alert.setContentText("Las ordenes se han exportado correctamente");
-					alert.showAndWait();
-			} catch (Exception e) {
-					alert.setContentText("La orden no se pudo exportar");
-					alert.showAndWait();
-			}
-			   
-		   }
+	   }
     }
-	
 	
 	@FXML
     public void cancelExport(ActionEvent event) {
 		Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+	
+	@FXML
+    public void deleteOrder(ActionEvent event) throws FileNotFoundException, IOException {
+		int index = tableViewOrder.getSelectionModel().getSelectedIndex();
+		restaurant.deleteOrder(index);
+		loadTableView();
     }
 }

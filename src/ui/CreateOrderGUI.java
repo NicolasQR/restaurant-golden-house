@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -168,7 +170,7 @@ public class CreateOrderGUI {
 	    
 	    @SuppressWarnings("deprecation")
 		@FXML
-	    public void createOrder(ActionEvent event) {
+	    public void createOrder(ActionEvent event) throws FileNotFoundException, IOException {
 	    	Date date = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 	    	int hour = Integer.parseInt(txtHour.getText());
 	    	int min = Integer.parseInt(txtMinutes.getText());
