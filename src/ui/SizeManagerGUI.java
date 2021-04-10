@@ -6,6 +6,7 @@ import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -66,18 +67,34 @@ public class SizeManagerGUI {
     	columName.setCellValueFactory(new PropertyValueFactory<Size, String>("name"));
     	columCode.setCellValueFactory(new PropertyValueFactory<Size, String>("code"));
     	
-    	tableViewSize.setRowFactory( tv -> {
-			TableRow<Size> row = new TableRow<>();
-			row.setOnMouseClicked(event -> {
-				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-					Size rowData = row.getItem();
+    	tableViewSize.setOnMousePressed(new EventHandler<MouseEvent>() {
+    		@Override
+    		public void handle(MouseEvent event) {
+	    		if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+	    			Size rowData = tableViewSize.getSelectionModel().getSelectedItem();
 					updateButton.setDisable(false);
 					txtName.setText(rowData.getName());
 					txtCode.setText(rowData.getCode());
-				}
-			});
-			return row;
-		});
+	    		}
+    		}
+    	});
+    	
+    	tableViewSize.setRowFactory(tv -> new TableRow<Size>() {
+    	    @Override
+    	    protected void updateItem(Size item, boolean empty) {
+    	        super.updateItem(item, empty);
+
+	    	    	if (item == null || empty) {
+	    	    		setStyle("");
+					} else {
+						if (item.getStatus()) {
+							setStyle("-fx-background-color: #7FFF00;");
+						} else {
+							setStyle("-fx-background-color: #FF6347;");
+						}
+					}
+    	    }
+    	});
     }
     
     public void initialize() {
@@ -101,13 +118,27 @@ public class SizeManagerGUI {
     }
 
     @FXML
-    public void desactivateSize(ActionEvent event) {
-
+    public void desactivateSize(ActionEvent event) throws FileNotFoundException, IOException {
+    	Size p = tableViewSize.getSelectionModel().getSelectedItem();
+    	int index = tableViewSize.getSelectionModel().getSelectedIndex();
+    	
+    	if(p != null) {
+    		restaurant.getProductsSize().get(index).updateStatus(false);
+    		restaurant.saveDataofProductSize();
+    	}
+    	loadTableView();
     }
 
     @FXML
-    public void enableSize(ActionEvent event) {
-
+    public void enableSize(ActionEvent event) throws FileNotFoundException, IOException {
+    	Size p = tableViewSize.getSelectionModel().getSelectedItem();
+    	int index = tableViewSize.getSelectionModel().getSelectedIndex();
+    	
+    	if(p != null) {
+    		restaurant.getProductsSize().get(index).updateStatus(true);
+    		restaurant.saveDataofProductSize();
+    	}
+    	loadTableView();
     }
     
     @FXML

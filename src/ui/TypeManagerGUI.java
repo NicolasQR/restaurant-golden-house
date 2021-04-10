@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
@@ -57,18 +58,34 @@ public class TypeManagerGUI {
 	    	columName.setCellValueFactory(new PropertyValueFactory<Type, String>("name"));
 	    	columCode.setCellValueFactory(new PropertyValueFactory<Type, String>("code"));
 	    	
-	    	tableViewType.setRowFactory( tv -> {
-				TableRow<Type> row = new TableRow<>();
-				row.setOnMouseClicked(event -> {
-					if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-						Type rowData = row.getItem();
+	    	tableViewType.setOnMousePressed(new EventHandler<MouseEvent>() {
+	    		@Override
+	    		public void handle(MouseEvent event) {
+		    		if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		    			Type rowData = tableViewType.getSelectionModel().getSelectedItem();
 						updateButton.setDisable(false);
 						txtName.setText(rowData.getName());
 						txtCode.setText(rowData.getCode());
-					}
-				});
-				return row ;
-			});
+		    		}
+	    		}
+	    	});
+	    	
+	    	tableViewType.setRowFactory(tv -> new TableRow<Type>() {
+	    	    @Override
+	    	    protected void updateItem(Type item, boolean empty) {
+	    	        super.updateItem(item, empty);
+
+		    	    	if (item == null || empty) {
+		    	    		setStyle("");
+						} else {
+							if (item.getStatus()) {
+								setStyle("-fx-background-color: #7FFF00;");
+							} else {
+								setStyle("-fx-background-color: #FF6347;");
+							}
+						}
+	    	    }
+	    	});
 	    }
 	    
 	    public void initialize() {
@@ -107,13 +124,27 @@ public class TypeManagerGUI {
 	    }
 
 	    @FXML
-	    void desactivateType(ActionEvent event) {
-
+	    public void desactivateType(ActionEvent event) throws FileNotFoundException, IOException {
+	    	Type p = tableViewType.getSelectionModel().getSelectedItem();
+	    	int index = tableViewType.getSelectionModel().getSelectedIndex();
+	    	
+	    	if(p != null) {
+	    		restaurant.getProductTypes().get(index).updateStatus(false);
+	    		restaurant.saveDataofProductType();
+	    	}
+	    	loadTableView();
 	    }
 
 	    @FXML
-	    void enableType(ActionEvent event) {
-
+	    public void enableType(ActionEvent event) throws FileNotFoundException, IOException {
+	    	Type p = tableViewType.getSelectionModel().getSelectedItem();
+	    	int index = tableViewType.getSelectionModel().getSelectedIndex();
+	    	
+	    	if(p != null) {
+	    		restaurant.getProductTypes().get(index).updateStatus(true);
+	    		restaurant.saveDataofProductType();
+	    	}
+	    	loadTableView();
 	    }
 
 	    @FXML

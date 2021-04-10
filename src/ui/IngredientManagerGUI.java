@@ -1,10 +1,12 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
@@ -56,18 +58,34 @@ public class IngredientManagerGUI {
     	tableViewIngredient.setItems(ingredients);
     	columName.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("name"));
     	columCode.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("code"));
-    	tableViewIngredient.setRowFactory( tv -> {
-			TableRow<Ingredient> row = new TableRow<>();
-			row.setOnMouseClicked(event -> {
-				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-					Ingredient rowData = row.getItem();
-					txtName.setText(rowData.getName());
-					txtCode.setText(rowData.getCode());
+    	tableViewIngredient.setOnMousePressed(new EventHandler<MouseEvent>() {
+    		@Override
+    		public void handle(MouseEvent event) {
+	    		if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+	    			Ingredient ingredient = tableViewIngredient.getSelectionModel().getSelectedItem();
+	    			txtName.setText(ingredient.getName());
+					txtCode.setText(ingredient.getCode());
 					updateButton.setDisable(false);
-				}
-			});
-			return row ;
-		});
+	    		}
+    		}
+    	});
+    	
+    	tableViewIngredient.setRowFactory(tv -> new TableRow<Ingredient>() {
+    	    @Override
+    	    protected void updateItem(Ingredient item, boolean empty) {
+    	        super.updateItem(item, empty);
+
+	    	    	if (item == null || empty) {
+	    	    		setStyle("");
+					} else {
+						if (item.getStatus()) {
+							setStyle("-fx-background-color: #7FFF00;");
+						} else {
+							setStyle("-fx-background-color: #FF6347;");
+						}
+					}
+    	    }
+    	});
     }
     
     public void initialize() {
@@ -104,13 +122,27 @@ public class IngredientManagerGUI {
     }
 
     @FXML
-    public void desactivateIngredient(ActionEvent event) {
-
+    public void desactivateIngredient(ActionEvent event) throws FileNotFoundException, IOException {
+    	Ingredient p = tableViewIngredient.getSelectionModel().getSelectedItem();
+    	int index = tableViewIngredient.getSelectionModel().getSelectedIndex();
+    	
+    	if(p != null) {
+    		restaurant.getIngredients().get(index).updateStatus(false);
+    		restaurant.saveDataofIngredient();
+    	}
+    	loadTableView();
     }
 
     @FXML
-    public void enableIngredient(ActionEvent event) {
-
+    public void enableIngredient(ActionEvent event) throws FileNotFoundException, IOException {
+    	Ingredient p = tableViewIngredient.getSelectionModel().getSelectedItem();
+    	int index = tableViewIngredient.getSelectionModel().getSelectedIndex();
+    	
+    	if(p != null) {
+    		restaurant.getIngredients().get(index).updateStatus(true);
+    		restaurant.saveDataofIngredient();
+    	}
+    	loadTableView();
     }
 
     @FXML
