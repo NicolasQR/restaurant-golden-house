@@ -656,4 +656,16 @@ public class Restaurant   {
 		Collections.sort(employee,ce);
 	}
 	
+	public void reportEmployee(int index, int sizeArray, ArrayList<Product> products) throws FileNotFoundException, IOException {
+		int price = 0;
+		
+		for(int i = 0; i < products.size(); i++) {
+			price += products.get(i).getPrice() * products.get(i).getQuantity();
+		}
+		
+		employee.get(index).numberOfOrdersCompleted();
+		employee.get(index).totalPriceOfOrderCompleted(price);
+		saveDataOfEmployees();
+	}
+	
 }
