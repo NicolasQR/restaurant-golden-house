@@ -1,5 +1,4 @@
-# restaurant-golden-house
-Segunda entrega
+# Segunda entrega
 
   •Se agregaron imports de productos y clientes con los siguiente modelo:
      
