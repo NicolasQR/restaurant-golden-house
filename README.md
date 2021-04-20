@@ -24,5 +24,7 @@ Segunda entrega
       Importa de un archivo CSV(delimitado por comas) y el separador debe ser "|".
       
   •Se agregaron los documentos del programan, incluyendo los requerimientos y el diagrama de clases.
+  
   •Se agrego la funcion del reloj usando un hilo de trabajo.
+  
   •Se agregaron algorimos de ordenamietno al agregar productos, ordenes, ingredientes y tamaños.
