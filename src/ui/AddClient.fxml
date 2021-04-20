@@ -48,9 +48,9 @@
       <TextArea fx:id="txtAreaObservations" layoutX="118.0" layoutY="414.0" prefHeight="114.0" prefWidth="367.0" />
       <Button layoutX="190.0" layoutY="559.0" mnemonicParsing="false" onAction="#btnCreateClient" prefHeight="26.0" prefWidth="84.0" text="Crear" />
       <Button layoutX="316.0" layoutY="559.0" mnemonicParsing="false" onAction="#btnCancelCreatedofClient" prefHeight="26.0" prefWidth="84.0" text="Cancelar" />
-      <Separator layoutY="18.0" prefHeight="11.0" prefWidth="600.0" style="-fx-background-color: #20B2AA;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0" />
-      <Separator layoutX="11.0" layoutY="9.0" orientation="VERTICAL" prefHeight="631.0" prefWidth="13.0" style="-fx-background-color: #20B2AA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0" />
-      <Separator layoutX="18.0" layoutY="616.0" prefHeight="11.0" prefWidth="600.0" style="-fx-background-color: #20B2AA;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Separator layoutX="571.0" layoutY="428.0" orientation="VERTICAL" prefHeight="631.0" prefWidth="14.0" style="-fx-background-color: #20B2AA;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutY="18.0" prefHeight="6.0" prefWidth="600.0" style="-fx-background-color: #e2dda8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="11.0" layoutY="9.0" orientation="VERTICAL" prefHeight="631.0" prefWidth="6.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="18.0" layoutY="616.0" prefHeight="6.0" prefWidth="600.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutX="571.0" layoutY="428.0" orientation="VERTICAL" prefHeight="631.0" prefWidth="6.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

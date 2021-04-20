@@ -25,10 +25,10 @@
       <Button layoutX="756.0" layoutY="512.0" mnemonicParsing="false" onAction="#eliminateEmployee" prefWidth="120.0" style="-fx-background-radius: 15;" text="Eiliminar" />
       <Button layoutX="754.0" layoutY="403.0" mnemonicParsing="false" onAction="#disableEmployee" prefWidth="120.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
       <Button layoutX="756.0" layoutY="455.0" mnemonicParsing="false" onAction="#enableEmployee" prefWidth="120.0" style="-fx-background-radius: 15;" text="Habilitar" />
-      <Separator layoutX="29.0" layoutY="445.0" prefHeight="11.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Separator layoutX="29.0" layoutY="20.0" prefHeight="11.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0" />
-      <Separator layoutX="11.0" layoutY="93.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0" />
-      <Separator layoutX="933.0" layoutY="67.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="29.0" layoutY="445.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutX="29.0" layoutY="20.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="11.0" layoutY="93.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="933.0" layoutY="67.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Label layoutX="778.0" layoutY="50.0" text="Nombre:" textFill="WHITE">
          <font>
             <Font size="18.0" />

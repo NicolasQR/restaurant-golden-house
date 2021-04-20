@@ -16,6 +16,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Product;
@@ -79,23 +80,40 @@ public class ProductManagerGUI {
 	    	tableIngredients.setCellValueFactory(new PropertyValueFactory<Product, String>("ingredients"));
 	    	tableSize.setCellValueFactory(new PropertyValueFactory<Product, String>("size"));
 	    	tablePrice.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-	    	tableViewProducts.setRowFactory( tv -> {
-				TableRow<Product> row = new TableRow<>();
-				row.setOnMouseClicked(event -> {
-					if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-						Product rowData = row.getItem();
-						try {
-							int idx = tableViewProducts.getSelectionModel().getSelectedIndex();	
-							updateProduct(idx, rowData);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-				});
-				return row;
-			});
-		}
+	    	
+	    	tableViewProducts.setRowFactory(tv -> new TableRow<Product>() {
+	    	    @Override
+	    	    protected void updateItem(Product item, boolean empty) {
+	    	        super.updateItem(item, empty);
 
+		    	    	if (item == null || empty) {
+		    	    		setStyle("");
+						} else {
+							if (item.getStatus()) {
+								setStyle("-fx-background-color: #7FFF00;");
+							} else {
+								setStyle("-fx-background-color: #FF6347;");
+							}
+						}
+	    	    }
+	    	});
+	    	
+	    	tableViewProducts.setOnMousePressed(new EventHandler<MouseEvent>() {
+	    		@Override
+	    		public void handle(MouseEvent event) {
+		    		if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		    			Product product = tableViewProducts.getSelectionModel().getSelectedItem();
+		    			int index = tableViewProducts.getSelectionModel().getSelectedIndex();
+		    			try {
+							updateProduct(index, product);
+						} catch (IOException e) {
+							
+						}
+		    		}
+	    		}
+	    	});
+	    	
+		}
 
 	    public void initialize() {
 	    	loadTableView();
@@ -103,13 +121,27 @@ public class ProductManagerGUI {
 	    
 	    
 		@FXML
-	    public void deactivateProduct(ActionEvent event) {
+	    public void deactivateProduct(ActionEvent event) throws FileNotFoundException, IOException {
+	    	Product p = tableViewProducts.getSelectionModel().getSelectedItem();
+	    	int index = tableViewProducts.getSelectionModel().getSelectedIndex();
 	    	
+	    	if(p != null) {
+	    		restaurant.getProducts().get(index).updateStatus(false);
+	    		restaurant.saveDataofProducts();
+	    	}
+	    	loadTableView();
 	    }
 	    
 		@FXML
-	    public void enableProduct(ActionEvent event) {
-	    
+	    public void enableProduct(ActionEvent event) throws FileNotFoundException, IOException {
+			Product p = tableViewProducts.getSelectionModel().getSelectedItem();
+	    	int index = tableViewProducts.getSelectionModel().getSelectedIndex();
+	    	
+	    	if(p != null) {
+	    		restaurant.getProducts().get(index).updateStatus(true);
+	    		restaurant.saveDataofProducts();
+	    	}
+	    	loadTableView();
 	    }
 		
 	    @FXML

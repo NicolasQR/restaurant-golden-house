@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="tableViewProducts" layoutX="29.0" layoutY="33.0" prefHeight="402.0" prefWidth="629.0">
         <columns>
@@ -23,9 +23,9 @@
       <Button layoutX="734.0" layoutY="98.0" mnemonicParsing="false" onAction="#newProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Nuevo" />
       <Button layoutX="734.0" layoutY="326.0" mnemonicParsing="false" onAction="#deactivateProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
       <Button layoutX="734.0" layoutY="361.0" mnemonicParsing="false" onAction="#enableProduct" prefWidth="120.0" style="-fx-background-radius: 15;" text="Habilitar" />
-      <Separator layoutX="11.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="10.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0" />
-      <Separator layoutX="930.0" layoutY="104.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="10.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0" />
-      <Separator layoutX="29.0" layoutY="13.0" prefHeight="11.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0" />
-      <Separator layoutY="454.0" prefHeight="11.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutX="11.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="6.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="930.0" layoutY="104.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="6.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="29.0" layoutY="13.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutY="454.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

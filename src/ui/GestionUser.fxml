@@ -47,9 +47,9 @@
          </font>
       </Label>
       <TextField fx:id="txtUserAccount" layoutX="708.0" layoutY="253.0" />
-      <Separator layoutY="446.0" prefHeight="10.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Separator layoutX="11.0" layoutY="268.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0" />
-      <Separator layoutY="13.0" prefHeight="10.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0" />
-      <Separator layoutX="923.0" layoutY="281.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutY="446.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutX="11.0" layoutY="268.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutY="13.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="923.0" layoutY="281.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="6.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

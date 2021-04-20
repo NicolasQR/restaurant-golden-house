@@ -110,6 +110,8 @@ public class UsersGUI {
     	this.columnIdUser.setCellValueFactory(new PropertyValueFactory<User, String>("iD"));
     	this.columnUser.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
     	
+    	
+    	
     	tableUser.setRowFactory( tv -> {
 			TableRow<User> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
@@ -125,6 +127,8 @@ public class UsersGUI {
 			});
 			return row ;
 		});
+    	
+
     }
     
     public void receiveData(Restaurant a) {

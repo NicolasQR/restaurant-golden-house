@@ -1,9 +1,11 @@
 package model;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -667,5 +669,42 @@ public class Restaurant   {
 		employee.get(index).totalPriceOfOrderCompleted(price);
 		saveDataOfEmployees();
 	}
+	
+	public void importDataOfClients(String fileName) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader(fileName));
+	    String line = br.readLine();
+	    
+	    while(line!=null){
+	      String[] parts = line.split("\\|");
+	     
+	      addClient(parts[0],parts[1], Long.parseLong(parts[2]), parts[3], Long.parseLong(parts[4]), parts[5]);
+	      line = br.readLine();
+	    }
+	    br.close();
+	}
+	
+	public void importDataOfProducts(String fileName) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader(fileName));
+	    String line = br.readLine();
+	    
+	    while(line!=null){
+	      String[] parts = line.split("\\|");
+	      Type type = new Type(parts[2]);
+	      Size size = new Size(parts[3]);
+	      
+	      
+	      ArrayList<Ingredient> ingredientss = new ArrayList<>();
+	      for(int i = 4; i < parts.length; i++) {
+	    	  ingredientss.add(new Ingredient(parts[i]));
+	      }
+	     
+	      addProduct(parts[0], Long.parseLong(parts[1]), type, size, ingredientss);
+	      line = br.readLine();
+	    }
+	    br.close();
+	}
+	
+	
 	
 }

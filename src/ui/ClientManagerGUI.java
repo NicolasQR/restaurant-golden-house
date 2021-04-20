@@ -6,6 +6,7 @@ import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,6 +20,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Client;
@@ -155,6 +157,7 @@ public class ClientManagerGUI {
     public void disableClient(ActionEvent event) throws FileNotFoundException, IOException {
     	int index = tableClient.getSelectionModel().getFocusedIndex();
     	restaurant.getClients().get(index).updateStatus(false);
+    	tableView();
     	restaurant.saveDataofClient();
     }
 
@@ -162,6 +165,7 @@ public class ClientManagerGUI {
     public void enableClient(ActionEvent event) throws FileNotFoundException, IOException {
     	int index = tableClient.getSelectionModel().getFocusedIndex();
     	restaurant.getClients().get(index).updateStatus(true);
+    	tableView();
     	restaurant.saveDataofClient();
     }
     
@@ -176,23 +180,38 @@ public class ClientManagerGUI {
     	this.columnAddress.setCellValueFactory(new PropertyValueFactory<Client, String>("address"));
     	this.columnPhone.setCellValueFactory(new PropertyValueFactory<Client, String>("phone"));
     	
-    	tableClient.setRowFactory( tv -> {
-			TableRow<Client> row = new TableRow<>();
-			row.setOnMouseClicked(event -> {
-				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-					Client rowData = row.getItem();
-					txtName.setText(rowData.getName());
-					txtLastName.setText(rowData.getLastName());
+    	tableClient.setRowFactory(tv -> new TableRow<Client>() {
+    	    @Override
+    	    protected void updateItem(Client item, boolean empty) {
+    	        super.updateItem(item, empty);
+
+	    	    	if (item == null || empty) {
+	    	    		setStyle("");
+					} else {
+						if (item.getStatus()) {
+							
+						} else {
+							setStyle("-fx-background-color: #FF6347;");
+						}
+					}
+    	    }
+    	});
+    	
+    	tableClient.setOnMousePressed(new EventHandler<MouseEvent>() {
+    		@Override
+    		public void handle(MouseEvent event) {
+	    		if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+	    			
+	    			Client p = tableClient.getSelectionModel().getSelectedItem();
+					txtName.setText(p.getName());
+					txtLastName.setText(p.getLastName());
 					toString();
-					txtId.setText(String.valueOf(rowData.getID()));
-					txtAddress.setText(rowData.getAddress());
-					txtPhone.setText(String.valueOf(rowData.getPhone()));
-					txtScreen1Observations.setText(rowData.getObservations());
-					
-				}
-			});
-			return row ;
-		});
+					txtId.setText(String.valueOf(p.getID()));
+					txtAddress.setText(p.getAddress());
+					txtPhone.setText(String.valueOf(p.getPhone()));
+	    		}
+    		}
+    	});
     }
     
     public void receiveData(Restaurant a) {

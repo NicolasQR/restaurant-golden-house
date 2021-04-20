@@ -39,8 +39,18 @@
                         <Menu mnemonicParsing="false" text="PEDIDOS">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#showOrderList" text="Mostrar pedidos" />
-                              <MenuItem mnemonicParsing="false" onAction="#showClientList" text="Motrar clientes" />
                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="CLIENTES">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#showClientList" text="Mostrar clientes" />
+                          </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="IMPORTAR">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#importClients" text="Importar clientes" />
+                              <MenuItem mnemonicParsing="false" onAction="#importProducts" text="Importar productos" />
+                          </items>
                         </Menu>
                       <Menu mnemonicParsing="false" text="HELP">
                         <items>

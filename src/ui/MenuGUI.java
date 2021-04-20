@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,7 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -20,6 +25,9 @@ public class MenuGUI {
     
 	@FXML
     private MenuGUI menuGUI;
+	
+	@FXML
+    private AnchorPane anchorPaneMenu;
     
     @FXML
     private Label amountOfProducts;
@@ -275,6 +283,52 @@ public class MenuGUI {
 	    public void updateLabelsInfo(ActionEvent event) {
 	    	showLabelsInformation();
 	    }
+	    
+	    @FXML
+	    public void importClients(ActionEvent event) {
+	    	FileChooser filechooser = new FileChooser();
+	    	filechooser.setTitle("Open Import File");
+	    	File f = filechooser.showOpenDialog(anchorPaneMenu.getScene().getWindow());
+	    	
+	    	if(f != null) {
+	    		Alert alert = new Alert(AlertType.INFORMATION);
+	    		alert.setTitle("Import clients");
+	    		alert.setHeaderText(null);
+	    		try {
+					restaurant.importDataOfClients(f.getAbsolutePath());
+					alert.setContentText("Los clientes fueron importados correctamente");
+					restaurant.saveDataofClient();
+					alert.showAndWait();
+				} catch (IOException e) {
+					alert.setContentText("No se ha podido importar correctamente");
+					alert.showAndWait();
+				}
+	    	}
+	    }
+	    
+	    @FXML
+	    public void importProducts(ActionEvent event) {
+	    	FileChooser filechooser = new FileChooser();
+	    	filechooser.setTitle("Open Import File");
+	    	File f = filechooser.showOpenDialog(anchorPaneMenu.getScene().getWindow());
+	    	
+	    	if(f != null) {
+	    		Alert alert = new Alert(AlertType.INFORMATION);
+	    		alert.setTitle("Import products");
+	    		alert.setHeaderText(null);
+	    		try {
+					restaurant.importDataOfProducts(f.getAbsolutePath());
+					alert.setContentText("Los productos fueron importados correctamente");
+					restaurant.saveDataofProducts();;
+					alert.showAndWait();
+				} catch (IOException e) {
+					alert.setContentText("No se ha podido importar correctamente");
+					alert.showAndWait();
+				}
+	    	}
+	    }
+	    
+	    
 	    
 	    
 	    public void initialize(){

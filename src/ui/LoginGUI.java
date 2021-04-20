@@ -121,6 +121,7 @@ public class LoginGUI {
 			    		alert.showAndWait();
 			    		
 			    		userRepeat = true;
+			    		
 					}
 				}
 				
@@ -190,7 +191,8 @@ public class LoginGUI {
    		 	alert.setContentText("El usuario o la contraseña es incorrecta.");
    		 	alert.showAndWait();
 		}
+		
+		
 	
 	}
-    
 }

@@ -61,10 +61,10 @@
          </font>
       </Label>
       <TextArea fx:id="txtScreen1Observations" layoutX="738.0" layoutY="548.0" prefHeight="176.0" prefWidth="196.0" />
-      <Separator layoutX="-18.0" layoutY="-1.0" prefHeight="11.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Separator layoutX="764.0" layoutY="419.0" prefHeight="11.0" prefWidth="950.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Separator layoutX="-3.0" layoutY="146.0" orientation="VERTICAL" prefHeight="767.0" prefWidth="12.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Separator layoutX="932.0" layoutY="159.0" orientation="VERTICAL" prefHeight="767.0" prefWidth="12.0" style="-fx-background-color: #DC143C;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="-18.0" layoutY="-1.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="764.0" layoutY="419.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutX="-3.0" layoutY="146.0" orientation="VERTICAL" prefHeight="767.0" prefWidth="6.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="932.0" layoutY="159.0" orientation="VERTICAL" prefHeight="767.0" prefWidth="6.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Button layoutX="753.0" layoutY="379.0" mnemonicParsing="false" onAction="#enableClient" prefWidth="150.0" style="-fx-background-radius: 15;" text="Habilitar" />
       <Button layoutX="753.0" layoutY="421.0" mnemonicParsing="false" onAction="#disableClient" prefWidth="150.0" style="-fx-background-radius: 15;" text="Deshabilitar" />
    </children>

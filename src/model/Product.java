@@ -25,6 +25,7 @@ public class Product implements Comparable<Product>, Serializable{
 		this.typeProductOb = typeProduct;
 		this.sizeProduct = sizeProduct;
 		ingredientsList = ingredients;
+		status = true;
 		componentsToString();
 	}
 	

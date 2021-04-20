@@ -63,9 +63,9 @@
       <Button layoutX="773.0" layoutY="225.0" mnemonicParsing="false" onAction="#createTypes" prefHeight="32.0" prefWidth="135.0" style="-fx-background-radius: 15;" text="Nuevos tipos" />
       <ListView fx:id="listAddedIngredients" layoutX="537.0" layoutY="124.0" prefHeight="185.0" prefWidth="142.0" />
       <Button layoutX="541.0" layoutY="316.0" mnemonicParsing="false" onAction="#removeIngredient" prefHeight="32.0" prefWidth="135.0" style="-fx-background-radius: 15;" text="&lt;- Quitar" />
-      <Separator layoutX="-17.0" layoutY="13.0" prefHeight="9.0" prefWidth="950.0" style="-fx-background-color: #20B2AA;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0" />
-      <Separator layoutX="182.0" layoutY="445.0" prefHeight="10.0" prefWidth="950.0" style="-fx-background-color: #20B2AA;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Separator layoutX="11.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="10.0" style="-fx-background-color: #20B2AA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0" />
-      <Separator layoutX="933.0" layoutY="108.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="10.0" style="-fx-background-color: #20B2AA;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="-17.0" layoutY="13.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="182.0" layoutY="445.0" prefHeight="6.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutX="11.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="6.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="933.0" layoutY="108.0" orientation="VERTICAL" prefHeight="470.0" prefWidth="6.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

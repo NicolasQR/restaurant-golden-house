@@ -7,6 +7,7 @@ import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -157,10 +159,9 @@ public class EmployeeGUI {
 
     @FXML
     public void disableEmployee(ActionEvent event) throws FileNotFoundException, IOException {
-    	
-    	
     	int index = tableEmployee.getSelectionModel().getFocusedIndex();
     	restaurant.getEmployee().get(index).setStatus(false);
+    	tableView();
     	restaurant.saveDataOfEmployees();
     }
     
@@ -177,6 +178,7 @@ public class EmployeeGUI {
     public void enableEmployee(ActionEvent event) throws FileNotFoundException, IOException {
     	int index = tableEmployee.getSelectionModel().getFocusedIndex();
     	restaurant.getEmployee().get(index).setStatus(true);
+    	tableView();
     	restaurant.saveDataOfEmployees();
     }
 
@@ -203,20 +205,36 @@ public class EmployeeGUI {
     	this.lastNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
     	this.idEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("iD"));
     	
-    	tableEmployee.setRowFactory( tv -> {
-			TableRow<Employee> row = new TableRow<>();
-			row.setOnMouseClicked(event -> {
-				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-					Employee rowData = row.getItem();
-					//updateButton.setDisable(false);
-					txtNameEmployeeScreen1.setText(rowData.getName());
-					txtLastNameEmployeeScreen1.setText(rowData.getLastName());
+    	tableEmployee.setRowFactory(tv -> new TableRow<Employee>() {
+    	    @Override
+    	    protected void updateItem(Employee item, boolean empty) {
+    	        super.updateItem(item, empty);
+
+	    	    	if (item == null || empty) {
+	    	    		setStyle("");
+					} else {
+						if (item.getStatus()) {
+							
+						} else {
+							setStyle("-fx-background-color: #FF6347;");
+						}
+					}
+    	    }
+    	});
+    	
+    	tableEmployee.setOnMousePressed(new EventHandler<MouseEvent>() {
+    		@Override
+    		public void handle(MouseEvent event) {
+	    		if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+	    			
+	    			Employee p = tableEmployee.getSelectionModel().getSelectedItem();
+					txtNameEmployeeScreen1.setText(p.getName());
+					txtLastNameEmployeeScreen1.setText(p.getLastName());
 					toString();
-					txtIdEmployeeScreen1.setText(String.valueOf(rowData.getID()));
-				}
-			});
-			return row ;
-		});
+					txtIdEmployeeScreen1.setText(String.valueOf(p.getID()));
+	    		}
+    		}
+    	});
     }
     
     public void receiveData(Restaurant a) {
