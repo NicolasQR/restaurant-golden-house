@@ -130,6 +130,7 @@ public class UsersGUI {
     public void receiveData(Restaurant a) {
     	restaurant = a;
     }
+    
     public void initialize() {
     	tableViewUser();
     }

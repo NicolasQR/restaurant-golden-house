@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="950.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="286.0" prefWidth="950.0">
          <children>
@@ -21,17 +21,17 @@
             <Separator prefHeight="8.0" prefWidth="950.0" style="-fx-background-color: #e2dda8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
             <Separator orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
             <Separator layoutX="930.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #e2dda8;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="24.0" layoutY="180.0" text="3/17/2021" textFill="WHITE">
+            <TextArea disable="true" editable="false" layoutX="23.0" layoutY="166.0" prefHeight="76.0" prefWidth="102.0" />
+            <TextField fx:id="txtTime" alignment="CENTER" editable="false" layoutX="28.0" layoutY="205.0" prefHeight="25.0" prefWidth="92.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold Italic" size="13.0" />
                </font>
-            </Label>
-            <Label layoutX="24.0" layoutY="207.0" prefHeight="27.0" prefWidth="102.0" text="23:49" textFill="WHITE">
+            </TextField>
+            <TextField fx:id="txtDate" alignment="CENTER" editable="false" layoutX="28.0" layoutY="173.0" prefHeight="25.0" prefWidth="92.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold Italic" size="13.0" />
                </font>
-            </Label>
-            <TextArea disable="true" editable="false" layoutX="16.0" layoutY="173.0" prefHeight="64.0" prefWidth="95.0" />
+            </TextField>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="mainAnchorPane" prefHeight="470.0" prefWidth="950.0" />

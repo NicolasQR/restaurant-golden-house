@@ -18,7 +18,6 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-
 	}
 	
 	@Override
@@ -35,8 +34,8 @@ public class Main extends Application {
 		primaryStage.setTitle("Casa Dorada");
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		
 		goldenHouseGUI.loadLogin();
+		goldenHouseGUI.runThread();
 	}
 
 }

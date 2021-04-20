@@ -1,6 +1,9 @@
 package ui;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +15,14 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import model.Restaurant;
 
-public class LoginGUI {
+public class LoginGUI implements Runnable{
+	
+	@FXML
+    private TextField txtTime;
 
+    @FXML
+    private TextField txtDate;
+	
 	@FXML
     private AnchorPane mainAnchorPane;
 	
@@ -38,6 +47,12 @@ public class LoginGUI {
     @FXML
     private PasswordField loginPassword;
     
+    private String hour, minutes, seconds;
+    
+    private String day, month, year;
+    
+	private  Thread h1;
+	
     private Restaurant restaurant;
     
     private MenuGUI menuController;
@@ -52,7 +67,52 @@ public class LoginGUI {
 			e.printStackTrace();
 		}
     }
+    
+    public void runThread(){
+    	h1 = new Thread(this);
+    	h1.start();
+    }
+    
+    @Override
+	public void run() {
+    	
+		Thread ct = Thread.currentThread();
+		while(ct == h1)  {
+			calcula();
+			txtTime.setText(hour + ":" + minutes + ":" + seconds);
+			txtDate.setText(day + "/" + month + "/" + year);
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				
+			}
+		}
+		
+	}
 	
+	private void calcula() {
+		
+		Calendar calendar = new GregorianCalendar();
+		Date DateAndHour = new Date();
+		calendar.setTime(DateAndHour);
+		
+		int h = Calendar.HOUR_OF_DAY;
+		int m = Calendar.MINUTE;
+		int s = Calendar.SECOND;
+		
+		hour = calendar.get(h) > 9?"" + calendar.get(h):"0"+ calendar.get(h);
+		minutes = calendar.get(m) > 9?"" + calendar.get(m):"0"+ calendar.get(m);
+		seconds = calendar.get(s) > 9?"" + calendar.get(s):"0"+ calendar.get(s);
+		
+		int d = Calendar.DAY_OF_MONTH;
+		int mnth = Calendar.MONTH;
+		int y = Calendar.YEAR;
+		
+		day = calendar.get(d) > 9?"" + calendar.get(d):"0"+ calendar.get(d);
+		month = calendar.get(mnth) > 9?"" + calendar.get(mnth):"0"+ calendar.get(mnth);
+		year = calendar.get(y) > 9?"" + calendar.get(y):"0"+ calendar.get(y);
+	}
+
 	public MenuGUI getMenuController() {
 		return menuController;
 	}
@@ -66,7 +126,7 @@ public class LoginGUI {
 		
 		fxmlLoader.setController(this);    	
 		Parent root = fxmlLoader.load();
-    	
+		
 		mainAnchorPane.getChildren().clear();
 		mainAnchorPane.getChildren().setAll(root);
     }
@@ -163,7 +223,7 @@ public class LoginGUI {
 	@FXML
     public void logIn(ActionEvent event) throws IOException {
 		boolean login = false;
-		
+		runThread(); 
 		for(int i = 0; i < restaurant.getUsers().size() ; i++) {
     		
     		if(restaurant.getUsers().get(i).getUserName().equals(loginUser.getText()) &&
@@ -192,5 +252,4 @@ public class LoginGUI {
 		}
 	
 	}
-    
 }
