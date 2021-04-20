@@ -475,7 +475,7 @@ public class Restaurant   {
 	}
 	
 	public void addUsers(String name, String lastName, long iD, String userName, String password) throws IOException {
-		users.add(new User(name, lastName, iD, userName, password, 0));
+		users.add(new User(name, lastName, iD, userName, password, 0));		
 		saveDataofUsers();
 	}
 	

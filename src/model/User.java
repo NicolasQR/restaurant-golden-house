@@ -30,6 +30,4 @@ public class User extends Employee implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 }

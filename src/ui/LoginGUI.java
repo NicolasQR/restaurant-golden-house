@@ -79,9 +79,9 @@ public class LoginGUI implements Runnable{
 		Thread ct = Thread.currentThread();
 		while(ct == h1)  {
 			calcula();
-			txtTime.setText(hour + ":" + minutes + ":" + seconds);
-			txtDate.setText(day + "/" + month + "/" + year);
 			try {
+				txtTime.setText(hour + ":" + minutes + ":" + seconds);
+				txtDate.setText(day + "/" + month + "/" + year);
 				Thread.sleep(1000);
 			} catch (Exception e) {
 				
