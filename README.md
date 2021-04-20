@@ -27,4 +27,4 @@ Segunda entrega
   
   •Se agrego la funcion del reloj usando un hilo de trabajo.
   
-  •Se agregaron algorimos de ordenamietno al agregar productos, ordenes, ingredientes y tamaños.
+  •Se agregaron algoritmos de ordenamietno al agregar productos, ordenes, ingredientes y tamaños.
