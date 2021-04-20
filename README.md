@@ -2,7 +2,8 @@
 Segunda entrega
 
   •Se agregaron imports de productos y clientes con los siguiente modelo:
-      -> Modelo para importar clientes: 
+     
+     -> Modelo para importar clientes: 
 
         Nombre
         Apellidos
